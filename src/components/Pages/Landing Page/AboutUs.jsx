@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const AboutUs = () => {
+  
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.8 });
-
+  const { ref1, inView2 } = useInView({ triggerOnce: true, threshold: 1 });
   const lines = [
     "EduVed is a learning platform offering high-quality study materials",
     "Chapter-wise quizzes, previous year questions (PYQs), and premium notes",
@@ -16,9 +17,9 @@ const AboutUs = () => {
   const words = lines.flatMap((line) => line.split(" "));
 
   return (
-    <div ref={ref} className="w-full px-5 py-10 flex justify-center">
+    <div ref={ref} className="w-full  px-5 py-10 flex justify-center">
       <div className="w-full max-w-2xl">
-        <h1  className="text-center text-2xl md:text-3xl font-bold mb-6">
+        <h1 ref={ref1} className="text-center text-2xl md:text-3xl font-bold mb-6">
           About Us
         </h1>
         <div className="flex flex-wrap justify-center gap-2 md:gap-4">

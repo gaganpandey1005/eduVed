@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col items-center space-y-9 p-6">
+    <div className="flex flex-col items-center space-y-8 p-4">
       {/* Animated Heading */}
       <motion.div
         animate={{ y: -61, opacity: 1 }}
         transition={{ duration: 0.5, delay: 2 }}
-        className="p-4 font-bold rounded-xl w-full max-w-[90%] md:max-w-[80%] h-auto flex justify-center flex-wrap"
+        className="p-4 font-bold rounded-xl w-full max-w-[80%] md:max-w-[80%] h-auto flex justify-center flex-wrap"
       >
         {["E", "D", "U", "V", "E", "D"].map((letter, index) => (
           <motion.h1
@@ -16,7 +16,7 @@ const Hero = () => {
             initial={{ y: 300, opacity: 0 }}
             animate={{ y: 50, opacity: 1 }}
             transition={{ duration: 1, delay: index * 0.1 }}
-            className={`tracking-normal mr-2 text-4xl sm:text-5xl md:text-7xl lg:text-9xl ${
+            className={`tracking-normal mr-2 text-5xl sm:text-6xl md:text-8xl lg:text-9xl ${
               index > 2 ? "text-blue-600" : ""
             }`}
           >
@@ -63,6 +63,7 @@ const Hero = () => {
           </motion.div>
         </div>
       </motion.div>
+              
     </div>
   );
 };
