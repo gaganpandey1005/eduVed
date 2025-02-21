@@ -3,14 +3,18 @@ import Navbar from './components/Navbar'
 import Hero from './components/Pages/Landing Page/Hero'
 import AboutUs from './components/Pages/Landing Page/AboutUs'
 import HeroCards from './components/Pages/Landing Page/HeroCards'
-const App = () => {
+import SignUp from './components/Pages/Authenticatoin page/SignUp'
+
+const App = () =>
+{
   return (
     <>
-    
-    <Navbar/>
+
+      {/* <Navbar/>
     <Hero/>
     <HeroCards/>
-    <AboutUs/>
+    <AboutUs/> */}
+      <SignUp />
     </>
   )
 }
