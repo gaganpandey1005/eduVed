@@ -44,12 +44,12 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="mt-28 lg:ml-40 text-[#323233]  ">
+      <div className="my-28  lg:ml-40 text-[#323233]  ">
         <motion.span
           animate={{ color: active ? "#ffff" : "#323233" }}
           transition={{ duration: 0.3 }}
           whileHover={{color:"#ffff"}}
-          className="text-3xl ml-12  lg:text-9xl font-[woff1]  md:text-8xl sm:text-8xl "
+          className="text-3xl mx-10  lg:text-9xl font-[woff1]  md:text-8xl sm:text-8xl "
           onClick={() => {
             setactive(!active);
           }}
@@ -65,7 +65,7 @@ const AboutUs = () => {
           onClick={() => {
             setactive1(!active1);
           }}
-          className=" text-3xl ml-25  lg:text-9xl  md:text-8xl sm:text-8xl font-[woff1]"
+          className=" text-3xl  ml-27 lg:mx-30 lg:font-[woff1]  lg:text-9xl  md:text-8xl sm:text-8xl font-[woff1]"
         >
           driven to empower
         </motion.span>
