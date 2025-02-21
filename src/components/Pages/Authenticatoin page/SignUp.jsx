@@ -78,6 +78,7 @@ const SignUp = () =>
                     </button>
                 </form>
             </div>
+            
         </motion.div>
     );
 };
