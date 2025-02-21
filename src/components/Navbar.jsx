@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { FaCartArrowDown } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi"; // Importing menu icons
-
+import { Navigate, useNavigate } from "react-router-dom";
 const Navbar = ({ setIsMenuOpen }) => {
   const [active, setActive] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
-
+const navigate=useNavigate();
   // Function to toggle menu and update state in parent
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -65,8 +65,9 @@ const Navbar = ({ setIsMenuOpen }) => {
           whileHover={{ scale: 1.05, background: "#2072AF", color: "#ffff" }}
           whileTap={{ scale: 0.95 }}
           className="px-4 py-2 border border-gray-600 rounded-md hover:cursor-pointer"
+          onClick={()=>navigate('/signup')}
         >
-          Sign In
+          Sign Up
         </motion.button>
 
         <motion.button

@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 const SignUp = () =>
 {
     return (
-        <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: ".5", scale: { type: "spring",bounce:"0.5",visualDuration:"0.4"  } }} className="flex flex-col items-center justify-center min-h-screen">
+        <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: "3", scale: { type: "spring",bounce:"0.5",visualDuration:"0.4"  } }} className="flex flex-col items-center justify-center min-h-screen">
             <div className="bg-black shadow-lg p-8 rounded-lg w-full max-w-md">
                 <h1 className="font-semibold text-3xl mb-6 text-center">Sign Up</h1>
                 <form className="flex flex-col gap-4">
@@ -68,7 +68,7 @@ const SignUp = () =>
                         <label className="font-medium text-sm">Confirm Password</label>
                         <input
                             type="password"
-                            className=" border-2 rounded-md p-2 w-full text-sm"
+                            className=" border-2 focus:border-blue-600  focus:outline-none rounded-md p-2 w-full text-sm"
                             placeholder="********"
                         />
                     </div>

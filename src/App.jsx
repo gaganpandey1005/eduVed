@@ -1,22 +1,25 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Pages/Landing Page/Hero'
-import AboutUs from './components/Pages/Landing Page/AboutUs'
-import HeroCards from './components/Pages/Landing Page/HeroCards'
-import SignUp from './components/Pages/Authenticatoin page/SignUp'
+import React from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import SignUp from "./components/Pages/Authenticatoin page/SignUp";
+import LandingPage from "./components/LandingPage";
 
 const App = () =>
 {
+  const location=useLocation();
   return (
     <>
-
-      <Navbar/>
-    <Hero/>
-    <HeroCards/>
-    <AboutUs/>
+    
+    {location.pathname!=="/signup"&&<Navbar/>}
+   
       
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<SignUp />} /> 
+      </Routes>
+    
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
