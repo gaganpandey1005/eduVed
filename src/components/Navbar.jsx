@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { FaCartArrowDown } from "react-icons/fa6";
 import { motion } from "framer-motion";
-import { FiMenu, FiX } from "react-icons/fi"; // Importing menu icons
-import { Navigate, useNavigate } from "react-router-dom";
-const Navbar = ({ setIsMenuOpen }) => {
+import { FiMenu, FiX } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+
+const Navbar = () =>
+{
   const [active, setActive] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
-const navigate=useNavigate();
-  // Function to toggle menu and update state in parent
-  const toggleMenu = () => {
+  const navigate = useNavigate();
+
+  // Function to toggle mobile menu
+  const toggleMenu = () =>
+  {
     setMenuOpen(!menuOpen);
-    setIsMenuOpen(!menuOpen);
   };
 
   return (
@@ -23,7 +26,8 @@ const navigate=useNavigate();
       {/* Logo with Tap Animation */}
       <motion.h1
         className="text-lg font-bold cursor-pointer"
-        whileTap={{ scale: 0.9, color: "#facc15" }} // Yellow on touch
+        whileTap={{ scale: 0.9, color: "#facc15" }}
+        onClick={() => navigate("/")}
       >
         EduVed
       </motion.h1>
@@ -32,19 +36,19 @@ const navigate=useNavigate();
       <motion.button
         onClick={toggleMenu}
         className="text-white text-2xl md:hidden"
-        whileTap={{ scale: 0.8 }} // Shrink effect on tap
+        whileTap={{ scale: 0.8 }}
       >
         {menuOpen ? <FiX /> : <FiMenu />}
       </motion.button>
 
-      {/* Desktop Navigation Links with Hover Animation */}
+      {/* Desktop Navigation Links */}
       <motion.div className="hidden md:flex items-center gap-x-6">
         {["Home", "Study Material", "Books"].map((item) => (
           <motion.h1
             key={item}
             className="cursor-pointer relative px-2"
             onClick={() => setActive(item)}
-            whileHover={{ scale: 1.1, color: "#facc15" }} // Hover effect
+            whileHover={{ scale: 1.1, color: "#facc15" }}
             whileTap={{ scale: 0.9 }}
           >
             {item}
@@ -59,13 +63,13 @@ const navigate=useNavigate();
         ))}
       </motion.div>
 
-      {/* Buttons with Animation */}
+      {/* Desktop Buttons */}
       <div className="hidden md:flex items-center gap-x-4">
         <motion.button
           whileHover={{ scale: 1.05, background: "#2072AF", color: "#ffff" }}
           whileTap={{ scale: 0.95 }}
-          className="px-4 py-2 border border-gray-600 rounded-md hover:cursor-pointer"
-          onClick={()=>navigate('/signup')}
+          className="px-4 py-2 border border-gray-600 rounded-md"
+          onClick={() => navigate("/signup")}
         >
           Sign Up
         </motion.button>
@@ -79,29 +83,32 @@ const navigate=useNavigate();
         </motion.button>
       </div>
 
-      {/* Mobile Menu Animation */}
-      <motion.div
-        initial={{ x: "-100%" }}
-        animate={{ x: menuOpen ? "0%" : "-100%" }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className={`fixed top-0 left-0 w-full h-full bg-black text-white flex flex-col items-center p-5 space-y-4 md:hidden ${
-          menuOpen ? "block" : "hidden"
-        }`}
-      >
-        {["Home", "Study Material", "Books"].map((item) => (
-          <motion.h1
-            key={item}
-            className="cursor-pointer text-lg"
-            onClick={() => {
-              setActive(item);
-              toggleMenu();
-            }}
-            whileTap={{ scale: 0.9, color: "#facc15" }} // Shrink + color change on tap
-          >
-            {item}
-          </motion.h1>
-        ))}
-      </motion.div>
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "-100%" }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className="fixed top-0 left-0 w-[75%] h-full bg-black text-white flex flex-col items-center p-5 space-y-6 md:hidden shadow-lg"
+        >
+          {["Home", "Study Material", "Books", "Sign Up"].map((item) => (
+            <motion.h1
+              key={item}
+              className="cursor-pointer text-lg"
+              onClick={() =>
+              {
+                setActive(item);
+                toggleMenu();
+                if (item === "Sign Up") navigate("/signup");
+              }}
+              whileTap={{ scale: 0.9, color: "#facc15" }}
+            >
+              {item}
+            </motion.h1>
+          ))}
+        </motion.div>
+      )}
     </motion.div>
   );
 };

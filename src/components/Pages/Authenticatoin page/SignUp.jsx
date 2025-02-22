@@ -3,9 +3,11 @@ import { motion } from "motion/react";
 const SignUp = () =>
 {
     return (
-        <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: "3", scale: { type: "spring",bounce:"0.5",visualDuration:"0.4"  } }} className="flex flex-col items-center justify-center min-h-screen">
-            <div className="bg-black shadow-lg p-8 rounded-lg w-full max-w-md">
-                <h1 className="font-semibold text-3xl mb-6 text-center">Sign Up</h1>
+        <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: "3", scale: { type: "bounce",visualDuration:"0.4"  } }} className="flex flex-col items-center justify-center min-h-screen">
+            <div className="bg-black shadow-lg p-8  rounded-lg w-full max-w-md">
+              <div className="justify-center flex">
+                    <h1 className="font-semibold rounded p-2 w-40 bg-white text-black text-3xl mb-6 text-center">Sign Up</h1>
+              </div>
                 <form className="flex flex-col gap-4">
                     <div className="flex gap-4">
                         <div className="flex flex-col w-1/2">
