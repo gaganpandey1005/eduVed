@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useState } from "react";
-const AboutUs = () => {
+const AboutUs = () =>
+{
   const [active, setactive] = useState(false);
   const [active1, setactive1] = useState(false);
 
@@ -48,14 +49,15 @@ const AboutUs = () => {
         <motion.span
           animate={{ color: active ? "#ffff" : "#323233" }}
           transition={{ duration: 0.3 }}
-          whileHover={{color:"#ffff"}}
-          className="text-3xl mx-10  lg:text-9xl hover:scale-3d  font-[woff1]  md:text-8xl sm:text-8xl "
-          onClick={() => {
+          whileHover={{ color: "#ffff" }}
+          className="text-3xl mx-10 cursor-none lg:text-9xl hover:scale-3d  font-[woff1]  md:text-8xl sm:text-8xl "
+          onClick={() =>
+          {
             setactive(!active);
-            
+
           }}
         >
-          
+
           Boundless learning
         </motion.span>{" "}
         <br />
@@ -63,10 +65,11 @@ const AboutUs = () => {
           animate={{ color: active1 ? "blue" : "#323233" }}
           transition={{ duration: 0.3 }}
           whileHover={{ color: "blue" }}
-          onClick={() => {
+          onClick={() =>
+          {
             setactive1(!active1);
           }}
-          className=" text-3xl  ml-27 lg:ml-40 lg:font-[woff1] hover:scale-3d lg:text-9xl  md:text-8xl sm:text-8xl font-[woff1]"
+          className=" text-3xl  ml-27 cursor-none lg:ml-40 lg:font-[woff1] hover:scale-3d lg:text-9xl  md:text-8xl sm:text-8xl font-[woff1]"
         >
           driven to empower
         </motion.span>

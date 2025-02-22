@@ -92,7 +92,7 @@ const Navbar = () =>
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="fixed top-0 left-0 w-[75%] h-full bg-black text-white flex flex-col items-center p-5 space-y-6 md:hidden shadow-lg"
         >
-          {["Home", "Study Material", "Books", "Sign Up"].map((item) => (
+          {["Home", "Study Material", "Books", "Sign Up", "Sign In"].map((item) => (
             <motion.h1
               key={item}
               className="cursor-pointer text-lg"
@@ -101,6 +101,7 @@ const Navbar = () =>
                 setActive(item);
                 toggleMenu();
                 if (item === "Sign Up") navigate("/signup");
+                if (item === "Sign Ip") navigate("/signin");
               }}
               whileTap={{ scale: 0.9, color: "#facc15" }}
             >
