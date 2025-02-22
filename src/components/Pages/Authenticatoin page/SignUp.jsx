@@ -14,7 +14,7 @@ const SignUp = () =>
                 <form className="flex flex-col gap-4">
                     <div className="flex gap-4">
                         <div className="flex flex-col w-1/2">
-                            <label className="font-medium text-sm">First Name</label>
+                            <label className="font-medium text-sm">Full Name</label>
                             <input
 
                                 type="text"
@@ -31,6 +31,7 @@ const SignUp = () =>
                                 placeholder="Pandey"
                             />
                         </div>
+                        
                     </div>
 
                     <div className="flex flex-col">

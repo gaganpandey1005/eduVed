@@ -5,6 +5,7 @@ import SignUp from "./components/Pages/Authenticatoin page/SignUp";
 import LandingPage from "./components/LandingPage";
 import SignIn from "./components/Pages/Authenticatoin page/SignIn";
 
+
 const App = () =>
 {
   const location=useLocation();
@@ -20,7 +21,6 @@ const App = () =>
         <Route path="/signin" element={<SignIn />} /> 
       </Routes>
     
-     
      
     </>
   );

@@ -101,7 +101,7 @@ const Navbar = () =>
                 setActive(item);
                 toggleMenu();
                 if (item === "Sign Up") navigate("/signup");
-                if (item === "Sign Ip") navigate("/signin");
+                if (item === "Sign In") navigate("/signin");
               }}
               whileTap={{ scale: 0.9, color: "#facc15" }}
             >
