@@ -1,0 +1,36 @@
+import express from "express";
+import cors from "cors";
+import userRoutes from "./routes/user.routes.js";
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+import morgan from "morgan";
+dotenv.config();
+
+
+
+
+const app = express();
+app.use(express.json());
+app.use(cookieParser()); 
+app.use(express.urlencoded({ extended:true}));
+
+
+app.use(morgan('dev'));
+// Enable CORS for frontend origin
+app.use(
+    cors({
+      origin: "http://localhost:5173", // Allow frontend
+      credentials: true, // Allow cookies if needed
+    })
+  );
+  
+
+
+app.use('/api/user',userRoutes);
+
+app.all("*", (req, res) => {
+    res.status(404).send("Page not found");
+  });
+
+
+export default app;
