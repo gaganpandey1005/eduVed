@@ -1,7 +1,6 @@
 import User from "../model/user.model.js";
 import sendEmail from "../utils/sendEmail.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+
 import crypto from "crypto";
 
 const register = async (req, res) => {
@@ -24,8 +23,8 @@ const register = async (req, res) => {
     const verificationToken = await user.generateVerificationToken();
 
     // ✅ Send Verification Email
-    const verificationLink = ${process.env.BASE_URL}verify-email/${verificationToken};
-    await sendEmail(user.email, "Verify Your Email", Click here to verify your email: ${verificationLink});
+    const verificationLink = `${process.env.BASE_URL}verify-email/${verificationToken}`;
+    await sendEmail(user.email, "Verify Your Email", `Click here to verify your email: ${verificationLink}`);
 
     res.status(200).json({
       success: true,
@@ -92,6 +91,8 @@ const login = async (req, res) => {
     }
 
     const token = user.generateJwtToken();
+    console.log("token",token);
+    
     user.password = undefined;
 
     res.cookie("token", token, {
