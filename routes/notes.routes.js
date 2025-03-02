@@ -1,20 +1,11 @@
 import express from "express";
-import upload from "../middlewares/upload.js";
-import { uploadNotes, getNotes } from "../controllers/notes.controller.js";
+import { getNotes, uploadNote } from "../controllers/notes.controller.js";
+import uploadFiles from "../middlewares/multer.config.js";
 
 const router = express.Router();
 
-// ✅ Route for Uploading Notes (Expecting PDF & Image)
-router.post(
-  "/upload",
-  upload.fields([
-    { name: "pdf", maxCount: 1 },
-    { name: "image", maxCount: 1 },
-  ]),
-  uploadNotes
-);
-
-// ✅ Route for Fetching Notes  
-router.get("/notes", getNotes);
+// Corrected route - Ensure uploadFiles is used correctly
+router.post("/upload", uploadFiles, uploadNote);
+router.get("/getNotes", getNotes);
 
 export default router;

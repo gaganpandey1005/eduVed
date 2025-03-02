@@ -28,7 +28,7 @@ app.use(
 
 
 app.use('/api/user',userRoutes);
-app.use('/api/image',imageRoutes);
+app.use('/api/notes',imageRoutes);
 
 app.all("*", (req, res) => {
     res.status(404).send("Page not found");

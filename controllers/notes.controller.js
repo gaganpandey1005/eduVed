@@ -1,57 +1,74 @@
+import fs from "fs";
 import Notes from "../model/note.model.js";
+import cloudinary from "../config/cloudinary.connection.js";
 
-// ✅ Upload Notes Controller
-export const uploadNotes = async (req, res) => {
+export const uploadNote = async (req, res) => {
   try {
     const { title, department, semester } = req.body;
 
-    if (!title || !department || !semester) {
-      return res.status(400).json({ message: "All fields are required" });
+    if (!req.files || !req.files.pdf || !req.files.subjectImg) {
+      return res
+        .status(400)
+        .json({ message: "Both PDF and Image are required." });
     }
 
-    if (!req.files?.["pdf"]?.[0]?.path || !req.files?.["image"]?.[0]?.path) {
-      return res.status(400).json({ message: "PDF and Image are required" });
-    }
+    const pdfFile = req.files.pdf[0]; // Extract PDF file
+    const imageFile = req.files.subjectImg[0]; // Extract image file
 
-    // ✅ Extract Cloudinary URLs
-    const pdfUrl = req.files["pdf"][0].path; // PDF File URL from Cloudinary
-    const imageUrl = req.files["image"][0].path; // Image File URL from Cloudinary
+    // Upload image to Cloudinary
+    const result = await cloudinary.uploader.upload(imageFile.path, {
+      folder: "note_images",
+    });
 
-    // ✅ Save in MongoDB
+    // Save note details to MongoDB
     const newNote = new Notes({
       title,
       department,
       semester,
-      pdfUrl,
-      subjectImg: imageUrl,
+      pdf: pdfFile.filename, // PDF stored locally
+      subjectImg: result.secure_url, // Image URL from Cloudinary
     });
+
     await newNote.save();
 
-    res.status(201).json({ message: "Notes uploaded successfully!", note: newNote });
-  } catch (err) {
-    console.error("Upload Error:", err);
-    res.status(500).json({ message: "Error uploading notes", error: err.message });
+    // Delete image from local storage after uploading to Cloudinary
+    fs.unlink(imageFile.path, (err) => {
+      if (err) {
+        console.error("Error deleting local image:", err);
+      } else {
+        console.log("Deleted local image successfully");
+      }
+    });
+
+    res
+      .status(201)
+      .json({ message: "Note uploaded successfully", note: newNote });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error uploading note", error: error.message });
   }
 };
 
-// ✅ Get Notes by Department & Semester
 export const getNotes = async (req, res) => {
   try {
-    const { department, semester } = req.query;
+    const { semester, department } = req.query;
+    console.log("semester",semester,"department",department);
+    
+    // Querying database correctly
+    const notes = await Notes.find({ semester, department });
 
-    if (!department || !semester) {
-      return res.status(400).json({ message: "Department and Semester are required" });
+
+    if (!notes || notes.length === 0) {
+      return res.status(400).json({
+        message: "Currently no notes available for this department or semester",
+      });
     }
 
-    const notes = await Notes.find({ department, semester });
-
-    if (notes.length === 0) {
-      return res.status(404).json({ message: "No notes found for the given filters" });
-    }
-
-    res.status(200).json({ notes });
+    res.status(200).json({ message: "Notes retrieved successfully", notes });
   } catch (error) {
-    console.error("Fetch Error:", error);
-    res.status(500).json({ message: "Error fetching notes", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error retrieving notes", error: error.message });
   }
 };
