@@ -1,9 +1,9 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
   {
     fullName: {
       type: String,
@@ -23,15 +23,17 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Password is required"],
       minLength: [8, "Password must be at least 8 characters long"],
-      select: false,
+      select: false, // Exclude password in queries by default
     },
     department: {
       type: String,
+      
       required: [true, "Department is required"],
     },
     semester: {
-      type: String,
-      required: [true, "Semester is required"],
+      type: Number,
+     
+      required: true,
     },
     verified: {
       type: Boolean,
@@ -43,11 +45,16 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-// ✅ Define all instance methods in one place
+// ✅ Define instance methods
 userSchema.methods = {
   generateJwtToken() {
     return jwt.sign(
-      { _id: this._id, email: this.email, role: this.semester, department: this.department },
+      {
+        _id: this._id,
+        email: this.email,
+        department: this.department,
+        semester: this.semester, // Stores ObjectId reference
+      },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
@@ -60,12 +67,15 @@ userSchema.methods = {
   async generateVerificationToken() {
     const verificationToken = crypto.randomBytes(20).toString("hex");
 
-    this.verificationToken = crypto.createHash("sha256").update(verificationToken).digest("hex");
+    this.verificationToken = crypto
+      .createHash("sha256")
+      .update(verificationToken)
+      .digest("hex");
     this.verificationTokenExpiration = Date.now() + 15 * 60 * 1000; // 15 minutes validity
 
     await this.save();
     return verificationToken;
-  }
+  },
 };
 
 // ✅ Hash Password Before Saving
@@ -75,4 +85,4 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-export default model("User", userSchema);
+export default mongoose.model("User", userSchema);

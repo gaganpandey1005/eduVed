@@ -4,6 +4,7 @@ import userRoutes from "./routes/user.routes.js";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import imageRoutes from './routes/notes.routes.js'
 dotenv.config();
 
 
@@ -27,6 +28,7 @@ app.use(
 
 
 app.use('/api/user',userRoutes);
+app.use('/api/image',imageRoutes);
 
 app.all("*", (req, res) => {
     res.status(404).send("Page not found");
