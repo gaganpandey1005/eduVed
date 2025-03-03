@@ -25,16 +25,16 @@ const userSchema = new mongoose.Schema(
       minLength: [8, "Password must be at least 8 characters long"],
       select: false, // Exclude password in queries by default
     },
-    department: {
-      type: String,
-      
-      required: [true, "Department is required"],
-    },
     semester: {
-      type: Number,
-     
-      required: true,
-    },
+    type: String,
+    enum: ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"], // Predefined semester values
+    required: true,
+  },
+  department: {
+    type: String,
+    enum: ["CSE", "IT", "ECE", "AIML","DS", "ME", "CE"], // Predefined department values
+    required: true,
+  },
     verified: {
       type: Boolean,
       default: false, // Initially false

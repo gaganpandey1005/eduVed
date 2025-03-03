@@ -1,0 +1,272 @@
+[
+  {
+    "name": "Engineering Chemistry",
+    "semester": "1st",
+    "department": ["CS", "IT", "EE"]
+  },
+  {
+    "name": "Mathematics-I",
+    "semester": "1st",
+    "department": ["CS", "IT", "EE"]
+  },
+  {
+    "name": "English for Communication",
+    "semester": "1st",
+    "department": ["CS", "IT", "EE"]
+  },
+  {
+    "name": "Basic Electrical & Electronics Engineering",
+    "semester": "1st",
+    "department": ["CS", "IT", "EE"]
+  },
+  {
+    "name": "Engineering Graphics",
+    "semester": "1st",
+    "department": ["CS", "IT", "EE"]
+  },
+  {
+    "name": "Engineering Physics",
+    "semester": "2nd",
+    "department": ["CS", "IT", "EE"]
+  },
+  {
+    "name": "Mathematics-II",
+    "semester": "2nd",
+    "department": ["CS", "IT", "EE"]
+  },
+  {
+    "name": "Basic Mechanical Engineering",
+    "semester": "2nd",
+    "department": ["CS", "IT", "EE"]
+  },
+  {
+    "name": "Basic Civil Engineering & Mechanics",
+    "semester": "2nd",
+    "department": ["CS", "IT", "EE"]
+  },
+  {
+    "name": "Basic Computer Engineering",
+    "semester": "2nd",
+    "department": ["CS", "IT", "EE"]
+  },
+  {
+    "name": "Energy & Environmental Engineering",
+    "semester": "3rd",
+    "department": ["IT"]
+  },
+  {
+    "name": "Discrete Structure",
+    "semester": "3rd",
+    "department": ["IT"]
+  },
+  {
+    "name": "Data Structure",
+    "semester": "3rd",
+    "department": ["IT"]
+  },
+  {
+    "name": "Object Oriented Programming & Methodology",
+    "semester": "3rd",
+    "department": ["IT"]
+  },
+  {
+    "name": "Digital Circuits & System",
+    "semester": "3rd",
+    "department": ["IT"]
+  },
+  {
+    "name": "Mathematics-III",
+    "semester": "4th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Computer Architecture",
+    "semester": "4th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Analysis and Design of Algorithm",
+    "semester": "4th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Analog & Digital Communication",
+    "semester": "4th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Database Management System",
+    "semester": "4th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Operating System",
+    "semester": "5th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Computer Networks",
+    "semester": "5th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Theory of Computation",
+    "semester": "5th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Microprocessor and Interfacing",
+    "semester": "5th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Object Oriented Analysis and Design",
+    "semester": "5th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Artificial Intelligence",
+    "semester": "5th",
+    "department": ["IT"]
+  },
+  {
+    "name": "E-Commerce & Governance",
+    "semester": "5th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Java Programming",
+    "semester": "5th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Computer Graphics & Multimedia",
+    "semester": "6th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Wireless and Mobile Computing",
+    "semester": "6th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Compiler Design",
+    "semester": "6th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Data Mining",
+    "semester": "6th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Embedded Systems",
+    "semester": "6th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Intellectual Property Rights",
+    "semester": "6th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Software Engineering",
+    "semester": "6th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Wireless Sensor Networks",
+    "semester": "6th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Soft Computing",
+    "semester": "7th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Data Science",
+    "semester": "7th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Cloud Computing",
+    "semester": "7th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Simulation & Modeling",
+    "semester": "7th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Augmented and Virtual Reality",
+    "semester": "7th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Cyber Laws and Forensics",
+    "semester": "7th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Internet of Things",
+    "semester": "7th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Social Networks",
+    "semester": "7th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Digital Image Processing",
+    "semester": "7th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Information Security",
+    "semester": "8th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Machine Learning",
+    "semester": "8th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Natural Language Processing",
+    "semester": "8th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Robotics",
+    "semester": "8th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Quantum Computing",
+    "semester": "8th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Blockchain Technology",
+    "semester": "8th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Human Computer Interaction",
+    "semester": "8th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Printing and Design",
+    "semester": "8th",
+    "department": ["IT"]
+  },
+  {
+    "name": "Parallel Computing",
+    "semester": "8th",
+    "department": ["IT"]
+  }
+]

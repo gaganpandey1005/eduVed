@@ -2,10 +2,10 @@ import express from "express";
 import cors from "cors";
 import userRoutes from "./routes/user.routes.js";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv";
+import dotenv from "dotenv/config";
 import morgan from "morgan";
-import imageRoutes from './routes/notes.routes.js'
-dotenv.config();
+import subjectRoutes from "./routes/subject.routes.js"
+
 
 
 
@@ -27,8 +27,9 @@ app.use(
   
 
 
-app.use('/api/user',userRoutes);
-app.use('/api/notes',imageRoutes);
+  app.use('/api/user',userRoutes);
+  app.use('/api/subjects',subjectRoutes);
+  
 
 app.all("*", (req, res) => {
     res.status(404).send("Page not found");
