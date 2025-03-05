@@ -14,3 +14,81 @@ body {
   color: white;
   background: #000;
 }
+
+.shine {
+  font-size: 2em;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.3);
+  background-image: linear-gradient(
+    -40deg,
+    transparent 0%,
+    transparent 40%,
+    #fff 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 50px;
+  animation: zezzz 5s infinite;
+}
+@keyframes zezzz {
+  0%,
+  10% {
+    background-position: -100%;
+  }
+  20% {
+    background-position: top left;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+
+.gray{
+
+
+  background: rgba( 255, 255, 255, 0.1 );
+  box-shadow: 0 8px 32px 0 rgba(56, 64, 176, 0.37);
+  backdrop-filter: blur( 9px );
+  -webkit-backdrop-filter: blur( 9px );
+  border-radius: 15px;
+  border: 1.5px solid rgba( 255, 255, 255, 0.18 );
+}
+
+
+
+
+
+.shineB {
+  font-size: 2em;
+  font-weight: 900;
+  color: rgb(37, 99, 235); /* 👈 BLUE base color */
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.shineB::after {
+  content: attr(data-text); /* 👈 Duplicate text for shine */
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  color: white; /* 👈 White shine */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 👈 Glow effect */
+  animation: shineMove 2s linear infinite;
+}
+
+@keyframes shineMove {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+

@@ -1,4 +1,4 @@
-import React from "react";
+
 import { motion } from "framer-motion";
 
 const Hero = () => {
@@ -31,7 +31,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 2, ease: "easeInOut" }}
-          className="bg-[#141515] text-white text-xl sm:text-2xl md:text-3xl text-center p-4 md:p-6 rounded-lg w-full max-w-[90%] md:max-w-[80%] shadow-lg"
+          className="bg-[rgb(20,21,21)] text-white text-xl sm:text-2xl md:text-3xl text-center p-4 md:p-6 rounded-lg w-full max-w-[90%] md:max-w-[80%] shadow-lg"
         >
           <h1>Unlock your potential with high-quality learning materials!</h1>
         </motion.div>
@@ -46,7 +46,7 @@ const Hero = () => {
       >
         <div className="overflow-x-hidden">
           <motion.div
-            className="flex gap-6 whitespace-nowrap w-full"
+            className="flex gap-6 whitespace-nowrap w-screen"
             animate={{ x: ["0%", "-100%"] }}
             transition={{
               repeat: Infinity,

@@ -1,12 +1,11 @@
-import React from 'react'
-import Notes from './Dashboard/Notes'
-import PYQ from './Dashboard/PYQ'
+
+import Notes from '../components/Pages/Dashboard/Notes'
+import PYQ from '../components/Pages/Dashboard/PYQ'
 
 const DashBoard = () => {
   return (
     <>
       <Notes />
-        
       <PYQ />
     </>
   );

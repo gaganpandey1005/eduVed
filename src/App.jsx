@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import SignUp from "./components/Pages/Authenticatoin page/SignUp";
