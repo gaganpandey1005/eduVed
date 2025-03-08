@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv/config";
 import morgan from "morgan";
 import subjectRoutes from "./routes/subject.routes.js"
-
+import chapterRoutes from "./routes/chapter.routes.js"
 
 
 
@@ -28,6 +28,7 @@ app.use(
 
 
   app.use('/api/user',userRoutes);
+  app.use('/api/chapter',chapterRoutes);
   app.use('/api/subjects',subjectRoutes);
   
 
