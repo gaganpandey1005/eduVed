@@ -26,15 +26,15 @@ const userSchema = new mongoose.Schema(
       select: false, // Exclude password in queries by default
     },
     semester: {
-    type: String,
-    enum: ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"], // Predefined semester values
-    required: true,
-  },
-  department: {
-    type: String,
-    enum: ["CSE", "IT", "ECE", "AIML","DS", "ME", "CE"], // Predefined department values
-    required: true,
-  },
+      type: String,
+      enum: ["1s", "2", "3", "4", "5", "6", "7", "8"], // Predefined semester values
+      required: true,
+    },
+    department: {
+      type: String,
+      enum: ["CS", "IT", "ECE", "AIML", "DS", "ME", "CE"], // Predefined department values
+      required: true,
+    },
     verified: {
       type: Boolean,
       default: false, // Initially false
