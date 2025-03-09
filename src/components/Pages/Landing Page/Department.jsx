@@ -1,8 +1,8 @@
-import Cards from "../ui/cards";
+import Cards from "../ui/Cards";
 
 const Department = () => {
   const departments = [
-    {  name: "Computer Science", img: "/src/assets/images/cse.png", link: "/view-notes/cse" },
+    { name: "Computer Science", img: "/src/assets/images/cse.png", link: "/view-notes/cse" },
     { name: "Electrical Engineering", img: "/src/assets/images/ee.png", link: "/view-notes/ee" },
     { name: "Mechanical Engineering", img: "/src/assets/images/me.png", link: "/view-notes/me" },
     { name: "Civil Engineering", img: "/src/assets/images/ce.png", link: "/view-notes/ce" },

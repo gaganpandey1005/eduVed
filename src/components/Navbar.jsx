@@ -1,116 +1,96 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaCartArrowDown } from "react-icons/fa6";
-import { motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () =>
-{
+const Navbar = () => {
   const [active, setActive] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Function to toggle mobile menu
-  const toggleMenu = () =>
-  {
+  const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const handleNavigation = (page, path) => {
+    setActive(page);
+    navigate(path);
+    setMenuOpen(false); // Close menu on mobile after navigation
+  };
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className="flex z-50 items-center justify-between bg-black text-white p-5 relative"
-    >
-      {/* Logo with Tap Animation */}
-      <motion.h1
-        className="text-lg font-bold cursor-pointer"
-        whileTap={{ scale: 0.9, color: "#facc15" }}
-        onClick={() => navigate("/")}
+    <div className="flex z-50 items-center justify-between bg-black text-white p-5 relative">
+      {/* Logo */}
+      <h1
+        className="text-lg font-bold cursor-pointer hover:text-blue-600 transition"
+        onClick={() => handleNavigation("Home", "/")}
       >
         EduVed
-      </motion.h1>
+      </h1>
 
       {/* Hamburger Menu (For Mobile) */}
-      <motion.button
-        onClick={toggleMenu}
-        className="text-white text-2xl md:hidden"
-        whileTap={{ scale: 0.8 }}
-      >
+      <button onClick={toggleMenu} className="text-white text-2xl md:hidden">
         {menuOpen ? <FiX /> : <FiMenu />}
-      </motion.button>
+      </button>
 
       {/* Desktop Navigation Links */}
-      <motion.div className="hidden md:flex items-center gap-x-6">
-        {["Home", "Study Material", "Books"].map((item) => (
-          <motion.h1
-            key={item}
-            className="cursor-pointer relative px-2"
-            onClick={() => setActive(item)}
-            whileHover={{ scale: 1.1, color: "#facc15" }}
-            whileTap={{ scale: 0.9 }}
+      <div className="hidden md:flex items-center gap-x-6">
+        {[
+          { name: "Home", path: "/" },
+          { name: "Study Material", path: "/study-material" },
+          { name: "Books", path: "/books" },
+          { name: "About", path: "/about" },
+        ].map((item) => (
+          <h1
+            key={item.name}
+            className={`cursor-pointer px-2 relative transition ${
+              active === item.name ? "text-blue-600" : ""
+            }`}
+            onClick={() => handleNavigation(item.name, item.path)}
           >
-            {item}
-            {active === item && (
-              <motion.div
-                layoutId="underline"
-                className="absolute left-0 bottom-0 w-full h-[2px] bg-amber-500"
-                transition={{ type: "spring", stiffness: 350, damping: 40 }}
-              />
+            {item.name}
+            {active === item.name && (
+              <div className="absolute left-0 bottom-0 w-full h-[2px] bg-blue-600"></div>
             )}
-          </motion.h1>
+          </h1>
         ))}
-      </motion.div>
+      </div>
 
       {/* Desktop Buttons */}
       <div className="hidden md:flex items-center gap-x-4">
-        <motion.button
-          whileHover={{ scale: 1.05, background: "#2072AF", color: "#ffff" }}
-          whileTap={{ scale: 0.95 }}
-          className="px-4 py-2 border border-gray-600 rounded-md"
+        <button
+          className="px-4 py-2 border border-gray-600 rounded-md hover:bg-blue-600 transition"
           onClick={() => navigate("/signup")}
         >
           Sign Up
-        </motion.button>
+        </button>
 
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="bg-[#2072AF] p-2 rounded-md hover:bg-blue-700 transition"
-        >
+        <button className="bg-[#2072AF] p-2 rounded-md hover:bg-blue-700 transition">
           <FaCartArrowDown className="text-[23px]" />
-        </motion.button>
+        </button>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <motion.div
-          initial={{ x: "-100%" }}
-          animate={{ x: 0 }}
-          exit={{ x: "-100%" }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed top-0 left-0 w-[75%] h-full bg-black text-white flex flex-col items-center p-5 space-y-6 md:hidden shadow-lg"
-        >
-          {["Home", "Study Material", "Books", "Sign Up", "Sign In"].map((item) => (
-            <motion.h1
-              key={item}
-              className="cursor-pointer text-lg"
-              onClick={() =>
-              {
-                setActive(item);
-                toggleMenu();
-                if (item === "Sign Up") navigate("/signup");
-                if (item === "Sign In") navigate("/signin");
-              }}
-              whileTap={{ scale: 0.9, color: "#facc15" }}
+        <div className="fixed top-0 left-0 w-[75%] h-full bg-black text-white flex flex-col items-center p-5 space-y-6 md:hidden shadow-lg">
+          {[
+            { name: "Home", path: "/" },
+            { name: "Study Material", path: "/study-material" },
+            { name: "Books", path: "/books" },
+            { name: "Sign Up", path: "/signup" },
+            { name: "Sign In", path: "/signin" },
+          ].map((item) => (
+            <h1
+              key={item.name}
+              className="cursor-pointer text-lg hover:text-amber-500 transition"
+              onClick={() => handleNavigation(item.name, item.path)}
             >
-              {item}
-            </motion.h1>
+              {item.name}
+            </h1>
           ))}
-        </motion.div>
+        </div>
       )}
-    </motion.div>
+    </div>
   );
 };
 

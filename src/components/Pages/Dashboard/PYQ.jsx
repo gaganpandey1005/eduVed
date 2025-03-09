@@ -1,4 +1,4 @@
-import Cards from "../ui/cards";// Import the reusable card
+import Cards from "../ui/Cards";// Import the reusable card
 
 const notesData = [
   { title: "Software Engineering", image: "/src/assets/images/notes.jpg", link: "/software-engineering" },

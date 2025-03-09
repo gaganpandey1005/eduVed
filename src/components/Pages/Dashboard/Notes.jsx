@@ -1,5 +1,5 @@
 
-import Cards from "../ui/cards";
+import Cards from "../ui/Cards";
 
 // Import the PYQ card component
 
