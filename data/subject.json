@@ -2,61 +2,61 @@
   {
     "name": "Engineering Chemistry",
     "semester": "1st",
-    "department": ["CS", "IT", "EE"],
+    "department": ["CSE", "IT", "ECE"],
     "imageUrl": "https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2023/06/chem-engg.jpg"
   },
   {
     "name": "Mathematics-I",
     "semester": "1st",
-    "department": ["CS", "IT", "EE"],
+    "department": ["CSE", "IT", "ECE"],
     "imageUrl": "https://www.magicmarks.in/wp-content/uploads/2021/11/Engineering-Mathematics-I-1.jpg"
   },
   {
     "name": "English for Communication",
     "semester": "1st",
-    "department": ["CS", "IT", "EE"],
+    "department": ["CSE", "IT", "ECE"],
     "imageUrl": "https://odils.com/wp-content/uploads/2020/04/speaking-listening-reading-writing.jpg"
   },
   {
     "name": "Basic Electrical & Electronics Engineering",
     "semester": "1st",
-    "department": ["CS", "IT", "EE"],
+    "department": ["CSE", "IT", "ECE"],
     "imageUrl": "https://www.makerspaces.com/wp-content/uploads/2017/05/basic-electronics-header-800x400.jpg"
   },
   {
     "name": "Engineering Graphics",
     "semester": "1st",
-    "department": ["CS", "IT", "EE"],
+    "department": ["CSE", "IT", "ECE"],
     "imageUrl": "https://media.istockphoto.com/id/883987724/photo/the-engineering-drawing-with-work-tools.jpg?s=612x612&w=0&k=20&c=vqKyc663LCiP6CepbOZNCpkzp45PXxO9Qb9gMg22pdk="
   },
   {
     "name": "Engineering Physics",
     "semester": "2nd",
-    "department": ["CS", "IT", "EE"],
+    "department": ["CSE", "IT", "ECE"],
     "imageUrl": "https://media.getmyuni.com/assets/images/articles/1ss10hp39y642c10i.jpg"
   },
   {
     "name": "Mathematics-II",
     "semester": "2nd",
-    "department": ["CS", "IT", "EE"],
+    "department": ["CSE", "IT", "ECE"],
     "imageUrl": "https://expertnotes.org/wp-content/uploads/2019/12/u2.png"
   },
   {
     "name": "Basic Mechanical Engineering",
     "semester": "2nd",
-    "department": ["CS", "IT", "EE"],
+    "department": ["CSE", "IT", "ECE"],
     "imageUrl": "https://www.discoverengineering.org/wp-content/uploads/2023/12/mj_11208_2.jpg"
   },
   {
     "name": "Basic Civil Engineering & Mechanics",
     "semester": "2nd",
-    "department": ["CS", "IT", "EE"],
+    "department": ["CSE", "IT", "ECE"],
     "imageUrl": "https://yt3.googleusercontent.com/ytc/AIdro_niSWz625-FwJUXk5ZQsNQdRS1E-4sSAWxZT8T9vt9Y7Q=s900-c-k-c0x00ffffff-no-rj"
   },
   {
     "name": "Basic Computer Engineering",
     "semester": "2nd",
-    "department": ["CS", "IT", "EE"],
+    "department": ["CSE", "IT", "ECE"],
     "imageUrl": "https://eportfolio.utm.my/artefact/file/download.php?file=526057&view=128525&embedded=1&text=535863"
   },
   {
