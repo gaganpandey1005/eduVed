@@ -10,6 +10,7 @@ import Semester from "./components/Pages/Material/Semester";
 import Subjects from "./components/Pages/Material/Subjects";
 import Chapter  from "./components/Pages/Material/Chapter";
 import UploadNotes from "./components/UploadNotes";
+import VerifyEmail from "./components/Pages/Authenticatoin page/VerifyEmail";
 
 
 
@@ -26,6 +27,7 @@ const App = () =>
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<SignUp />} /> 
         <Route path="/signin" element={<SignIn />} /> 
+        <Route path="/verify-email/:token" element={<VerifyEmail />} />
         <Route path="/dashboard" element={<DashBoard/>} /> 
         <Route path="/study-material" element={<Department />} />
         <Route path="/select-sem/:department" element={<Semester />} />
