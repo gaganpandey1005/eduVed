@@ -2,6 +2,8 @@ import { useRef } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import CSS for Toastify
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -20,16 +22,35 @@ const SignIn = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:8000/api/user/login", formData, {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true, // Important for authentication
-      });
+      const response = await axios.post(
+        "http://localhost:8000/api/user/login",
+        formData,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true, // ✅ Required for authentication
+        }
+      );
 
-      alert(response.data.message); // Show success message
-      navigate("/dashboard"); // Redirect after successful login
+      if (response.status === 200) {
+        const { department, semester } = response.data.user;
+        console.log(department, semester);
+
+        // ✅ Success toast
+        toast.success(response.data.message, { position: "top-center" });
+
+        setTimeout(() => {
+          navigate(`/subjects/${department}/${semester}`);
+        }, 2000); // Delay navigation for better UX
+      } else {
+        throw new Error("Unexpected response from server");
+      }
     } catch (error) {
-      console.error(error);
-      alert(error.response?.data?.message || "Invalid credentials!");
+      console.error("Login error:", error);
+
+      // ❌ Error toast
+      toast.error(error.response?.data?.message || "Login failed!", {
+        position: "top-center",
+      });
     }
   };
 
@@ -40,6 +61,8 @@ const SignIn = () => {
       transition={{ duration: 0.5, ease: "linear" }}
       className="flex flex-col items-center justify-center min-h-screen bg-black mt-6"
     >
+      <ToastContainer /> {/* ✅ Add Toastify Container */}
+
       <div className="group backdrop-blur-md bg-white/5 shadow-xl border border-white/20 p-8 rounded-lg w-full max-w-md transition-all duration-300 relative hover:shadow-[inset_0_0_20px_5px_rgba(59,130,246,0.5)] active:shadow-[inset_0_0_20px_5px_rgba(59,130,246,0.5)]">
         <div className="flex justify-center">
           <h1 className="font-semibold text-white text-3xl mb-6 text-center">

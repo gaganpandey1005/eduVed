@@ -27,7 +27,7 @@ const Cards = ({ title, image, link }) => {
 
         {/* View Notes Button */}
         <button
-          className="mt-4 w-3xs sm: bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition"
+          className="mt-4 w-inherit sm: bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition lg:w-3xs"
           onClick={handleClick}
         >
           Select

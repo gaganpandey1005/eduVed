@@ -31,7 +31,7 @@ const Subjects = () => {
       <h1 className="text-blue-400 text-2xl font-bold mb-6">
         Subjects for {department.toUpperCase()} - Semester {semester}
       </h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+      <div className=" sm:grid grid-cols-1   md:grid-cols-2 gap-8 lg:grid-cols-3">
         {loading ? (
           <p className="text-white">Loading subjects...</p>
         ) : subjects.length > 0 ? (

@@ -1,7 +1,29 @@
 import { useState } from "react";
-import { FaCartArrowDown } from "react-icons/fa6";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+
+// const Profile = () => {
+//   const [showLogout, setShowLogout] = useState(false);
+
+//   const handleClick = () => {
+//     setShowLogout(!showLogout); // Toggle logout message
+//   };
+
+//   return (
+//     <div className="relative">
+//       <div className="profile cursor-pointer" onClick={handleClick}>
+//         <div className="avatar h-10 w-10 rounded-full">
+//           <img className="h-10 w-10 rounded-full" src="/src/assets/images/user.png" alt="User" />
+//         </div>
+//       </div>
+//       {showLogout && (
+//         <div className="absolute right-0 mt-2 p-2 bg-white text-black border rounded shadow-lg">
+//           <p className="text-red-600 cursor-pointer">Logout</p>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
 
 const Navbar = () => {
   const [active, setActive] = useState("Home");
@@ -56,19 +78,25 @@ const Navbar = () => {
         ))}
       </div>
 
+      {/* Profile Component */}
+      {/* <Profile /> */}
+
       {/* Desktop Buttons */}
-      <div className="hidden md:flex items-center gap-x-4">
+       <div className="hidden md:flex items-center gap-x-4">
+      <button
+          className="px-4 py-2 border border-gray-600 rounded-md hover:bg-blue-600 transition"
+          onClick={() => navigate("/signin")}
+        >
+          Sign In
+        </button>
+
         <button
           className="px-4 py-2 border border-gray-600 rounded-md hover:bg-blue-600 transition"
           onClick={() => navigate("/signup")}
         >
           Sign Up
         </button>
-
-        <button className="bg-[#2072AF] p-2 rounded-md hover:bg-blue-700 transition">
-          <FaCartArrowDown className="text-[23px]" />
-        </button>
-      </div>
+      </div> 
 
       {/* Mobile Menu */}
       {menuOpen && (
