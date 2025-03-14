@@ -19,12 +19,14 @@ app.use(express.urlencoded({ extended:true}));
 app.use(morgan('dev'));
 // Enable CORS for frontend origin
 app.use(
-    cors({
-      origin: "http://localhost:5173", // Allow frontend
-      credentials: true, // Allow cookies if needed
-    })
-  );
-  
+  cors({
+    origin: ["http://localhost:5173", "http://localhost:5174"], // Allow both frontend URLs
+    credentials: true, // Allow cookies/auth headers
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+  })
+);
+
 
 
   app.use('/api/user',userRoutes);
