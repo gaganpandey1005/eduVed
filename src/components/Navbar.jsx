@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
-import Dashboard from "./DashBoard";
 
 const NavBar = () => {
   const [active, setActive] = useState("Home");
@@ -14,7 +13,7 @@ const NavBar = () => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
-      setActive("Dashboard")
+      setActive("Dashboard");
     }
   }, []);
 
@@ -45,29 +44,29 @@ const NavBar = () => {
           {menuOpen ? <FiX /> : <FiMenu />}
         </button>
 
-      {/* Desktop Navigation Links */}
-      <div className="hidden md:flex items-center gap-x-6">
-        {[
-          { name: "Home", path: "/" },
-          {name: "Dashboard", path: "/dashboard"},
-          { name: "Study Material", path: "/study-material" },
-          { name: "Books", path: "/books" },
-          { name: "About", path: "/about" },
-        ].map((item) => (
-          <h1
-            key={item.name}
-            className={`cursor-pointer px-2 relative transition ${
-              active === item.name ? "text-blue-600" : ""
-            }`}
-            onClick={() => handleNavigation(item.name, item.path)}
-          >
-            {item.name}
-            {active === item.name && (
-              <div className="absolute left-0 bottom-0 w-full h-[2px] bg-blue-600"></div>
-            )}
-          </h1>
-        ))}
-      </div>
+        {/* Desktop Navigation Links */}
+        <div className="hidden md:flex items-center gap-x-6">
+          {[
+            { name: "Home", path: "/" },
+            ...(isLoggedIn ? [{ name: "Dashboard", path: "/dashboard" }] : []), // Show Dashboard only if logged in
+            { name: "Study Material", path: "/study-material" },
+            { name: "Books", path: "/books" },
+            { name: "About", path: "/about" },
+          ].map((item) => (
+            <h1
+              key={item.name}
+              className={`cursor-pointer px-2 relative transition ${
+                active === item.name ? "text-blue-600" : ""
+              }`}
+              onClick={() => handleNavigation(item.name, item.path)}
+            >
+              {item.name}
+              {active === item.name && (
+                <div className="absolute left-0 bottom-0 w-full h-[2px] bg-blue-600"></div>
+              )}
+            </h1>
+          ))}
+        </div>
 
         {/* Profile / Auth Links (Desktop) */}
         {isLoggedIn ? (
@@ -87,7 +86,6 @@ const NavBar = () => {
             >
               Sign In
             </h1>
-
             <h1
               className="cursor-pointer px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-md transition-all duration-300 hover:scale-105"
               onClick={() => handleNavigation("Sign Up", "/signup")}
@@ -116,6 +114,7 @@ const NavBar = () => {
         <div className="flex flex-col items-start p-6 gap-y-6 mt-12">
           {[
             { name: "Home", path: "/" },
+            ...(isLoggedIn ? [{ name: "Dashboard", path: "/dashboard" }] : []), // Show Dashboard only if logged in
             { name: "Study Material", path: "/study-material" },
             { name: "Books", path: "/books" },
             { name: "About", path: "/about" },
@@ -130,17 +129,6 @@ const NavBar = () => {
               {item.name}
             </h1>
           ))}
-          {/* Dashboard Link (Visible only if logged in) */}
-          {isLoggedIn && (
-            <h1
-              className={`cursor-pointer text-lg w-full ${
-                active === "Dashboard" ? "text-blue-600 font-bold" : ""
-              }`}
-              onClick={() => handleNavigation("Dashboard", "/dashboard")}
-            >
-              Dashboard
-            </h1>
-          )}
 
           {/* Profile / Auth Links (Mobile) */}
           {isLoggedIn ? (
@@ -159,7 +147,6 @@ const NavBar = () => {
               >
                 Sign In
               </h1>
-
               <h1
                 className="cursor-pointer px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-md transition-all duration-300 hover:scale-105 w-full text-center"
                 onClick={() => handleNavigation("Sign Up", "/signup")}
