@@ -1,9 +1,10 @@
 import { useRef } from "react";
 import axios from "axios";
+import Cookies from "js-cookie"; // ✅ Import js-cookie
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import CSS for Toastify
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -27,13 +28,17 @@ const SignIn = () => {
         formData,
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true, // ✅ Required for authentication
         }
       );
 
       if (response.status === 200) {
+        // ✅ Extract token and store in cookies
+        const token = response.data.token;
+       localStorage.setItem("token",token)
+
+        
+
         const { department, semester } = response.data.user;
-        console.log(department, semester);
 
         // ✅ Success toast
         toast.success(response.data.message, { position: "top-center" });
@@ -41,8 +46,6 @@ const SignIn = () => {
         setTimeout(() => {
           navigate(`/subjects/${department}/${semester}`);
         }, 2000); // Delay navigation for better UX
-      } else {
-        throw new Error("Unexpected response from server");
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -62,7 +65,6 @@ const SignIn = () => {
       className="flex flex-col items-center justify-center min-h-screen bg-black mt-6"
     >
       <ToastContainer /> {/* ✅ Add Toastify Container */}
-
       <div className="group backdrop-blur-md bg-white/5 shadow-xl border border-white/20 p-8 rounded-lg w-full max-w-md transition-all duration-300 relative hover:shadow-[inset_0_0_20px_5px_rgba(59,130,246,0.5)] active:shadow-[inset_0_0_20px_5px_rgba(59,130,246,0.5)]">
         <div className="flex justify-center">
           <h1 className="font-semibold text-white text-3xl mb-6 text-center">
