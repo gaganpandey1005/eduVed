@@ -39,7 +39,7 @@ const SignIn = () => {
         toast.success(response.data.message, { position: "top-center" });
 
         setTimeout(() => {
-          navigate(`/subjects/${department}/${semester}`);
+          navigate("/dashboard", { state: { department, semester } });
         }, 2000); // Delay navigation for better UX
       } else {
         throw new Error("Unexpected response from server");

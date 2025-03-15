@@ -1,7 +1,7 @@
 
 import Hero from './Pages/Landing Page/Hero'
 import HeroCards from './Pages/Landing Page/HeroCards'
-import AboutUs from './Pages/Landing Page/AboutUs'
+import About from './Pages/Landing Page/About'
 import Services from './Pages/Landing Page/Services';
 const LandingPage = () => {
   return (
@@ -10,7 +10,7 @@ const LandingPage = () => {
           <Hero />
           <Services/>
           <HeroCards />
-          <AboutUs />
+          <About/>
     </>
   )
 }

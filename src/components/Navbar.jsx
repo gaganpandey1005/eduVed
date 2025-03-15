@@ -59,6 +59,7 @@ const Navbar = () => {
       <div className="hidden md:flex items-center gap-x-6">
         {[
           { name: "Home", path: "/" },
+          {name: "Dashboard", path: "/dashboard"},
           { name: "Study Material", path: "/study-material" },
           { name: "Books", path: "/books" },
           { name: "About", path: "/about" },

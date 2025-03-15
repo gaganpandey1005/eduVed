@@ -11,6 +11,8 @@ import Subjects from "./components/Pages/Material/Subjects";
 import Chapter  from "./components/Pages/Material/Chapter";
 import UploadNotes from "./components/UploadNotes";
 import VerifyEmail from "./components/Pages/Authenticatoin page/VerifyEmail";
+import About from "./components/Pages/Landing Page/About";
+
 
 
 
@@ -34,7 +36,7 @@ const App = () =>
         <Route path="/subjects/:department/:semester" element={<Subjects />} />
         <Route path="/chapter/:department/:semester/:subject"element ={<Chapter/>}/>
          <Route path="/uploadNotes" element={<UploadNotes/>}/>
-        
+         <Route path="/about" element={<About/>}/>
       </Routes>
     
      

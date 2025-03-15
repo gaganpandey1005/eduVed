@@ -10,14 +10,14 @@ const Hero = () => {
         transition={{ duration: 0.5, delay: 2 }}
         className="p-4 font-bold rounded-xl w-full max-w-[80%] md:max-w-[80%] h-auto flex justify-center flex-wrap"
       >
-        {["R", "G", "P", "V", "W","A","L","L","A","H"].map((letter, index) => (
+        {["E", "D", "U", "V", "E","D"].map((letter, index) => (
           <motion.h1
             key={index}
             initial={{ y: 300, opacity: 0 }}
             animate={{ y: 50, opacity: 1 }}
             transition={{ duration: 1, delay: index * 0.1 }}
             className={`tracking-normal mr-2 text-5xl sm:text-6xl md:text-8xl lg:text-9xl ${
-              index >3 ? "text-blue-600" : ""
+              index >2 ? "text-blue-600" : ""
             }`}
           >
             {letter}
