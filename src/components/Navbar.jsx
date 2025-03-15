@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import Dashboard from "./DashBoard";
 
 const NavBar = () => {
   const [active, setActive] = useState("Home");
@@ -13,6 +14,7 @@ const NavBar = () => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
+      setActive("Dashboard")
     }
   }, []);
 

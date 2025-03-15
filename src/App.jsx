@@ -38,6 +38,7 @@ const App = () =>
         <Route path="/chapter/:department/:semester/:subject"element ={<Chapter/>}/>
          <Route path="/uploadNotes" element={<UploadNotes/>}/>
          <Route path="/about" element={<About/>}/>
+         <Route path="/profile" element={<Profile/>}/>
       </Routes>
     
      

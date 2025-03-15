@@ -35,7 +35,9 @@ const SignIn = () => {
         // ✅ Extract token and store in cookies
         const token = response.data.token;
        localStorage.setItem("token",token)
+        localStorage.setItem("user", JSON.stringify(response.data.user));
 
+        
         
 
         const { department, semester } = response.data.user;

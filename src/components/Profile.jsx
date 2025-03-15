@@ -14,13 +14,16 @@ const Profile = () => {
   // Use useEffect to fetch user data from local storage
   useEffect(() => {
     const userData = localStorage.getItem("user");
+    
+    
     if (userData) {
       const parsedData = JSON.parse(userData); // Parse the JSON string
       setUser({
-        name: parsedData.user.fullName,
-        semester: parsedData.user.semester,
-        department: parsedData.user.department,
+        name: parsedData.fullName,
+        semester: parsedData.semester,
+        department: parsedData.department,
       });
+      
     }
   }, []);
 
