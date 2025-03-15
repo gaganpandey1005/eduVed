@@ -43,42 +43,29 @@ const NavBar = () => {
           {menuOpen ? <FiX /> : <FiMenu />}
         </button>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-x-6">
-          {[
-            { name: "Home", path: "/" },
-            { name: "Study Material", path: "/study-material" },
-            { name: "Books", path: "/books" },
-            { name: "About", path: "/about" },
-          ].map((item) => (
-            <h1
-              key={item.name}
-              className={`cursor-pointer px-2 relative transition ${
-                active === item.name ? "text-blue-600" : ""
-              }`}
-              onClick={() => handleNavigation(item.name, item.path)}
-            >
-              {item.name}
-              {active === item.name && (
-                <div className="absolute left-0 bottom-0 w-full h-[2px] bg-blue-600"></div>
-              )}
-            </h1>
-          ))}
-          {/* Dashboard Link (Visible only if logged in) */}
-          {isLoggedIn && (
-            <h1
-              className={`cursor-pointer px-2 relative transition ${
-                active === "Dashboard" ? "text-blue-600" : ""
-              }`}
-              onClick={() => handleNavigation("Dashboard", "/dashboard")}
-            >
-              Dashboard
-              {active === "Dashboard" && (
-                <div className="absolute left-0 bottom-0 w-full h-[2px] bg-blue-600"></div>
-              )}
-            </h1>
-          )}
-        </div>
+      {/* Desktop Navigation Links */}
+      <div className="hidden md:flex items-center gap-x-6">
+        {[
+          { name: "Home", path: "/" },
+          {name: "Dashboard", path: "/dashboard"},
+          { name: "Study Material", path: "/study-material" },
+          { name: "Books", path: "/books" },
+          { name: "About", path: "/about" },
+        ].map((item) => (
+          <h1
+            key={item.name}
+            className={`cursor-pointer px-2 relative transition ${
+              active === item.name ? "text-blue-600" : ""
+            }`}
+            onClick={() => handleNavigation(item.name, item.path)}
+          >
+            {item.name}
+            {active === item.name && (
+              <div className="absolute left-0 bottom-0 w-full h-[2px] bg-blue-600"></div>
+            )}
+          </h1>
+        ))}
+      </div>
 
         {/* Profile / Auth Links (Desktop) */}
         {isLoggedIn ? (

@@ -13,8 +13,10 @@ const Services =()=>{
         ]
     
     return(<>
+        <h1 className="g-text text-center">Our Services</h1>
     <div className=" rounded-2xl m-10  grid sm:grid-cols-2 md:grid-cols-4  gap-4 p-4 ">{
     data.map((item,index)=>(
+        
             <div key={index} className="bg-[rgb(20,21,21)] rounded-2xl lg :h-55 w-55 ml-3 shadow-sm hover:shadow-blue-600">
                 <div className="flex flex-col items-center text-center space-y-4 p-4">
                     <img  className="h-20 w-20 hover:-translate-y-2 mt-1.5" src={item.icon} alt={item.title}/>
@@ -24,7 +26,7 @@ const Services =()=>{
 
             </div>))}
             </div>
-            <h1 className="shine text-center">Premium Feature</h1>
+            <h1 className="g-text text-center">Premium Feature</h1>
             <div className=" rounded-2xl m-10  grid sm:grid-cols-2 md:grid-cols-4  gap-4 p-4 ">{
    premiumData.map((item,index)=>(
             <div key={index} className="bg-[rgb(20,21,21)] rounded-2xl lg :h-55 w-55 ml-3 shadow-sm hover:shadow-blue-600">
