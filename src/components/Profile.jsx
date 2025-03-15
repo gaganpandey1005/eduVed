@@ -1,18 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 
 const Profile = () => {
-  const [user] = useState({
-    name: "Gagan Pandey",
-    semester: "6th Semester",
-    department: "Information Technology",
+  const [user, setUser] = useState({
+    name: "",
+    semester: "",
+    department: "",
   });
 
   const navigate = useNavigate();
 
+  // Use useEffect to fetch user data from local storage
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const parsedData = JSON.parse(userData); // Parse the JSON string
+      setUser({
+        name: parsedData.user.fullName,
+        semester: parsedData.user.semester,
+        department: parsedData.user.department,
+      });
+    }
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem("token"); // Remove token from storage
+    localStorage.removeItem("user"); // Remove user data from storage
     navigate("/"); // Redirect to Sign In page
     window.location.reload();
   };
@@ -25,23 +39,25 @@ const Profile = () => {
           <Avatar
             sx={{ bgcolor: "orangered", width: 100, height: 100, fontSize: 40 }}
           >
-            {user.name.split(" ")[0][0]}
+            {user.name ? user.name.split(" ")[0][0].toUpperCase() : "?"}
           </Avatar>
         </div>
 
         {/* Name */}
-        <h1 className="text-4xl font-extrabold text-white">{user.name}</h1>
+        <h1 className="text-4xl font-extrabold text-white">
+          {user.name || "Unknown User"}
+        </h1>
 
         {/* Semester */}
         <p className="text-gray-400 text-lg mt-3">
           <span className="font-semibold text-blue-500">Semester:</span>{" "}
-          {user.semester}
+          {user.semester || "N/A"}
         </p>
 
         {/* Department */}
         <p className="text-gray-400 text-lg mt-1">
           <span className="font-semibold text-blue-500">Department:</span>{" "}
-          {user.department}
+          {user.department || "N/A"}
         </p>
 
         {/* Buttons */}

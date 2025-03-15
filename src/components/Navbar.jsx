@@ -64,6 +64,20 @@ const NavBar = () => {
               )}
             </h1>
           ))}
+          {/* Dashboard Link (Visible only if logged in) */}
+          {isLoggedIn && (
+            <h1
+              className={`cursor-pointer px-2 relative transition ${
+                active === "Dashboard" ? "text-blue-600" : ""
+              }`}
+              onClick={() => handleNavigation("Dashboard", "/dashboard")}
+            >
+              Dashboard
+              {active === "Dashboard" && (
+                <div className="absolute left-0 bottom-0 w-full h-[2px] bg-blue-600"></div>
+              )}
+            </h1>
+          )}
         </div>
 
         {/* Profile / Auth Links (Desktop) */}
@@ -127,6 +141,17 @@ const NavBar = () => {
               {item.name}
             </h1>
           ))}
+          {/* Dashboard Link (Visible only if logged in) */}
+          {isLoggedIn && (
+            <h1
+              className={`cursor-pointer text-lg w-full ${
+                active === "Dashboard" ? "text-blue-600 font-bold" : ""
+              }`}
+              onClick={() => handleNavigation("Dashboard", "/dashboard")}
+            >
+              Dashboard
+            </h1>
+          )}
 
           {/* Profile / Auth Links (Mobile) */}
           {isLoggedIn ? (
