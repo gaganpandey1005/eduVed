@@ -1,325 +1,325 @@
 [
   {
     "name": "Engineering Chemistry",
-    "semester": "1st",
-    "department": ["CSE", "IT", "ECE"],
+    "semester": "1",
+    "department": ["CS", "IT", "EE"],
     "imageUrl": "https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2023/06/chem-engg.jpg"
   },
   {
     "name": "Mathematics-I",
-    "semester": "1st",
-    "department": ["CSE", "IT", "ECE"],
+    "semester": "1",
+    "department": ["CS", "IT", "EE"],
     "imageUrl": "https://www.magicmarks.in/wp-content/uploads/2021/11/Engineering-Mathematics-I-1.jpg"
   },
   {
     "name": "English for Communication",
-    "semester": "1st",
-    "department": ["CSE", "IT", "ECE"],
+    "semester": "1",
+    "department": ["CS", "IT", "EE"],
     "imageUrl": "https://odils.com/wp-content/uploads/2020/04/speaking-listening-reading-writing.jpg"
   },
   {
     "name": "Basic Electrical & Electronics Engineering",
-    "semester": "1st",
-    "department": ["CSE", "IT", "ECE"],
+    "semester": "1",
+    "department": ["CS", "IT", "EE"],
     "imageUrl": "https://www.makerspaces.com/wp-content/uploads/2017/05/basic-electronics-header-800x400.jpg"
   },
   {
     "name": "Engineering Graphics",
-    "semester": "1st",
-    "department": ["CSE", "IT", "ECE"],
+    "semester": "1",
+    "department": ["CS", "IT", "EE"],
     "imageUrl": "https://media.istockphoto.com/id/883987724/photo/the-engineering-drawing-with-work-tools.jpg?s=612x612&w=0&k=20&c=vqKyc663LCiP6CepbOZNCpkzp45PXxO9Qb9gMg22pdk="
   },
   {
     "name": "Engineering Physics",
-    "semester": "2nd",
-    "department": ["CSE", "IT", "ECE"],
+    "semester": "2",
+    "department": ["CS", "IT", "EE"],
     "imageUrl": "https://media.getmyuni.com/assets/images/articles/1ss10hp39y642c10i.jpg"
   },
   {
     "name": "Mathematics-II",
-    "semester": "2nd",
-    "department": ["CSE", "IT", "ECE"],
+    "semester": "2",
+    "department": ["CS", "IT", "EE"],
     "imageUrl": "https://expertnotes.org/wp-content/uploads/2019/12/u2.png"
   },
   {
     "name": "Basic Mechanical Engineering",
-    "semester": "2nd",
-    "department": ["CSE", "IT", "ECE"],
+    "semester": "2",
+    "department": ["CS", "IT", "EE"],
     "imageUrl": "https://www.discoverengineering.org/wp-content/uploads/2023/12/mj_11208_2.jpg"
   },
   {
     "name": "Basic Civil Engineering & Mechanics",
-    "semester": "2nd",
-    "department": ["CSE", "IT", "ECE"],
+    "semester": "2",
+    "department": ["CS", "IT", "EE"],
     "imageUrl": "https://yt3.googleusercontent.com/ytc/AIdro_niSWz625-FwJUXk5ZQsNQdRS1E-4sSAWxZT8T9vt9Y7Q=s900-c-k-c0x00ffffff-no-rj"
   },
   {
     "name": "Basic Computer Engineering",
-    "semester": "2nd",
-    "department": ["CSE", "IT", "ECE"],
+    "semester": "2",
+    "department": ["CS", "IT", "EE"],
     "imageUrl": "https://eportfolio.utm.my/artefact/file/download.php?file=526057&view=128525&embedded=1&text=535863"
   },
   {
     "name": "Energy & Environmental Engineering",
-    "semester": "3rd",
+    "semester": "3",
     "department": ["IT"],
     "imageUrl": "https://socialstudieshelp.com/wp-content/uploads/2024/09/Renewable-Energy-Economics-Costs-Benefits-and-Policy-Support-2.jpg"
   },
   {
     "name": "Discrete Structure",
-    "semester": "3rd",
+    "semester": "3",
     "department": ["IT"],
     "imageUrl": "https://www.shutterstock.com/image-vector/mathematics-color-icons-set-algebra-600w-1092137438.jpg"
   },
   {
     "name": "Data Structure",
-    "semester": "3rd",
+    "semester": "3",
     "department": ["IT"],
     "imageUrl": "https://user-images.githubusercontent.com/49293816/188543586-c9282564-6ab4-45d6-a305-50694f3e616d.png"
   },
   {
     "name": "Object Oriented Programming & Methodology",
-    "semester": "3rd",
+    "semester": "3",
     "department": ["IT"],
     "imageUrl": "https://images.spiceworks.com/wp-content/uploads/2022/09/13114049/object-oriented-programming-with-polymorphism-encapsulation-abstraction-and-inheritance.jpg"
   },
   {
     "name": "Digital Circuits & System",
-    "semester": "3rd",
+    "semester": "3",
     "department": ["IT"],
     "imageUrl": "https://semiconductorclub.com/wp-content/uploads/2021/07/Digital-Circuit-700x430-1-480x304.jpg"
   },
   {
     "name": "Mathematics-III",
-    "semester": "4th",
+    "semester": "4",
     "department": ["IT"],
     "imageUrl": "https://www.science.edu/acellus/wp-content/uploads/2016/12/Integrated-Math-III-712x388-712x388.jpg"
   },
   {
     "name": "Computer Architecture",
-    "semester": "4th",
+    "semester": "4",
     "department": ["IT"],
     "imageUrl": "https://notes.pairml.com/assets/images/computer-architecture.jpg"
   },
   {
     "name": "Analysis and Design of Algorithm",
-    "semester": "4th",
+    "semester": "4",
     "department": ["IT"],
     "imageUrl": "https://collegeacademy.in/images/Cs-Blog/Algorithm.jfif"
   },
   {
     "name": "Analog & Digital Communication",
-    "semester": "4th",
+    "semester": "4",
     "department": ["IT"],
     "imageUrl": "https://www.gen-labs.com/wp-content/uploads/Engineering/Telecommunication/Analog%20&%20Digital%20and%20Communications%20Traning%20Lab/Analog-&-Digital-and-Communications-Training-Lab..jpg"
   },
   {
     "name": "Database Management System",
-    "semester": "4th",
+    "semester": "4",
     "department": ["IT"],
     "imageUrl": "https://smsvaranasi.com/uploads/news/79/The-Considerations-And-Perks-Of-Choosing-A-DBMS-ITs-Guru.png"
   },
   {
     "name": "Operating System",
-    "semester": "5th",
+    "semester": "5",
     "department": ["IT"],
     "imageUrl": "https://media.istockphoto.com/id/1164509580/vector/app-development-and-it-technology.jpg?s=612x612&w=0&k=20&c=cNkbvY2H8qq5c6OueQv1A20dHg9DgMcBE9zXQ3ZElLQ="
   },
   {
     "name": "Computer Networks",
-    "semester": "5th",
+    "semester": "5",
     "department": ["IT"],
     "imageUrl": "https://media.licdn.com/dms/image/v2/D5612AQH7Ka9cpyMa5A/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1707035530376?e=2147483647&v=beta&t=jzW30d_pLFkQo-tsR981fesAqfTbN5xsPskE7_k0onY"
   },
   {
     "name": "Theory of Computation",
-    "semester": "5th",
+    "semester": "5",
     "department": ["IT"],
     "imageUrl": "https://www.contrib.andrew.cmu.edu/~dyafei/images/Toc2.jpg"
   },
   {
     "name": "Microprocessor and Interfacing",
-    "semester": "5th",
+    "semester": "5",
     "department": ["IT"],
     "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjv_EdPPgO0nsI4h5k8tuXDPmVISkLzpQmLZb__QSxn_WozxjrYOqgC-rRbfQZSPhDoW9PvFzY01KPXIEx8GxnPewmjONrjekTKZF9-F0vOKcgoHhUjX8YKdODCn4-HbE2n3mea9wj_7kW0/s1600/programming-and-interfacing-of-microprocessor.png"
   },
   {
     "name": "Object Oriented Analysis and Design",
-    "semester": "5th",
+    "semester": "5",
     "department": ["IT"],
     "imageUrl": "https://img-c.udemycdn.com/course/480x270/6029750_f057_2.jpg"
   },
   {
     "name": "Artificial Intelligence",
-    "semester": "5th",
+    "semester": "5",
     "department": ["IT"],
     "imageUrl": "https://assets.spe.org/dims4/default/5fa6c7b/2147483647/strip/true/crop/1024x757+0+0/resize/800x591!/quality/90/?url=http%3A%2F%2Fspe-brightspot.s3.us-east-2.amazonaws.com%2Ff4%2Fad%2F61fb2ee84edb8b836770aa794b5c%2Ftwa-2021-12-ai-basics.jpg"
   },
   {
     "name": "E-Commerce & Governance",
-    "semester": "5th",
+    "semester": "5",
     "department": ["IT"],
     "imageUrl": "https://media.licdn.com/dms/image/v2/C4D12AQE-kw91cq-htw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520187131292?e=2147483647&v=beta&t=ElXeDE4ulZWRpjTWX9UeatHP7c5FyPkzr8QcSeNkGpI"
   },
   {
     "name": "Java Programming",
-    "semester": "5th",
+    "semester": "5",
     "department": ["IT"],
     "imageUrl": "https://miro.medium.com/v2/resize:fit:500/1*pu_q-NQV_EnIHBgHdZsrXQ.jpeg"
   },
   {
     "name": "Computer Graphics & Multimedia",
-    "semester": "6th",
+    "semester": "6",
     "department": ["IT"],
     "imageUrl": "https://img.brainkart.com/subject/392.jpg"
   },
   {
     "name": "Wireless and Mobile Computing",
-    "semester": "6th",
+    "semester": "6",
     "department": ["IT"],
     "imageUrl": "https://study.com/cimages/course-image/computer-science-323-wireless-mobile-networking_1037823_large.jpeg"
   },
   {
     "name": "Compiler Design",
-    "semester": "6th",
+    "semester": "6",
     "department": ["IT"],
     "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsxheWqO-JxP6wtnFzY1Avu2UpNOL0NIXHz0P6BZJqxXPyxLD9vxT-eYUcTdGcNgoGi_4&usqp=CAU"
   },
   {
     "name": "Data Mining",
-    "semester": "6th",
+    "semester": "6",
     "department": ["IT"],
     "imageUrl": "https://cdn.builtin.com/cdn-cgi/image/f=auto,fit=cover,w=1200,h=635,q=80/https://builtin.com/sites/www.builtin.com/files/data-mining-techniques.png"
   },
   {
     "name": "Embedded Systems",
-    "semester": "6th",
+    "semester": "6",
     "department": ["IT"],
     "imageUrl": "https://techieyantechnologies.com/wp-content/uploads/2022/09/23812-1024x956.jpg"
   },
   {
     "name": "Intellectual Property Rights",
-    "semester": "6th",
+    "semester": "6",
     "department": ["IT"],
     "imageUrl": "https://blog.ipleaders.in/wp-content/uploads/2020/10/IPR-Chart_PCT.png"
   },
   {
     "name": "Software Engineering",
-    "semester": "6th",
+    "semester": "6",
     "department": ["IT"],
     "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwBHAfzlNOGHIoOKB7uMdiw-6Mm3KS02LL7g&s"
   },
   {
     "name": "Wireless Sensor Networks",
-    "semester": "6th",
+    "semester": "6",
     "department": ["IT"],
     "imageUrl": "https://images.surferseo.art/2121c034-fe89-4403-8306-d632c1114ec4.jpeg"
   },
   {
     "name": "Soft Computing",
-    "semester": "7th",
+    "semester": "7",
     "department": ["IT"],
     "imageUrl": "https://hitechnectar.com/wp-content/uploads/2019/05/Applications-of-Soft-Computing-jpg-webp.webp"
   },
   {
     "name": "Data Science",
-    "semester": "7th",
+    "semester": "7",
     "department": ["IT"],
     "imageUrl": "https://cdn.builtin.com/cdn-cgi/image/f=auto,fit=cover,w=1200,h=635,q=80/https://builtin.com/sites/www.builtin.com/files/2024-10/data-science.jpg"
   },
   {
     "name": "Cloud Computing",
-    "semester": "7th",
+    "semester": "7",
     "department": ["IT"],
     "imageUrl": "https://netvector.co.uk/wp-content/uploads/2024/11/Cloud-Computing.png"
   },
   {
     "name": "Simulation & Modeling",
-    "semester": "7th",
+    "semester": "7",
     "department": ["IT"],
     "imageUrl": "https://www.processmaker.com/wp-content/uploads/2021/07/simulation-modeling-process-mining.jpg"
   },
   {
     "name": "Augmented and Virtual Reality",
-    "semester": "7th",
+    "semester": "7",
     "department": ["IT"],
     "imageUrl": "https://img.freepik.com/free-vector/people-using-aumented-reality-smartphones_52683-52492.jpg?semt=ais_hybrid"
   },
   {
     "name": "Cyber Laws and Forensics",
-    "semester": "7th",
+    "semester": "7",
     "department": ["IT"],
     "imageUrl": "https://www.anacyber.com/assets/images/blog/cyber-security.jpg"
   },
   {
     "name": "Internet of Things",
-    "semester": "7th",
+    "semester": "7",
     "department": ["IT"],
     "imageUrl": "https://www.cloudblue.com/wp-content/uploads/2024/06/what-is-the-internet-of-things-iot.png"
   },
   {
     "name": "Social Networks",
-    "semester": "7th",
+    "semester": "7",
     "department": ["IT"],
     "imageUrl": "https://media.licdn.com/dms/image/v2/D5612AQGBV43TvwHmdA/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1672305006669?e=2147483647&v=beta&t=3J3XKAFIyHrVerlDhXWYGiEQGyyHJ-Rz3kjdlJOXNTc"
   },
   {
     "name": "Digital Image Processing",
-    "semester": "7th",
+    "semester": "7",
     "department": ["IT"],
     "imageUrl": "https://img.freepik.com/free-vector/robotic-process-automation-isometric-composition-with-little-human-characters-s-office-workspace-essential-elements-illustration_1284-60282.jpg"
   },
   {
     "name": "Information Security",
-    "semester": "8th",
+    "semester": "8",
     "department": ["IT"],
     "imageUrl": "https://www.cisco.com/c/dam/assets/swa/img/630/info-security-infosec-630x420.png"
   },
   {
     "name": "Machine Learning",
-    "semester": "8th",
+    "semester": "8",
     "department": ["IT"],
     "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoEE4zrmVOhfqNiRUG1JbJo7UFdL_56zYp-A&s"
   },
   {
     "name": "Natural Language Processing",
-    "semester": "8th",
+    "semester": "8",
     "department": ["IT"],
     "imageUrl": "https://media.licdn.com/dms/image/v2/D4D12AQHls4cT3TK_nA/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1674819272389?e=2147483647&v=beta&t=86MMS-46fbMkC-Vhf3-_7II4rXbUCuTSa5LAG8NbtZ8"
   },
   {
     "name": "Robotics",
-    "semester": "8th",
+    "semester": "8",
     "department": ["IT"],
     "imageUrl": "https://www.21kschool.com/in/wp-content/uploads/sites/4/2023/07/Why-Robotics-Is-the-Ideal-After-School-Activity-for-Your-Students.png"
   },
   {
     "name": "Quantum Computing",
-    "semester": "8th",
+    "semester": "8",
     "department": ["IT"],
     "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSZ-iDCXXnea-mOX88i7xPlT770TMUFB9k_A&s"
   },
   {
     "name": "Blockchain Technology",
-    "semester": "8th",
+    "semester": "8",
     "department": ["IT"],
     "imageUrl": "https://builtin.com/sites/www.builtin.com/files/2024-10/Blockchain%20Technology%20from%20Builtin.jpg"
   },
   {
     "name": "Human Computer Interaction",
-    "semester": "8th",
+    "semester": "8",
     "department": ["IT"],
     "imageUrl": "https://www.mindphp.com/forums/download/file.php?id=92806"
   },
   {
     "name": "Printing and Design",
-    "semester": "8th",
+    "semester": "8",
     "department": ["IT"],
     "imageUrl": null
   },
   {
     "name": "Parallel Computing",
-    "semester": "8th",
+    "semester": "8",
     "department": ["IT"],
     "imageUrl": "https://blog.greencloudvps.com/wp-content/uploads/2024/04/parallel-computing-2.jpg"
   }

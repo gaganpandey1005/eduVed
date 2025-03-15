@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import crypto from "crypto";
 
 const userSchema = new mongoose.Schema(
   {
@@ -26,57 +24,24 @@ const userSchema = new mongoose.Schema(
       select: false, // Exclude password in queries by default
     },
     semester: {
-    type: String,
-    
-    required: true,
-  },
-  department: {
-    type: String,
-    enum: ["CSE", "IT", "ECE", "AIML","DS", "ME", "CE"], // Predefined department values
-    required: true,
-  },
+      type: String,
+      enum: ["1", "2", "3", "4", "5", "6", "7", "8"], // Predefined semester values
+      required: true,
+    },
+    department: {
+      type: String,
+      enum: ["CS", "IT", "ECE", "AIML", "DS", "ME", "CE"], // Predefined department values
+      required: true,
+    },
     verified: {
       type: Boolean,
       default: false, // Initially false
     },
-    verificationToken: String, // Token for email verification
-    verificationTokenExpiration: Date, // Token expiry
+    verificationToken: String,
+    verificationTokenExpiration: Date,
   },
   { timestamps: true }
 );
-
-// ✅ Define instance methods
-userSchema.methods = {
-  generateJwtToken() {
-    return jwt.sign(
-      {
-        _id: this._id,
-        email: this.email,
-        department: this.department,
-        semester: this.semester, // Stores ObjectId reference
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: "1h" }
-    );
-  },
-
-  async comparePassword(plainText) {
-    return await bcrypt.compare(plainText, this.password);
-  },
-
-  async generateVerificationToken() {
-    const verificationToken = crypto.randomBytes(20).toString("hex");
-
-    this.verificationToken = crypto
-      .createHash("sha256")
-      .update(verificationToken)
-      .digest("hex");
-    this.verificationTokenExpiration = Date.now() + 15 * 60 * 1000; // 15 minutes validity
-
-    await this.save();
-    return verificationToken;
-  },
-};
 
 // ✅ Hash Password Before Saving
 userSchema.pre("save", async function (next) {
