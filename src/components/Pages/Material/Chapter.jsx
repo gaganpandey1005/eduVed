@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Cards from "../ui/Cards"; 
+import Cards from "../ui/Cards";
 import axios from "axios";
 
 const Chapter = () => {
   const { department, semester, subject } = useParams();
-  const [data, setData] = useState([]);
+  const [notesData, setNotesData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,12 +14,17 @@ const Chapter = () => {
         const response = await axios.get(
           `http://localhost:8000/api/chapter/getNotes?department=${department}&semester=${semester}&subjectName=${subject}`
         );
+        console.log("data",response.data);
 
-        console.log("API Response:", response.data); // Debugging log
-        setData(Array.isArray(response.data.notes) ? response.data.notes : []);
+        // Check if the response contains notes
+        if (response.data && Array.isArray(response.data.notes)) {
+          setNotesData(response.data.notes);
+        } else {
+          setNotesData([]);
+        }
       } catch (error) {
         console.error("Error fetching notes:", error);
-        setData([]); // Prevent .map() errors
+        setNotesData([]); // Prevent .map() errors
       } finally {
         setLoading(false);
       }
@@ -37,13 +42,13 @@ const Chapter = () => {
           Notes for {subject.toUpperCase()} - Semester {semester}
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-          {data.length > 0 ? (
-            data.map((item, index) => (
+          {notesData.length > 0 ? (
+            notesData.map((item, index) => (
               <Cards
                 key={index}
                 title={`Chapter ${item.chapterNo}`}
                 image={"/src/assets/images/note.png"}
-                link= {item.notesPdf}
+                link={item.notesPdf}
               />
             ))
           ) : (
@@ -57,8 +62,8 @@ const Chapter = () => {
           PYQ for {subject.toUpperCase()} - Semester {semester}
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-          {data.length > 0 ? (
-            data.map((item, index) => (
+          {notesData.length > 0 ? (
+            notesData.map((item, index) => (
               <Cards
                 key={index}
                 title={`Chapter ${item.chapterNo}`}

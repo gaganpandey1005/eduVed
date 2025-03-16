@@ -31,7 +31,7 @@ const UploadNotes = () => {
     data.append("pyqPdf", pyqPdfRef.current.files[0]);
     
     try {
-      await axios.post("http://localhost:8000/api/chapter/uploadNotes", data, {
+      await axios.post("http://localhost:8000/api/chapter/upload", data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("Upload successful!");
