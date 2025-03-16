@@ -24,7 +24,7 @@ export const uploadNote = async (req, res) => {
     const uploadToDrive = async (filePath, fileName, mimeType) => {
       const fileMetaData = {
         name: fileName,
-        parents: ["1el8wkyUPjx6VtKj3xvQZehqXFkFefOZN"], // Google Drive folder ID
+        parents: ["1UfqeBaoIcMqvUozfewJQnhNkNCc7le8H"], // Google Drive folder ID
       };
 
       const media = {
@@ -101,12 +101,13 @@ export const getNotes = async (req, res) => {
 
     // Validate required fields
     if (!semester || !department || !subjectName) {
-      return res
-        .status(400)
-        .json({
-          message: "semester, department, and subjectName are required",
-        });
+      return res.status(400).json({
+        message: "semester, department, and subjectName are required",
+      });
     }
+    console.log("Semester:", semester);
+    console.log("Department:", department);
+    console.log("Subject Name:", subjectName);
 
     const notes = await Chapter.find({ semester, department, subjectName });
 
@@ -123,5 +124,6 @@ export const getNotes = async (req, res) => {
       .json({ message: "Error retrieving notes", error: error.message });
   }
 };
+
 
 
