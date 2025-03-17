@@ -45,7 +45,7 @@ const Footer = () => {
             key={i}
             className="absolute rounded-full bg-opacity-10"
             style={{
-              backgroundColor: primaryBlue,
+              
               width: `${Math.random() * 300 + 100}px`,
               height: `${Math.random() * 300 + 100}px`,
               filter: "blur(80px)",
@@ -269,6 +269,15 @@ const Footer = () => {
           </div>
         </motion.div>
       </motion.div>
+              {/* Bottom Footer */}
+        <motion.div 
+          className="text-center text-gray-400 text-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          © {new Date().getFullYear()} EduVed. All rights reserved. | Made with 💙 by EduVed Team.
+        </motion.div>
     </footer>
   );
 };

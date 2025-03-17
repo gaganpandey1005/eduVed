@@ -25,7 +25,7 @@ function RequireAuth() {
   const { currentUser } = useContext(AuthContext);
 
   if (!currentUser) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   return <Layout />;
