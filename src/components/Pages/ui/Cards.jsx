@@ -17,6 +17,7 @@ const Cards = ({ title, image, link }) => {
     <div className="bg-gray-800 mx-2 sm:mx-4 text-center rounded-xl mt-4 shadow-lg transition-transform transform hover:scale-105 sm:hover:scale-110 duration-300 ease-in-out hover:shadow-2xl animate-slide-up">
       {/* Card Image */}
       {image && (
+<<<<<<< HEAD
         <div className="overflow-hidden rounded-t-xl">
           <img
             src={image}
@@ -24,6 +25,13 @@ const Cards = ({ title, image, link }) => {
             className="w-full h-40 sm:h-48 object-contain transition-transform duration-500 ease-in-out hover:scale-110"
           />
         </div>
+=======
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-48 rounded-t-xl "
+        />
+>>>>>>> 7c0d8ff3d605f9051b60075e5765dafe119001e0
       )}
 
       {/* Card Content */}
