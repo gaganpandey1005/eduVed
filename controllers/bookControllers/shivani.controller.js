@@ -35,6 +35,7 @@ const addShivani = async (req, res) => {
       department,
       semester,
       subject,
+      year,
     });
 
     let quantity = 1;
@@ -43,7 +44,7 @@ const addShivani = async (req, res) => {
       existingShivani.quantity = quantity;
       await existingShivani.save();
       return res.status(200).json({
-        message: "Quantity updated successfully",
+        message: "Quantity updated succesfully",
         existingShivani,
       });
     }
@@ -100,13 +101,18 @@ const getAllShivaniBooks = async (req, res) => {
 
 // Get a Single Shivani Book
 const getSingleShivaniBook = async (req, res) => {
-  const { id } = req.params;
+  const { id} = req.params;
   try {
-    const book = await Shivani.findById(id);
+    const user=await User.findById(id);
+    
+    const book=await Shivani.find({soldBy:user._id});
+    console.log("books",book);
+    
+    
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
     }
-    return res.status(200).json({ message: "Book fetched successfully", book });
+    return res.status(200).json({ message: "Book fetched successfully",  book});
   } catch (error) {
     console.error("Error while fetching book:", error);
     return res.status(500).json({

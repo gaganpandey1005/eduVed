@@ -6,7 +6,7 @@ import dotenv from "dotenv/config";
 import morgan from "morgan";
 import subjectRoutes from "./routes/subject.routes.js";
 import chapterRoutes from "./routes/chapter.routes.js";
-import shivaniRoutes from "./routes/shivani.route.js"
+import shivaniRoutes from "./routes/shivani.routes.js"
 
 const app = express();
 app.use(express.json());
