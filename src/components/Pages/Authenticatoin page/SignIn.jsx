@@ -23,7 +23,7 @@ const SignIn = () => {
 
     try {
       const response = await axios.post(
-        "https://eduved-backend-tpos.onrender.com/api/user/signin",
+        "https://eduved-backend-tpos.onrender.com/api/user/login",
         formData,
         { headers: { "Content-Type": "application/json" } }
       );
