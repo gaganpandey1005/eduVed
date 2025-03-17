@@ -27,18 +27,18 @@ const Dashboard = () => {
 
     fetchDepartments();
 
-    const handleUnload = () => {
-      // Clear local storage when the page is closed or refreshed
+    const handlePopState = () => {
+      // Clear local storage when the user navigates away from the dashboard
       localStorage.removeItem("user");
       localStorage.removeItem("token");
     };
 
-    // Attach event listener for unloading the page
-    window.addEventListener("beforeunload", handleUnload);
+    // Attach the popstate event listener to detect backward navigation
+    window.addEventListener("popstate", handlePopState);
 
-    // Cleanup event listener on component unmount
+    // Cleanup the event listener on component unmount
     return () => {
-      window.removeEventListener("beforeunload", handleUnload);
+      window.removeEventListener("popstate", handlePopState);
     };
   }, []);
 

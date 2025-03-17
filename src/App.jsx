@@ -14,7 +14,8 @@ import VerifyEmail from "./components/Pages/Authenticatoin page/VerifyEmail";
 import About from "./components/Pages/Landing Page/About";
 
 import Profile from "./components/Profile";
-import BuySellBooks from "./components/book";
+import BuySellBooks from "./components/books/book";
+import MyBooks from "./components/books/myBooks";
 // import NavbarWithProfile from "./components/Navbar2";
 
 
@@ -41,6 +42,7 @@ const App = () =>
          <Route path="/about" element={<About/>}/>
          <Route path="/profile" element={<Profile/>}/>
          <Route path="/books" element={<BuySellBooks/>}/>
+         <Route path="/myBooks" element={<MyBooks/>}/>
       </Routes>
     
      
