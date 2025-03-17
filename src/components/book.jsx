@@ -64,12 +64,20 @@ const BuySellBooks = () => {
       <h1 className="text-4xl font-bold text-center mb-8 animate-bounce">
         {buyMode ? "Buy Books" : "Sell Your Book"}
       </h1>
-      <button
-        onClick={() => setBuyMode(!buyMode)}
-        className="block mx-auto mb-8 bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 px-6 rounded-full transition-all transform hover:scale-105"
-      >
-        {buyMode ? "Switch to Sell Mode" : "Switch to Buy Mode"}
-      </button>
+      <div className="flex justify-start mb-6">
+        <button
+          onClick={() => setBuyMode(true)}
+          className={`py-2 px-4 rounded-l-lg ${buyMode ? "bg-blue-700 text-white" : "bg-gray-600 text-gray-300"}`}
+        >
+          Buy
+        </button>
+        <button
+          onClick={() => setBuyMode(false)}
+          className={`py-2 px-4 rounded-r-lg ${!buyMode ? "bg-blue-700 text-white" : "bg-gray-600 text-gray-300"}`}
+        >
+          Sell
+        </button>
+      </div>
       {buyMode ? (
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <div className="p-4 bg-gray-800 rounded-xl shadow-lg transform transition hover:scale-105">
@@ -78,9 +86,7 @@ const BuySellBooks = () => {
               alt="Book"
               className="w-full h-48 object-cover rounded-md"
             />
-            <h2 className="text-xl font-semibold text-blue-400 mt-2">
-              Book Title
-            </h2>
+            <h2 className="text-xl font-semibold text-blue-400 mt-2">Book Title</h2>
             <p className="text-gray-300">Author: John Doe</p>
             <p className="text-gray-400">Price: ₹200</p>
             <p className="text-gray-400">Year: 2023</p>

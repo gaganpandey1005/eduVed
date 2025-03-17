@@ -1,15 +1,17 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import Cards from "./Pages/ui/Cards";
+import { AuthContext } from "../context/AuthContext";
 
 const Dashboard = () => {
+  const { currentUser } = useContext(AuthContext);
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const userData = JSON.parse(localStorage.getItem("user"));
-  const userDepartment = userData?.department;
-  const userSemester = userData?.semester;
+
+  const userDepartment = currentUser?.department;
+  const userSemester = currentUser?.semester;
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -25,8 +27,10 @@ const Dashboard = () => {
       }
     };
 
-    fetchDepartments();
-  }, []);
+    if (userDepartment && userSemester) {
+      fetchDepartments();
+    }
+  }, [userDepartment, userSemester]);
 
   return (
     <div className="flex flex-col items-center p-4 mt-12 mb-28">
@@ -59,7 +63,7 @@ const Dashboard = () => {
               <Cards
                 title={department.name}
                 image={department.imageUrl}
-                link={`/subjects/${department.name}`}
+                link={`/subjects/${encodeURIComponent(department.name)}`}
               />
             </motion.div>
           ))

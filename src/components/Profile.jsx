@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
+import { AuthContext } from "../context/AuthContext"; 
 
 const Profile = () => {
   const [user, setUser] = useState({
@@ -10,28 +11,23 @@ const Profile = () => {
   });
 
   const navigate = useNavigate();
+  const { updateUser, currentUser } = useContext(AuthContext);
 
-  // Use useEffect to fetch user data from local storage
+  // Fetch user data from AuthContext
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    
-    
-    if (userData) {
-      const parsedData = JSON.parse(userData); // Parse the JSON string
+    if (currentUser) {
       setUser({
-        name: parsedData.fullName,
-        semester: parsedData.semester,
-        department: parsedData.department,
+        name: currentUser.fullName,
+        semester: currentUser.semester,
+        department: currentUser.department,
       });
-      
     }
-  }, []);
+  }, [currentUser]);
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove token from storage
-    localStorage.removeItem("user"); // Remove user data from storage
+    updateUser(null);
+    localStorage.removeItem("token"); // Ensure token is removed
     navigate("/"); // Redirect to Sign In page
-    window.location.reload();
   };
 
   return (
@@ -42,7 +38,7 @@ const Profile = () => {
           <Avatar
             sx={{ bgcolor: "orangered", width: 100, height: 100, fontSize: 40 }}
           >
-            {user.name ? user.name.split(" ")[0][0].toUpperCase() : "?"}
+            {user.name ? user.name[0].toUpperCase() : "?"}
           </Avatar>
         </div>
 
@@ -53,14 +49,12 @@ const Profile = () => {
 
         {/* Semester */}
         <p className="text-gray-400 text-lg mt-3">
-          <span className="font-semibold text-blue-500">Semester:</span>{" "}
-          {user.semester || "N/A"}
+          <span className="font-semibold text-blue-500">Semester:</span> {user.semester || "N/A"}
         </p>
 
         {/* Department */}
         <p className="text-gray-400 text-lg mt-1">
-          <span className="font-semibold text-blue-500">Department:</span>{" "}
-          {user.department || "N/A"}
+          <span className="font-semibold text-blue-500">Department:</span> {user.department || "N/A"}
         </p>
 
         {/* Buttons */}

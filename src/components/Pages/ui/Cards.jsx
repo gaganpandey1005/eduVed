@@ -21,7 +21,7 @@ const Cards = ({ title, image, link }) => {
         <img
           src={image}
           alt={title}
-          className="w-full h-48 rounded-t-xl object-contain"
+          className="w-full h-48 rounded-t-xl "
         />
       )}
 
