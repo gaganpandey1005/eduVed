@@ -31,9 +31,13 @@ const UploadNotes = () => {
     data.append("pyqPdf", pyqPdfRef.current.files[0]);
     
     try {
-      await axios.post("http://localhost:8000/api/chapter/upload", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.post(
+        "https://eduved-backend-tpos.onrender.com/api/chapter/upload",
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       alert("Upload successful!");
     } catch (error) {
       console.error("Upload failed", error);

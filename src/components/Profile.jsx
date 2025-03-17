@@ -26,8 +26,9 @@ const Profile = () => {
 
   const handleLogout = () => {
     updateUser(null);
-    localStorage.removeItem("token"); // Ensure token is removed
-    navigate("/"); // Redirect to Sign In page
+    localStorage.removeItem("token"); // Ensure token is 
+    localStorage.removeItem("user")
+    navigate("/"); // Redirect to home page
   };
 
   return (

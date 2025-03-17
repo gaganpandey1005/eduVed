@@ -20,7 +20,7 @@ const Subjects = ({ department: propDepartment, semester: propSemester }) => {
     const fetchSubjects = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/subjects/getNotes?department=${department}&semester=${semester}`
+          `https://eduved-backend-tpos.onrender.com/api/subjects/getNotes?department=${department}&semester=${semester}`
         );
         setSubjects(response.data);
       } catch (error) {

@@ -12,7 +12,7 @@ const Chapter = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/chapter/getNotes?department=${department}&semester=${semester}&subjectName=${subject}`
+          `https://eduved-backend-tpos.onrender.com/api/chapter/getNotes?department=${department}&semester=${semester}&subjectName=${subject}`
         );
         console.log("data",response.data);
 

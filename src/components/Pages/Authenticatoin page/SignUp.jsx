@@ -36,9 +36,12 @@ const SignUp = () => {
   
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/user/register",
+        "https://eduved-backend-tpos.onrender.com/api/user/register",
         formData,
-        { headers: { "Content-Type": "application/json" }, withCredentials: true }
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
       );
   
       toast.success(response.data.message || "Please check your email for verification!");

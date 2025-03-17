@@ -17,7 +17,7 @@ const Dashboard = () => {
     const fetchDepartments = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/subjects/getNotes?department=${userDepartment}&semester=${userSemester}`
+          `https://eduved-backend-tpos.onrender.com/api/subjects/getNotes?department=${userDepartment}&semester=${userSemester}`
         );
         setDepartments(response.data);
       } catch (error) {

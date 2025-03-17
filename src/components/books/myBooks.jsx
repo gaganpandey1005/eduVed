@@ -14,7 +14,7 @@ const MyBooks = () => {
       const id = user?._id;
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/shivani/${id}`
+          `https://eduved-backend-tpos.onrender.com/api/shivani/${id}`
         );
         setBooks(response.data.book || []);
       } catch (error) {
@@ -38,7 +38,7 @@ const MyBooks = () => {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://localhost:8000/api/shivani/update/${selectedBook._id}`,
+        `https://eduved-backend-tpos.onrender.com/api/shivani/update/${selectedBook._id}`,
         editForm
       );
       setBooks((prevBooks) =>
@@ -56,7 +56,9 @@ const MyBooks = () => {
 
   const handleDelete = async (bookId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/shivani/delete/${bookId}`);
+      await axios.delete(
+        `https://eduved-backend-tpos.onrender.com/api/shivani/delete/${bookId}`
+      );
       setBooks(books.filter((book) => book._id !== bookId));
       toast.success("Book deleted successfully.");
     } catch (error) {

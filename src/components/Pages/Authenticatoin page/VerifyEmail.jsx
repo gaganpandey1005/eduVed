@@ -12,7 +12,9 @@ const VerifyEmail = () => {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/user/verify-email/${token}`);
+        const response = await axios.get(
+          `https://eduved-backend-tpos.onrender.com/api/user/verify-email/${token}`
+        );
         toast.success(response.data.message);
         setTimeout(() => navigate("/signin"), 3000);
       } catch (error) {

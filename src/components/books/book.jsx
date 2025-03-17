@@ -26,7 +26,7 @@ const BuySellBooks = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "http://localhost:8000/api/shivani/all"
+          "https://eduved-backend-tpos.onrender.com/api/shivani/all"
         );
         setBooks(response.data.books || []);
         setLoading(false);
@@ -74,7 +74,7 @@ const BuySellBooks = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:8000/api/shivani/add?userId=${id}`,
+        `https://eduved-backend-tpos.onrender.com/api/shivani/add?userId=${id}`,
         formData
       );
 
