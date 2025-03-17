@@ -26,6 +26,20 @@ const Dashboard = () => {
     };
 
     fetchDepartments();
+
+    const handleUnload = () => {
+      // Clear local storage when the page is closed or refreshed
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+    };
+
+    // Attach event listener for unloading the page
+    window.addEventListener("beforeunload", handleUnload);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("beforeunload", handleUnload);
+    };
   }, []);
 
   return (
