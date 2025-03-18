@@ -20,12 +20,12 @@ const SignUp = () => {
   // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
-  
+
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       toast.error("Passwords do not match!");
       return;
     }
-  
+
     const formData = {
       fullName: fullNameRef.current.value,
       email: emailRef.current.value,
@@ -33,7 +33,7 @@ const SignUp = () => {
       semester: semesterRef.current.value,
       department: departmentRef.current.value,
     };
-  
+
     try {
       const response = await axios.post(
         "https://eduved-backend-tpos.onrender.com/api/user/register",
@@ -43,9 +43,12 @@ const SignUp = () => {
           withCredentials: true,
         }
       );
-  
-      toast.success(response.data.message || "Please check your email for verification!");
-      
+
+      toast.success(
+        response.data.message ||
+          "User registered successfully. Please check your email to verify your account!"
+      );
+
       // Wait 3 seconds and then navigate to Sign In
       setTimeout(() => navigate("/signin"), 3000);
     } catch (error) {
@@ -81,24 +84,47 @@ const SignUp = () => {
 
           <div className="flex flex-col">
             <label className="font-medium text-sm text-white">Department</label>
-            <input
-              type="text"
+            <select
               ref={departmentRef}
-              className="border-2 rounded-md p-2 w-full text-sm bg-transparent text-white"
-              placeholder="Department Name"
+              className="border-2 rounded-md p-2 w-full text-sm bg-black text-white"
               required
-            />
+            >
+              <option value="" disabled selected>
+                Select Department
+              </option>
+              <option value="CS">Computer Science</option>
+              <option value="IT">
+                Information Technology
+              </option>
+              <option value="Electronics and Communication">
+                Electronics and Communication
+              </option>
+              <option value="Mechanical Engineering">
+                Mechanical Engineering
+              </option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Electrical Engineering">
+                Electrical Engineering
+              </option>
+            </select>
           </div>
 
           <div className="flex flex-col">
             <label className="font-medium text-sm text-white">Semester</label>
-            <input
-              type="number"
+            <select
               ref={semesterRef}
-              className="border-2 rounded-md p-2 w-full text-sm bg-transparent text-white"
-              placeholder="Semester"
+              className="border-2 rounded-md p-2 w-full text-sm bg-black text-white"
               required
-            />
+            >
+              <option value="" disabled selected>
+                Select Semester
+              </option>
+              {Array.from({ length: 8 }, (_, i) => (
+                <option key={i + 1} value={i + 1}>
+                   {i + 1}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="flex flex-col">
@@ -124,7 +150,9 @@ const SignUp = () => {
           </div>
 
           <div className="flex flex-col">
-            <label className="font-medium text-sm text-white">Confirm Password</label>
+            <label className="font-medium text-sm text-white">
+              Confirm Password
+            </label>
             <input
               type="password"
               ref={confirmPasswordRef}
