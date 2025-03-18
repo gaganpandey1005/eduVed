@@ -1,13 +1,25 @@
 import Cards from "../ui/Cards";
 
+// Importing images
+import cseImage from "../../../assets/images/cse.png";
+import eeImage from "../../../assets/images/ee.png";
+import meImage from "../../../assets/images/me.png";
+import ceImage from "../../../assets/images/ce.png";
+import eceImage from "../../../assets/images/ece.png";
+import itImage from "../../../assets/images/it.png";
+
 const Department = () => {
   const departments = [
-    { name: "Computer Science", img: "/src/assets/images/cse.png", link: "/select-sem/CS" },
-    { name: "Electrical Engineering", img: "/src/assets/images/ee.png", link: "/select-sem/EE" },
-    { name: "Mechanical Engineering", img: "/src/assets/images/me.png", link: "/select-sem/ME" },
-    { name: "Civil Engineering", img: "/src/assets/images/ce.png", link: "/select-sem/CE" },
-    { name: "Electronics & Communication", img: "/src/assets/images/ece.png", link: "/select-sem/ECE" },
-    { name: "Information Technology", img: "/src/assets/images/it.png", link: "/select-sem/IT" }
+    { name: "Computer Science", img: cseImage, link: "/select-sem/CS" },
+    { name: "Electrical Engineering", img: eeImage, link: "/select-sem/EE" },
+    { name: "Mechanical Engineering", img: meImage, link: "/select-sem/ME" },
+    { name: "Civil Engineering", img: ceImage, link: "/select-sem/CE" },
+    {
+      name: "Electronics & Communication",
+      img: eceImage,
+      link: "/select-sem/ECE",
+    },
+    { name: "Information Technology", img: itImage, link: "/select-sem/IT" },
   ];
 
   return (
@@ -17,7 +29,12 @@ const Department = () => {
       </h1>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
         {departments.map((dept, index) => (
-          <Cards key={index} title={dept.name} image={dept.img} link={dept.link} />
+          <Cards
+            key={index}
+            title={dept.name}
+            image={dept.img}
+            link={dept.link}
+          />
         ))}
       </div>
     </div>

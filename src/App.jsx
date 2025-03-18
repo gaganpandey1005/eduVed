@@ -27,7 +27,7 @@ function App() {
           element: (
             <>
               <LandingPage />
-              <Footer />
+              
             </>
           ),
         },
