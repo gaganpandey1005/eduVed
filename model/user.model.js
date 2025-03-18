@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
     },
     department: {
       type: String,
-      enum: ["CS", "IT", "ECE", "AIML", "DS", "ME", "CE"], // Predefined department values
+      enum: ["CS", "IT", "ECE", "AIML", "DS", "ME", "CE","CS/IT"], // Predefined department values
       required: true,
     },
     verified: {
