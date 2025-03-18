@@ -96,13 +96,21 @@ const SignUp = () => {
               <option value="IT">
                 Information Technology
               </option>
-              <option value="Electronics and Communication">
+              <option value="ECE">
                 Electronics and Communication
               </option>
-              <option value="Mechanical Engineering">
+              <option value="ME">
                 Mechanical Engineering
               </option>
-              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="CE">Civil Engineering</option>
+              <option value="AIML">
+                Electrical Engineering
+              </option>
+              <option value="DS">Civil Engineering</option>
+              <option value="Electrical Engineering">
+                Electrical Engineering
+              </option>
+              <option value="CS/IT">Civil Engineering</option>
               <option value="Electrical Engineering">
                 Electrical Engineering
               </option>

@@ -1,11 +1,10 @@
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Cards from "../ui/Cards"; // Import Cards component
+import semImage from "../../../assets/images/sem.png"; // Import image
 
 const Semester = () => {
   const { department } = useParams(); // Get department from URL
-
-
-  const semesters = [1,2,3,4,5,6,7,8];
+  const semesters = [1, 2, 3, 4, 5, 6, 7, 8];
 
   return (
     <div className="flex flex-col items-center mt-12 mb-28">
@@ -17,7 +16,7 @@ const Semester = () => {
           <Cards
             key={sem}
             title={`Semester ${sem}`}
-            image={`/src/assets/images/sem.png`} // Use appropriate images
+            image={semImage} // Use imported image
             link={`/subjects/${department}/${sem}`} // Navigate on click
           />
         ))}

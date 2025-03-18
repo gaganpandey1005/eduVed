@@ -90,6 +90,7 @@ const BuySellBooks = () => {
           image: null,
         });
         setPreviewImage(null);
+        return;
       } else {
         toast.error("Failed to add book");
       }
