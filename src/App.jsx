@@ -12,10 +12,11 @@ import UploadNotes from "./components/UploadNotes";
 import VerifyEmail from "./components/Pages/Authenticatoin page/VerifyEmail";
 import About from "./components/Pages/Landing Page/About";
 import BuySellBooks from "./components/books/book.jsx";
-import { useLocation } from "react-router-dom";
 import Profile from "./components/Profile";
 import MyBooks from "./components/books/myBooks.jsx";
 import Footer from "./components/Footer.jsx";
+import NotFoundPage from "./components/Pages/404.jsx";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -24,14 +25,8 @@ function App() {
       children: [
         {
           path: "/",
-          element: (
-            <>
-              <LandingPage />
-              
-            </>
-          ),
+          element: <LandingPage />,
         },
-
         {
           path: "/signup",
           element: <SignUp />,
@@ -91,6 +86,11 @@ function App() {
           element: <MyBooks />,
         },
       ],
+    },
+    // Catch-all route for any unmatched path
+    {
+      path: "*",
+      element: <NotFoundPage />,
     },
   ]);
 

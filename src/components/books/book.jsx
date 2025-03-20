@@ -176,45 +176,86 @@ const BuySellBooks = () => {
             <p className="text-center text-xl">No books available</p>
           )}
         </div>
-      ) : (
-        <div className="bg-gray-800 p-6 rounded-xl shadow-lg max-w-md mx-auto">
-          {Object.keys(bookData).map(
-            (key) =>
-              key !== "image" && (
-                <input
-                  key={key}
-                  type="text"
-                  name={key}
-                  placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
-                  value={bookData[key]}
-                  onChange={handleChange}
-                  className="w-full p-3 mb-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-blue-500"
-                />
-              )
-          )}
-          <label className="text-gray-400">Upload Book Image:</label>
+) : (
+  <div className="bg-gray-800 p-6 rounded-xl shadow-lg max-w-md mx-auto">
+    {/* Semester Dropdown */}
+    <label className="text-gray-400">Select Semester:</label>
+    <select
+      name="semester"
+      value={bookData.semester || ""}
+      onChange={handleChange}
+      className="w-full p-3 mb-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-blue-500"
+    >
+      <option value="" disabled>
+        Select Semester
+      </option>
+      <option value="1">1st Semester</option>
+      <option value="2">2nd Semester</option>
+      <option value="3">3rd Semester</option>
+      <option value="4">4th Semester</option>
+      <option value="5">5th Semester</option>
+      <option value="6">6th Semester</option>
+      <option value="7">7th Semester</option>
+      <option value="8">8th Semester</option>
+    </select>
+
+    {/* Department Dropdown */}
+    <label className="text-gray-400">Select Department:</label>
+    <select
+      name="department"
+      value={bookData.department || ""}
+      onChange={handleChange}
+      className="w-full p-3 mb-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-blue-500"
+    >
+      <option value="" disabled>
+        Select Department
+      </option>
+      <option value="CS">Computer Science</option>
+      <option value="IT">Information Technology</option>
+      <option value="ECE">Electronics & Communication</option>
+      <option value="ME">Mechanical Engineering</option>
+      <option value="CE">Civil Engineering</option>
+      <option value="EE">Electrical Engineering</option>
+    </select>
+
+    {Object.keys(bookData).map(
+      (key) =>
+        key !== "image" && key!=="semester" &&key!=="department" && (
           <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+          key={key}
+          type="text"
+          name={key}
+          placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
+          value={bookData[key]}
+          onChange={handleChange}
+          className="w-full p-3 mb-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-blue-500"
           />
-          {previewImage && (
-            <img
-              src={previewImage}
-              alt="Preview"
-              className="w-full h-48 object-cover rounded-md"
-            />
-          )}
-          <button
-            onClick={handleSell}
-            disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
-          >
-            {loading ? "Adding..." : "Add Book"}
-          </button>
-        </div>
+        )
       )}
+      <label className="text-gray-400">Upload Book Image:</label>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
+        className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+      />
+
+    {previewImage && (
+      <img
+        src={previewImage}
+        alt="Preview"
+        className="w-full h-48 object-cover rounded-md"
+      />
+    )}
+    <button
+      onClick={handleSell}
+      disabled={loading}
+      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
+    >
+      {loading ? "Adding..." : "Add Book"}
+    </button>
+  </div>
+)}
     </div>
   );
 };

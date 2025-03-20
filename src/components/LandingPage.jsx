@@ -5,11 +5,7 @@ import About from "./Pages/Landing Page/About";
 import Services from "./Pages/Landing Page/Services";
 
 const LandingPage = () => {
-  useEffect(() => {
-    // Clear local storage on page load or refresh
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-  }, []);
+  
 
   return (
     <>
