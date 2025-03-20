@@ -74,15 +74,15 @@ export const uploadNote = async (req, res) => {
       pyqPdf: pyqPdfUrl,
       notesPdf: notesPdfUrl,
     });
-fs.unlinkSync(notesPdfFile.path);
-console.log("File delted");
+    fs.unlinkSync(notesPdfFile.path);
+    console.log("File delted");
 
-fs.unlinkSync(pyqPdfFile.path);
+    fs.unlinkSync(pyqPdfFile.path);
 
     await newChapter.save();
 
     // Delete local files after uploading
-    
+
     res
       .status(201)
       .json({ message: "Notes uploaded successfully", note: newChapter });
@@ -93,7 +93,6 @@ fs.unlinkSync(pyqPdfFile.path);
       .json({ message: "Error uploading note", error: error.message });
   }
 };
-
 
 export const getNotes = async (req, res) => {
   try {
@@ -125,5 +124,29 @@ export const getNotes = async (req, res) => {
   }
 };
 
+export const searchNotes = async (req, res) => {
+  try {
+    const { query } = req.query;
 
+    if (!query) {
+      return res.status(400).json({ message: "Search query is required." });
+    }
 
+    const notes = await Chapter.find({
+      $or: [
+        { subjectName: { $regex: query, $options: "i" } },
+        { chapterNo: { $regex: query, $options: "i" } },
+      ],
+    });
+
+    if (!notes.length) {
+      return res.status(404).json({ message: "No matching notes found." });
+    }
+
+    res.status(200).json({ message: "Notes found", notes });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error searching notes", error: error.message });
+  }
+};
