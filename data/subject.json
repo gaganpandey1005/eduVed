@@ -327,223 +327,223 @@
     {
       "name": "Energy & Environmental Engineering",
       "semester": "3",
-      "department": ["CSE"],
-      "imageUrl": "https://example.com/energy-environmental.jpg"
+      "department": ["CS"],
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSZ-iDCXXnea-mOX88i7xPlT770TMUFB9k_A&s"
     },
     {
       "name": "Discrete Structure",
       "semester": "3",
-      "department": ["CSE"],
-      "imageUrl": "https://example.com/discrete-structure.jpg"
+      "department": ["CS"],
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSZ-iDCXXnea-mOX88i7xPlT770TMUFB9k_A&s"
     },
     {
       "name": "Data Structure",
       "semester": "3",
-      "department": ["CSE"],
-      "imageUrl": "https://example.com/data-structure.jpg"
+      "department": ["CS"],
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSZ-iDCXXnea-mOX88i7xPlT770TMUFB9k_A&s"
     },
     {
       "name": "Digital Systems",
       "semester": "3",
-      "department": ["CSE"],
-      "imageUrl": "https://example.com/digital-systems.jpg"
+      "department": ["CS"],
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSZ-iDCXXnea-mOX88i7xPlT770TMUFB9k_A&s"
     },
     {
       "name": "Object Oriented Programming & Methodology",
       "semester": "3",
-      "department": ["CSE"],
-      "imageUrl": "https://example.com/oop-methodology.jpg"
+      "department": ["CS"],
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSZ-iDCXXnea-mOX88i7xPlT770TMUFB9k_A&s"
     },
     {
       "name": "Mathematics-III",
       "semester": "4",
-      "department": ["CSE"],
-      "imageUrl": "https://example.com/math-iii.jpg"
+      "department": ["CS"],
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSZ-iDCXXnea-mOX88i7xPlT770TMUFB9k_A&s"
     },
     {
       "name": "Analysis Design of Algorithm",
       "semester": "4",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/ada.jpg"
     },
     {
       "name": "Software Engineering",
       "semester": "4",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/software-engg.jpg"
     },
     {
       "name": "Computer Org. & Architecture",
       "semester": "4",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/co-arch.jpg"
     },
     {
       "name": "Operating Systems",
       "semester": "4",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/os.jpg"
     },
     {
       "name": "Theory of Computation",
       "semester": "5",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/toc.jpg"
     },
     {
       "name": "Database Management Systems",
       "semester": "5",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/dbms.jpg"
     },
     {
       "name": "Data Analytics",
       "semester": "5",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/data-analytics.jpg"
     },
     {
       "name": "Pattern Recognition",
       "semester": "5",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/pattern-recognition.jpg"
     },
     {
       "name": "Cyber Security",
       "semester": "5",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/cyber-security.jpg"
     },
     {
       "name": "Internet and Web Technology",
       "semester": "5",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/web-tech.jpg"
     },
     {
       "name": "Object Oriented Programming",
       "semester": "5",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/oop.jpg"
     },
     {
       "name": "Introduction to Database Management Systems",
       "semester": "5",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/intro-dbms.jpg"
     },
     {
       "name": "Machine Learning",
       "semester": "6",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/ml.jpg"
     },
     {
       "name": "Computer Networks",
       "semester": "6",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/cn.jpg"
     },
     {
       "name": "Advanced Computer Architecture",
       "semester": "6",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/aca.jpg"
     },
     {
       "name": "Computer Graphics & Visualization",
       "semester": "6",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/cgv.jpg"
     },
     {
       "name": "Compiler Design",
       "semester": "6",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/compiler.jpg"
     },
     {
       "name": "Knowledge Management",
       "semester": "6",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/km.jpg"
     },
     {
       "name": "Software Architectures",
       "semester": "7",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/sa.jpg"
     },
     {
       "name": "Computational Intelligence",
       "semester": "7",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/ci.jpg"
     },
     {
       "name": "Deep & Reinforcement Learning",
       "semester": "7",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/drl.jpg"
     },
     {
       "name": "Wireless & Mobile Computing",
       "semester": "7",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/wmc.jpg"
     },
     {
       "name": "Big Data",
       "semester": "7",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/bigdata.jpg"
     },
     {
       "name": "Cryptography & Information Security",
       "semester": "7",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/cryptography.jpg"
     },
     {
       "name": "Data Mining and Warehousing",
       "semester": "7",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/dm.jpg"
     },
     {
       "name": "Agile Software Development",
       "semester": "7",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/agile.jpg"
     },
     {
       "name": "Internet of Things",
       "semester": "8",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/iot.jpg"
     },
     {
       "name": "Block Chain Technologies",
       "semester": "8",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/blockchain.jpg"
     },
     {
       "name": "Cloud Computing",
       "semester": "8",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/cloud.jpg"
     },
     {
       "name": "High Performance Computing",
       "semester": "8",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/hpc.jpg"
     },
     {
       "name": "Object Oriented Software Engineering",
       "semester": "8",
-      "department": ["CSE"],
+      "department": ["CS"],
       "imageUrl": "https://example.com/oose.jpg"
     }
   
