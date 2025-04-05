@@ -6,8 +6,8 @@ import dotenv from "dotenv/config";
 import morgan from "morgan";
 import subjectRoutes from "./routes/subject.routes.js";
 import chapterRoutes from "./routes/chapter.routes.js";
-import shivaniRoutes from "./routes/shivani.routes.js"
-
+import shivaniRoutes from "./routes/shivani.routes.js";
+import chatRoutes from "./routes/chatr.routes.js"
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
@@ -32,6 +32,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/chapter", chapterRoutes);
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/shivani", shivaniRoutes);
+app.use("/api/chat",chatRoutes);
 
 app.all("*", (req, res) => {
   res.status(404).send("Page not found");

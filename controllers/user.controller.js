@@ -3,6 +3,8 @@ import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import { json } from "stream/consumers";
+// import io from "socket.io"
 
 // ✅ Register User
 const register = async (req, res) => {
@@ -166,8 +168,8 @@ const { password: _, ...userInfo } = user;
 const logout = (req, res) => {
   res.status(200).json({ success: true, message: "Logged out successfully" });
 };
-const getUser= (data)=>{
 
-}
 
-export { register, verifyEmail, login, logout };
+
+
+export { register, verifyEmail, login,logout };
