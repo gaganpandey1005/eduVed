@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Layout, RequireAuth } from "./components/layout/layout";
+import { Layout, RequireAuth } from "./components/layout/layout.jsx";
 import SignUp from "./components/Pages/Authenticatoin page/SignUp";
 import LandingPage from "./components/LandingPage";
 import SignIn from "./components/Pages/Authenticatoin page/SignIn";
@@ -16,6 +16,7 @@ import Profile from "./components/Profile";
 import MyBooks from "./components/books/myBooks.jsx";
 import Footer from "./components/Footer.jsx";
 import NotFoundPage from "./components/Pages/404.jsx";
+import ChatBox from "./components/books/chat.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -84,6 +85,10 @@ function App() {
         {
           path: "/myBooks",
           element: <MyBooks />,
+        },
+        {
+          path: "/chat",
+          element: <ChatBox/>,
         },
       ],
     },

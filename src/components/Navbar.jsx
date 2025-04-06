@@ -63,13 +63,20 @@ const NavBar = () => {
 
         {/* Profile / Auth Links (Desktop) */}
         {isLoggedIn ? (
-          <div
-            className="hidden md:flex items-center gap-x-4 cursor-pointer"
-            onClick={() => navigate("/profile")}
-          >
-            <div className="avatar h-10 w-10 rounded-full">
-              <CgProfile className="h-10 w-10" />
+          <div className="hidden md:flex items-center gap-x-4">
+            <div
+              className="flex items-center gap-x-2 cursor-pointer"
+              onClick={() => navigate("/profile")}
+            >
+              <CgProfile className="h-8 w-8" />
+              <span>Profile</span>
             </div>
+            <button
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+              onClick={() => navigate("/chat")}
+            >
+              Message
+            </button>
           </div>
         ) : (
           <div className="hidden md:flex items-center gap-x-4">
@@ -96,7 +103,10 @@ const NavBar = () => {
         } md:hidden z-50 shadow-lg`}
       >
         {/* Close Button */}
-        <button className="absolute top-4 right-4 text-white text-2xl" onClick={toggleMenu}>
+        <button
+          className="absolute top-4 right-4 text-white text-2xl"
+          onClick={toggleMenu}
+        >
           <FiX />
         </button>
 
@@ -116,9 +126,20 @@ const NavBar = () => {
 
           {/* Profile / Auth Links (Mobile) */}
           {isLoggedIn ? (
-            <div className="flex items-center gap-x-4 cursor-pointer mt-4" onClick={() => navigate("/profile")}>
-              <CgProfile className="h-10 w-10" />
-              <h1 className="text-lg">Profile</h1>
+            <div className="flex flex-col gap-y-4 w-full mt-4">
+              <div
+                className="flex items-center gap-x-4 cursor-pointer"
+                onClick={() => navigate("/profile")}
+              >
+                <CgProfile className="h-10 w-10" />
+                <h1 className="text-lg">Profile</h1>
+              </div>
+              <button
+                className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+                onClick={() => handleNavigation("/message")}
+              >
+                Message
+              </button>
             </div>
           ) : (
             <div className="flex flex-col gap-y-4 w-full mt-4">
@@ -140,7 +161,12 @@ const NavBar = () => {
       </div>
 
       {/* Background Overlay when Menu is Open */}
-      {menuOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={toggleMenu}></div>}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={toggleMenu}
+        ></div>
+      )}
     </>
   );
 };
