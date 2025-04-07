@@ -1,21 +1,15 @@
 import app from "./app.js";
 import connectToDB from "./config/db.connection.js";
 import http from "http";
-import { Server } from "socket.io";
+import {server} from "./utils/socket.js"
 
 
 const PORT = process.env.PORT || 3000;
-const server = http.createServer(app);
-
-const io = new Server(server, {
-  cors: {
-    origin: "*", // Allow all origins temporarily for debugging
-    methods: ["GET", "POST"],
-  },
-});
+// const server = http.createServer(app);
 
 
-// Ensure the WebSocket connection is established
+
+
 
 
 // First connect to the database, then start the server
