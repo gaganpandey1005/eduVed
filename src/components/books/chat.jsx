@@ -22,7 +22,7 @@ const ChatBox = () => {
 
   // Initialize socket
   useEffect(() => {
-    socketRef.current = io("http://localhost:8000", {
+    socketRef.current = io("https://eduved-backend-tpos.onrender.com", {
       query: { userId: myId },
     });
 
@@ -51,7 +51,7 @@ const ChatBox = () => {
       setIsLoading(true);
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/chat/users/${myId}`
+          `https://eduved-backend-tpos.onrender.com/api/chat/users/${myId}`
         );
         if (Array.isArray(res.data)) setUsers(res.data);
       } catch (err) {
@@ -70,7 +70,7 @@ const ChatBox = () => {
       setIsLoading(true);
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/chat/${selectedUser._id}?myId=${myId}`
+          `https://eduved-backend-tpos.onrender.com/api/chat/${selectedUser._id}?myId=${myId}`
         );
         setMessages(res.data);
         if (inputRef.current) inputRef.current.focus();
@@ -97,7 +97,7 @@ const ChatBox = () => {
     try {
       lastMessageFromMe.current = true;
       const res = await axios.post(
-        `http://localhost:8000/api/chat/send/${selectedUser._id}`,
+        `https://eduved-backend-tpos.onrender.com/api/chat/send/${selectedUser._id}`,
         {
           senderId: myId,
           text,
