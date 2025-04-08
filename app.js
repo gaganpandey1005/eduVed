@@ -21,6 +21,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "https://eduved.onrender.com",
+      "https://eduved-frontend.onrender.com"
     ], // Allow  frontend URLs
     credentials: true, // Allow cookies/auth headers
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
