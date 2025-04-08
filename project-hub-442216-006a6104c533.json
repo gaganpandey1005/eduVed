@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "onyx-elevator-453912-d3",
+  "private_key_id": "1e90879461756ec35f738922a491e27c7944d16f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDAZgl/mVW4vHoF\n38MjFzhLS0A4nhs18s9o1YYr1//D9cuT+uV7m2c/vckisIqcSMJkmUpZXyFpIgcL\nQfl5sdD4DNdgBi3s4RIUr6blDcBKulgOe3aPupj4255bop/vv/s/17ioknGEVZw2\neEV71tgziQ14A5rElyy2Y4mBFXQpTopG7gKyYfXeBlD6kDxlNfSYfwKioM7Lw3Iv\nNcr02oG5JGyEhp4ivL+vaHPQHSzuMpKHtC8mz37TJV5zeg6UZTdCQfplxmAFcXvD\n64M0fSybJd22G5bz2NpMvtCxIlbvybgxrF8HLmE8L+pECwJNMrICaTuXn4FtD9Y7\nx66bKi4/AgMBAAECggEAWDwTXBTOlse9MEdz3vptoz4yCCUeNooR67KM8zt+fPiS\n8d0M9DiLS9S2UvXiw5SsreUND1qM4IGt+FA74L8XJkMBXPTIiAuaNqltoTtCtiKq\nco3VjEnXkL1rbPvyXEnPqHI+qfRrIfT/DI3w07/ubAgNCL6ickkgRM72RyA3Ix+p\noMQYwdSWcLUINqZelK0iu4hQ7Qfyf6iXj0Nv4z3FI9yKRaPgzVdGZ3YSd1R757JP\n1up7xsvPYWWeQ/78mTqbcC5n+zfXY0R8XSmXuYcW/Z9px94LtgSLL5o3l5Sl7wrl\no2P+nmEmmVgTUG8v/M2uX3SpusxA38V37mBWDm+LOQKBgQDmPrr+hDS79IUAbeBL\nzxTNvOzwHA0E89I00RahiUeU40R/rYA8myRhMqu1QTjZhkIXWkhfyGDaDwLXKFhT\nZmfb9ezx4UROHY984Koh1+afUslErSiGn+3Hhq3tRSibd2MrOfGNhus8J7AuseRG\nqQ5D6G9JbgQlDlh/TA//uYIT2QKBgQDV64o8cZ/ZZIiCJ4TgkZm+kStNzQGGPi2T\njLrcnrZMtUoIHsV9hVQwJTcTDJG0DJUPzHVkAs7SlJb70TRsFE/K5bJazgq1PxUi\nUc9EXefX7cuOnH8kpnOOpu5IuAFvs1on8mEs0JSqr9Lwhkt5ZVP4LKniJ3GNA36I\nvoa3Vky71wKBgBRA7mgXLyBdiRmZkMJ6a+UROnKAtTB7VkFpJyl8jvxs5YiptX8f\nUpruPyaJnzubUNMHERjD4qkr6t8MYICtoHM79eTtIPoSJZ4hkTW67UGUobnV1ZvK\nE7uagFA/5iuO2/1gcnw1oxm+kAP7iA4jLusQVkHKWLj9wxEnmryvD985AoGBALLk\nlOfTRZAxKI9fqRl76YyaLhKT/FBdMxQPPj09ZMplWRHNWe6MT0kr9hCyFC7zzrw1\niX4ncvpbVKAl5ab0nX3Z9PtHD2Fe7beTnrdXqIjEzdPnP9RQdpa3NtINPvZAkIaT\nhXxKuei7vLV0OS299Si3gSIlRipc37ZPTq2HOAhlAoGAGBpShfEM+FLftI+EB8z7\ntALn/5wfl1+Ycr3FBHHUPxuo32OMv6NFHXlsOx0dcBQnSK1lUnnuxDnnN2n0ehen\nT2i/u4mZO4XZUeZqtWyT8+Gt5RdQ2e22rypy06wFG+Xoo542/cycTP9AWielpA/p\n5Ji9PYVJJe6TnigFNnxp/2k=\n-----END PRIVATE KEY-----\n",
+  "client_email": "eduved@onyx-elevator-453912-d3.iam.gserviceaccount.com",
+  "client_id": "116304339575854667528",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/eduved%40onyx-elevator-453912-d3.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
