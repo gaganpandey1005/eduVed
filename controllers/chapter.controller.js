@@ -75,7 +75,7 @@ export const uploadNote = async (req, res) => {
       notesPdf: notesPdfUrl,
     });
     fs.unlinkSync(notesPdfFile.path);
-    console.log("File delted");
+    
 
     fs.unlinkSync(pyqPdfFile.path);
 
@@ -104,9 +104,7 @@ export const getNotes = async (req, res) => {
         message: "semester, department, and subjectName are required",
       });
     }
-    console.log("Semester:", semester);
-    console.log("Department:", department);
-    console.log("Subject Name:", subjectName);
+
 
     const notes = await Chapter.find({ semester, department, subjectName });
 

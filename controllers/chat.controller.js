@@ -20,10 +20,10 @@ export const getUsersForChat = async (req, res) => {
 export const getMessages = async (req, res) => {
   try {
     const { id: userToChatId } = req.params;
-    console.log("user",userToChatId);
+    // console.log("user",userToChatId);
     
     const { myId } = req.query;
-    console.log(myId);
+    // console.log(myId);
 
     const messages = await Chat.find({
       $or: [
@@ -31,11 +31,11 @@ export const getMessages = async (req, res) => {
         { senderId: userToChatId, receiverId: myId },
       ],
     });
-    console.log(myId);
+    // console.log(myId);
 
     res.status(200).json(messages);
   } catch (error) {
-    console.log("Error in getMessages controller: ", error.message);
+    // console.log("Error in getMessages controller: ", error.message);
     res.status(500).json({ error: "Internal server error" });
   }
 };
@@ -56,7 +56,7 @@ export const sendMessage = async (req, res) => {
     await newMessage.save();
 
     const receiverSocketId = getReceiverSocketId(receiverId);
-    console.log("receiverId",receiverSocketId);
+    // console.log("receiverId",receiverSocketId);
     
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("newMessage", newMessage);
@@ -64,7 +64,7 @@ export const sendMessage = async (req, res) => {
 
     res.status(201).json(newMessage);
   } catch (error) {
-    console.log("Error in sendMessage controller: ", error.message);
+    // console.log("Error in sendMessage controller: ", error.message);
     res.status(500).json({ error: "Internal server error" });
   }
 };

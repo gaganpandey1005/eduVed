@@ -5,10 +5,10 @@ import cloudinary from "../../config/cloudinary.js";
 //user id find
 const addShivani = async (req, res) => {
   const { semester, department, subject, year, price, location } = req.body;
-  console.log("Request Body:", req.body);
+  // console.log("Request Body:", req.body);
 
   const userId = req.query.userId;
-  console.log(userId);
+  // console.log(userId);
 
   try {
     const user = await User.findById(userId);
@@ -28,7 +28,7 @@ const addShivani = async (req, res) => {
     });
 
     const imgUrl = result.secure_url;
-    console.log("Uploaded Image URL:", imgUrl);
+    // console.log("Uploaded Image URL:", imgUrl);
 
     // Check if the book already exists
     const existingShivani = await Shivani.findOne({
@@ -106,7 +106,7 @@ const getSingleShivaniBook = async (req, res) => {
     const user=await User.findById(id);
     
     const book=await Shivani.find({soldBy:user._id});
-    console.log("books",book);
+    // console.log("books",book);
     
     
     if (!book) {

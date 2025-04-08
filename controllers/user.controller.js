@@ -143,7 +143,7 @@ const { password: _, ...userInfo } = user;
       { expiresIn: "7d" }
     );
 
-    console.log("Generated Token:", token);
+    // console.log("Generated Token:", token);
 
     res.status(200).json({
       success: true,
