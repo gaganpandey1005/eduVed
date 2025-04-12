@@ -102,11 +102,11 @@ const getAllShivaniBooks = async (req, res) => {
 // Get a Single Shivani Book
 const getSingleShivaniBook = async (req, res) => {
   const { id} = req.params;
+  console.log("Id",id)
   try {
-    const user=await User.findById(id);
     
-    const book=await Shivani.find({soldBy:user._id});
-    // console.log("books",book);
+    const book=await Shivani.findById(id);
+    console.log("books",book);
     
     
     if (!book) {
