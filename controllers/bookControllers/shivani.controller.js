@@ -101,18 +101,30 @@ const getAllShivaniBooks = async (req, res) => {
 
 // Get a Single Shivani Book
 const getSingleShivaniBook = async (req, res) => {
-  const { id} = req.params;
-  console.log("Id",id)
+  const { id } = req.params;
+
   try {
-    
-    const book=await Shivani.findById(id);
-    console.log("books",book);
-    
-    
+    // Fetch the book by ID
+    const book = await Shivani.findById(id);
+
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
     }
-    return res.status(200).json({ message: "Book fetched successfully",  book});
+
+    // Get user who sold the book
+    const user = await User.findById(book.soldBy).select("-password"); // Exclude sensitive data
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "User who sold the book not found" });
+    }
+
+    return res.status(200).json({
+      message: "Book fetched successfully",
+      book,
+      userEmail: user.email, // Or return whole user if needed
+    });
   } catch (error) {
     console.error("Error while fetching book:", error);
     return res.status(500).json({
@@ -121,6 +133,8 @@ const getSingleShivaniBook = async (req, res) => {
     });
   }
 };
+
+
 
 // Update Shivani Book
 const updateShivaniBook = async (req, res) => {

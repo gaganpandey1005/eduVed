@@ -9,9 +9,9 @@ import { json } from "stream/consumers";
 // ✅ Register User
 const register = async (req, res) => {
   try {
-    const { fullName, email, password, semester, department } = req.body;
+    const { fullName, email, password, semester, department,userName } = req.body;
 
-    if (!fullName || !email || !password || !semester || !department) {
+    if (!fullName || !email || !password || !semester || !department || !userName) {
       return res
         .status(400)
         .json({ success: false, message: "All fields are required" });
