@@ -1,4 +1,4 @@
-import { BookLoader } from "react-awesome-loaders";
+//import { BookLoader } from "react-awesome-loaders";
 
 export const BookLoaderComponent = () => {
   return (
