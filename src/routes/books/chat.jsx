@@ -50,9 +50,7 @@ const ChatBox = () => {
     const fetchUsers = async () => {
       setIsLoading(true);
       try {
-        const res = await (
-          apirequest.get(`/chat/users/${myId}`)
-        );
+        const res = await apirequest.get(`/chat/users/${myId}`);
         if (Array.isArray(res.data)) setUsers(res.data);
       } catch (err) {
         console.error("Error fetching users:", err.message);
@@ -96,13 +94,10 @@ const ChatBox = () => {
     if (!text.trim()) return;
     try {
       lastMessageFromMe.current = true;
-      const res = await apirequest.post(
-        `/chat/send/${selectedUser._id}`,
-        {
-          senderId: myId,
-          text,
-        }
-      );
+      const res = await apirequest.post(`/chat/send/${selectedUser._id}`, {
+        senderId: myId,
+        text,
+      });
       setMessages((prev) => [...prev, res.data]);
       setText("");
     } catch (err) {
@@ -121,7 +116,7 @@ const ChatBox = () => {
   const isUserOnline = (userId) => onlineUsers.includes(userId);
 
   const filteredUsers = users.filter((user) =>
-    user.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+    user.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const formatTime = (timestamp) => {
@@ -170,12 +165,12 @@ const ChatBox = () => {
                 }`}
               >
                 <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center text-lg font-bold mr-3">
-                    {user.fullName.charAt(0)}
+                  <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center text-sm font-bold mr-3">
+                    {user.email.charAt(0).toUpperCase()}
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between items-center">
-                      <span className="font-medium">{user.fullName}</span>
+                      <span className="font-medium text-sm">{user.email}</span>
                       <span
                         className={`text-sm ${
                           isUserOnline(user._id)
@@ -205,7 +200,6 @@ const ChatBox = () => {
       {/* Chat View */}
       <div className="md:w-2/3 w-full flex flex-col overflow-hidden">
         <div className="p-4 bg-[#1e293b] border-b border-gray-600 flex items-center gap-4 sticky top-0 z-10">
-          {/* Back Button on small screens */}
           {selectedUser && (
             <button
               onClick={() => {
@@ -220,12 +214,12 @@ const ChatBox = () => {
 
           {selectedUser ? (
             <div className="flex items-center">
-              <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center text-lg font-bold mr-3">
-                {selectedUser.fullName.charAt(0)}
+              <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center text-sm font-bold mr-3">
+                {selectedUser.email.charAt(0).toUpperCase()}
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-blue-300">
-                  {selectedUser.fullName}
+                <h3 className="text-sm font-semibold text-blue-300">
+                  {selectedUser.email}
                 </h3>
                 <p className="text-xs text-gray-400">
                   {isUserOnline(selectedUser._id) ? "Online" : "Offline"}

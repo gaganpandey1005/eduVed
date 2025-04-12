@@ -29,6 +29,7 @@ import UploadNotes from "./components/UploadNotes.jsx";
 import Profile from "./components/Profile.jsx";
 import NotFoundPage from "./components/NotFound.jsx";
 import "./App.css";
+import BookDetail from "./routes/books/BookDetail.jsx";
 
 
 
@@ -101,8 +102,12 @@ function App() {
           element: <MyBooks />,
         },
         {
-          path: "/chat",
+          path: "/message",
           element: <ChatBox/>,
+        },
+        {
+          path: "/book/:id",
+          element: <BookDetail/>,
         },
       ],
     },

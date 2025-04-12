@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import apirequest from "../../utils/lib/apiRequest";
-import { BookLoaderComponent } from "../../components/BookLoaderComponent"; // Import loader component
+// import { BookLoaderComponent } from "../../components/BookLoaderComponent"; // Import loader component
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -75,7 +75,7 @@ const SignUp = () => {
       {/* Full-screen loader with darker background */}
       {isLoading && (
         <div className="fixed inset-0 bg-black/90 flex justify-center items-center z-50">
-          <BookLoaderComponent />
+          {/* <BookLoaderComponent /> */}
         </div>
       )}
 
