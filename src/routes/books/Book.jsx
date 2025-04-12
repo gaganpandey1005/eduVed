@@ -1,8 +1,8 @@
-import  { useState, useEffect } from "react";
-
+import { useState, useEffect } from "react";
 import apirequest from "../../utils/lib/apiRequest";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { FiSearch } from "react-icons/fi";
 import "react-toastify/dist/ReactToastify.css";
 
 const BuySellBooks = () => {
@@ -21,19 +21,21 @@ const BuySellBooks = () => {
   });
   const [previewImage, setPreviewImage] = useState(null);
   const [activeButton, setActiveButton] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const toggleSearch = () => setShowSearch((prev) => !prev);
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
         setLoading(true);
-        const response = await apirequest.get(
-          "/shivani/all"
-        );
+        const response = await apirequest.get("/shivani/all");
         setBooks(response.data.books || []);
-        setLoading(false);
       } catch (error) {
         toast.error("Error fetching books");
         console.error("Error fetching books:", error);
+      } finally {
         setLoading(false);
       }
     };
@@ -48,7 +50,6 @@ const BuySellBooks = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Check file type and size (5 MB limit)
       const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
       if (!allowedTypes.includes(file.type)) {
         toast.error("Only JPG, JPEG, and PNG files are allowed");
@@ -91,7 +92,6 @@ const BuySellBooks = () => {
           image: null,
         });
         setPreviewImage(null);
-        return;
       } else {
         toast.error("Failed to add book");
       }
@@ -108,12 +108,43 @@ const BuySellBooks = () => {
     navigate("/myBooks");
   };
 
+  // Fixed the filtering logic to search across multiple properties
+  const filteredBooks = books.filter((book) => {
+    if (!searchTerm) return true;
+
+    const term = searchTerm.toLowerCase();
+    return (
+      (book.department && book.department.toLowerCase().includes(term)) ||
+      (book.subject && book.subject.toLowerCase().includes(term)) ||
+      (book.location && book.location.toLowerCase().includes(term)) ||
+      (book.year && book.year.toString().includes(term))
+    );
+  });
+
   return (
     <div className="min-h-screen bg-black text-white p-6">
-      <h1 className="items-center text-4xl font-bold text-center mb-8 animate-bounce">
-        {buyMode ? "Buy Books" : "Sell Your Book"}
-      </h1>
-      <ToastContainer position="top-center" autoClose={3000} />
+      <div className="w-full max-w-5xl mx-auto mb-6 flex justify-between items-center">
+        <h1 className="text-4xl font-bold animate-bounce">
+          {buyMode ? "Buy Books" : "Sell Your Book"}
+        </h1>
+        <FiSearch
+          onClick={toggleSearch}
+          className="text-3xl text-gray-500 active:text-blue-600 cursor-pointer"
+        />
+      </div>
+
+      {showSearch && (
+        <div className="mb-6 w-full max-w-md mx-auto">
+          <input
+            type="text"
+            placeholder="Search by department, subject, location..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none text-black bg-white"
+          />
+        </div>
+      )}
+
       <div className="flex justify-between items-center mb-6">
         <div>
           <button
@@ -149,8 +180,8 @@ const BuySellBooks = () => {
         <p className="text-center text-xl">Loading...</p>
       ) : buyMode ? (
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {books.length > 0 ? (
-            books.map((book) => (
+          {filteredBooks.length > 0 ? (
+            filteredBooks.map((book) => (
               <div
                 key={book._id}
                 className="p-4 bg-gray-800 rounded-xl shadow-lg hover:scale-105 transition"
@@ -169,9 +200,7 @@ const BuySellBooks = () => {
                 <p className="text-gray-400">Location: {book.location}</p>
                 <p className="text-gray-400">Quantity: {book.quantity}</p>
                 <button
-                  onClick={() => {
-                    navigate("/chat");
-                  }}
+                  onClick={() => navigate("/chat")}
                   className="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition"
                 >
                   Buy Now
@@ -179,67 +208,67 @@ const BuySellBooks = () => {
               </div>
             ))
           ) : (
-            <p className="text-center text-xl">No books available</p>
+            <p className="text-center text-xl col-span-3">No books found</p>
           )}
         </div>
       ) : (
         <div className="bg-gray-800 p-6 rounded-xl shadow-lg max-w-md mx-auto">
-          {/* Semester Dropdown */}
           <label className="text-gray-400">Select Semester:</label>
           <select
             name="semester"
-            value={bookData.semester || ""}
+            value={bookData.semester}
             onChange={handleChange}
-            className="w-full p-3 mb-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 mb-4 bg-gray-700 text-white rounded"
           >
             <option value="" disabled>
               Select Semester
             </option>
-            <option value="1">1st Semester</option>
-            <option value="2">2nd Semester</option>
-            <option value="3">3rd Semester</option>
-            <option value="4">4th Semester</option>
-            <option value="5">5th Semester</option>
-            <option value="6">6th Semester</option>
-            <option value="7">7th Semester</option>
-            <option value="8">8th Semester</option>
+            {[...Array(8)].map((_, i) => (
+              <option key={i + 1} value={i + 1}>
+                {i + 1} Semester
+              </option>
+            ))}
           </select>
 
-          {/* Department Dropdown */}
           <label className="text-gray-400">Select Department:</label>
           <select
             name="department"
-            value={bookData.department || ""}
+            value={bookData.department}
             onChange={handleChange}
-            className="w-full p-3 mb-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 mb-4 bg-gray-700 text-white rounded"
           >
             <option value="" disabled>
               Select Department
             </option>
-            <option value="CS">Computer Science</option>
-            <option value="IT">Information Technology</option>
-            <option value="ECE">Electronics & Communication</option>
-            <option value="ME">Mechanical Engineering</option>
-            <option value="CE">Civil Engineering</option>
-            <option value="EE">Electrical Engineering</option>
+            {["CS", "IT", "ECE", "ME", "CE", "EE"].map((dept) => (
+              <option key={dept} value={dept}>
+                {dept === "CS"
+                  ? "Computer Science"
+                  : dept === "IT"
+                  ? "Information Technology"
+                  : dept === "ECE"
+                  ? "Electronics & Communication"
+                  : dept === "ME"
+                  ? "Mechanical Engineering"
+                  : dept === "CE"
+                  ? "Civil Engineering"
+                  : "Electrical Engineering"}
+              </option>
+            ))}
           </select>
 
-          {Object.keys(bookData).map(
-            (key) =>
-              key !== "image" &&
-              key !== "semester" &&
-              key !== "department" && (
-                <input
-                  key={key}
-                  type="text"
-                  name={key}
-                  placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
-                  value={bookData[key]}
-                  onChange={handleChange}
-                  className="w-full p-3 mb-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-blue-500"
-                />
-              )
-          )}
+          {["subject", "year", "price", "location"].map((field) => (
+            <input
+              key={field}
+              name={field}
+              type="text"
+              placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+              value={bookData[field]}
+              onChange={handleChange}
+              className="w-full p-3 mb-4 bg-gray-700 text-white rounded"
+            />
+          ))}
+
           <label className="text-gray-400">Upload Book Image:</label>
           <input
             type="file"
@@ -247,14 +276,14 @@ const BuySellBooks = () => {
             onChange={handleImageChange}
             className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
           />
-
           {previewImage && (
             <img
               src={previewImage}
               alt="Preview"
-              className="w-full h-48 object-cover rounded-md"
+              className="w-full h-48 object-cover rounded-md mb-4"
             />
           )}
+
           <button
             onClick={handleSell}
             disabled={loading}
@@ -264,6 +293,8 @@ const BuySellBooks = () => {
           </button>
         </div>
       )}
+
+      <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 };

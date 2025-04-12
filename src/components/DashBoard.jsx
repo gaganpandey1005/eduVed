@@ -63,7 +63,7 @@ const Dashboard = () => {
               <Cards
                 title={department.name}
                 image={department.imageUrl}
-                link={`/subjects/${encodeURIComponent(department.name)}`}
+                link={`/chapter/${department.name}/${userSemester}/${encodeURIComponent(department.name)}`}
               />
             </motion.div>
           ))
