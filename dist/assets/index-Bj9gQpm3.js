@@ -26196,14 +26196,10 @@ const DN = () => {
           department: c.current.value,
         };
         try {
-          const b = await je.post(
-            "https://eduved-backend-tpos.onrender.com/api/user/register",
-            m,
-            {
-              headers: { "Content-Type": "application/json" },
-              withCredentials: !0,
-            }
-          );
+          const b = await je.post("apirequest/user/register", m, {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: !0,
+          });
           _e.success(
             b.data.message ||
               "User registered successfully. Please check your email to verify your account!"
@@ -26861,11 +26857,9 @@ const DN = () => {
         u.preventDefault();
         const c = { email: a.current.value, password: i.current.value };
         try {
-          const m = await je.post(
-            "https://eduved-backend-tpos.onrender.com/api/user/login",
-            c,
-            { headers: { "Content-Type": "application/json" } }
-          );
+          const m = await je.post("apirequest/user/login", c, {
+            headers: { "Content-Type": "application/json" },
+          });
           if (m.status === 200) {
             const { user: g, token: y } = m.data;
             t(g),
@@ -27008,7 +27002,7 @@ const DN = () => {
           (async () => {
             try {
               const h = await je.get(
-                `https://eduved-backend-tpos.onrender.com/api/subjects/getNotes?department=${u}&semester=${c}`
+                `apirequest/subjects/getNotes?department=${u}&semester=${c}`
               );
               a(h.data);
             } catch (h) {
@@ -27142,7 +27136,7 @@ const DN = () => {
         (async () => {
           try {
             const g = await je.get(
-              `https://eduved-backend-tpos.onrender.com/api/subjects/getNotes?department=${i}&semester=${o}`
+              `apirequest/subjects/getNotes?department=${i}&semester=${o}`
             );
             c(g.data);
           } catch (g) {
@@ -27202,7 +27196,7 @@ const DN = () => {
         (async () => {
           try {
             const h = await je.get(
-              `https://eduved-backend-tpos.onrender.com/api/chapter/getNotes?department=${e}&semester=${t}&subjectName=${a}`
+              `apirequest/chapter/getNotes?department=${e}&semester=${t}&subjectName=${a}`
             );
             console.log("data", h.data),
               h.data && Array.isArray(h.data.notes) ? o(h.data.notes) : o([]);
@@ -27315,11 +27309,9 @@ const DN = () => {
               h.append("notesPdf", o.current.files[0]),
               h.append("pyqPdf", u.current.files[0]);
             try {
-              await je.post(
-                "https://eduved-backend-tpos.onrender.com/api/chapter/upload",
-                h,
-                { headers: { "Content-Type": "multipart/form-data" } }
-              ),
+              await je.post("apirequest/chapter/upload", h, {
+                headers: { "Content-Type": "multipart/form-data" },
+              }),
                 alert("Upload successful!");
             } catch (m) {
               console.error("Upload failed", m);
@@ -27417,9 +27409,7 @@ const DN = () => {
         (async () => {
           var u, c;
           try {
-            const d = await je.get(
-              `https://eduved-backend-tpos.onrender.com/api/user/verify-email/${e}`
-            );
+            const d = await je.get(`apirequest/user/verify-email/${e}`);
             _e.success(d.data.message), setTimeout(() => t("/signin"), 3e3);
           } catch (d) {
             _e.error(
@@ -27470,9 +27460,7 @@ const DN = () => {
       (async () => {
         try {
           c(!0);
-          const O = await je.get(
-            "https://eduved-backend-tpos.onrender.com/api/shivani/all"
-          );
+          const O = await je.get("apirequest/shivani/all");
           o(O.data.books || []), c(!1);
         } catch (O) {
           _e.error("Error fetching books"),
@@ -27506,10 +27494,7 @@ const DN = () => {
         const O = JSON.parse(localStorage.getItem("user")),
           M = O == null ? void 0 : O._id;
         try {
-          const P = await je.post(
-            `https://eduved-backend-tpos.onrender.com/api/shivani/add?userId=${M}`,
-            C
-          );
+          const P = await je.post(`apirequest/shivani/add?userId=${M}`, C);
           if (P.status === 200) {
             _e.success(P.data.message),
               h({
@@ -32144,9 +32129,7 @@ const T8 = R.forwardRef(function (t, a) {
         const y = JSON.parse(localStorage.getItem("user")),
           b = y == null ? void 0 : y._id;
         try {
-          const x = await je.get(
-            `https://eduved-backend-tpos.onrender.com/api/shivani/${b}`
-          );
+          const x = await je.get(`apirequest/shivani/${b}`);
           t(x.data.book || []);
         } catch (x) {
           _e.error("Error fetching user books."),
@@ -32163,10 +32146,7 @@ const T8 = R.forwardRef(function (t, a) {
       },
       h = async () => {
         try {
-          await je.put(
-            `https://eduved-backend-tpos.onrender.com/api/shivani/update/${a._id}`,
-            o
-          ),
+          await je.put(`apirequest/shivani/update/${a._id}`, o),
             t((g) => g.map((y) => (y._id === a._id ? { ...y, ...o } : y))),
             i(null),
             _e.success("Book details updated successfully.");
@@ -32177,9 +32157,7 @@ const T8 = R.forwardRef(function (t, a) {
       },
       m = async (g) => {
         try {
-          await je.delete(
-            `https://eduved-backend-tpos.onrender.com/api/shivani/delete/${g}`
-          ),
+          await je.delete(`apirequest/shivani/delete/${g}`),
             t(e.filter((y) => y._id !== g)),
             _e.success("Book deleted successfully.");
         } catch (y) {

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import  { useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import { Send, Smile, Circle } from "lucide-react";
 

@@ -37,7 +37,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className=" bg-black text-white py-12 px-6 md:px-20 relative overflow-hidden">
+    <footer className=" bg-black mt-10 text-white py-12 px-6 md:px-20 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(6)].map((_, i) => (

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import axios from "axios";
+import apirequest from "../utils/lib/apiRequest";
 
 const departments = [
   { name: "Computer Science", value: "CS" },
@@ -31,8 +31,8 @@ const UploadNotes = () => {
     data.append("pyqPdf", pyqPdfRef.current.files[0]);
     
     try {
-      await axios.post(
-        "https://eduved-backend-tpos.onrender.com/api/chapter/upload",
+      await apirequest.post(
+        "/chapter/upload",
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },

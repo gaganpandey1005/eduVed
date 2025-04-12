@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import Cards from "../ui/Cards";
+import apirequest from "../../utils/lib/apiRequest";
+import Cards from "../../components/Cards";
 
 const Subjects = ({ department: propDepartment, semester: propSemester }) => {
   const params = useParams();
@@ -19,8 +19,8 @@ const Subjects = ({ department: propDepartment, semester: propSemester }) => {
 
     const fetchSubjects = async () => {
       try {
-        const response = await axios.get(
-          `https://eduved-backend-tpos.onrender.com/api/subjects/getNotes?department=${department}&semester=${semester}`
+        const response = await apirequest.get(
+          `/subjects/getNotes?department=${department}&semester=${semester}`
         );
         setSubjects(response.data);
       } catch (error) {

@@ -25,8 +25,8 @@ const About = () => {
         "A platform to exchange academic books within the student community.",
     },
     {
-      title: "📂 Project Repository",
-      description: "A secure and categorized collection of academic projects.",
+      title: "📂 Clear and Simple Learning",
+      description: "Simple notes with diagrams make tough topics easy to understand.",
     },
   ];
 

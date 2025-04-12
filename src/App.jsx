@@ -1,22 +1,36 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// Layout and Protected Route
 import { Layout, RequireAuth } from "./components/layout/layout.jsx";
-import SignUp from "./components/Pages/Authenticatoin page/SignUp";
-import LandingPage from "./components/LandingPage";
-import SignIn from "./components/Pages/Authenticatoin page/SignIn";
-import DashBoard from "./components/DashBoard";
-import Department from "./components/Pages/Material/Department";
-import Semester from "./components/Pages/Material/Semester";
-import Subjects from "./components/Pages/Material/Subjects";
-import Chapter from "./components/Pages/Material/Chapter";
-import UploadNotes from "./components/UploadNotes";
-import VerifyEmail from "./components/Pages/Authenticatoin page/VerifyEmail";
-import About from "./components/Pages/Landing Page/About";
-import BuySellBooks from "./components/books/book.jsx";
-import Profile from "./components/Profile";
-import MyBooks from "./components/books/myBooks.jsx";
-import Footer from "./components/Footer.jsx";
-import NotFoundPage from "./components/Pages/404.jsx";
-import ChatBox from "./components/books/chat.jsx";
+
+// Auth Pages (correct folder: routes/AuthenticationPage)
+import SignUp from "./routes/AuthenticationPage/SignUp.jsx";
+import SignIn from "./routes/AuthenticationPage/SignIn.jsx";
+import VerifyEmail from "./routes/AuthenticationPage/VerifyEmail.jsx";
+
+// Material Pages (correct folder: routes/Material)
+import Department from "./routes/Material/Department.jsx";
+import Semester from "./routes/Material/Semester.jsx";
+import Subjects from "./routes/Material/Subjects.jsx";
+import Chapter from "./routes/Material/Chapter.jsx";
+
+// Book-related Pages (correct folder: routes/books)
+import BuySellBooks from "./routes/books/Book.jsx";
+import MyBooks from "./routes/books/myBooks.jsx";
+import ChatBox from "./routes/books/chat.jsx";
+
+// Landing Page (correct folder: routes/LandingPage)
+import About from "./routes/About/About.jsx";
+import LandingPage from "./routes/LandingPage/LandingPage.jsx";
+
+// Components (correct folder: components)
+import DashBoard from "./components/DashBoard.jsx";
+import UploadNotes from "./components/UploadNotes.jsx";
+import Profile from "./components/Profile.jsx";
+import NotFoundPage from "./components/NotFound.jsx";
+import "./App.css";
+
+
 
 function App() {
   const router = createBrowserRouter([

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import apirequest from "../../utils/lib/apiRequest";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,8 +12,8 @@ const VerifyEmail = () => {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const response = await axios.get(
-          `https://eduved-backend-tpos.onrender.com/api/user/verify-email/${token}`
+        const response = await apirequest.get(
+          `/user/verify-email/${token}`
         );
         toast.success(response.data.message);
         setTimeout(() => navigate("/signin"), 3000);

@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState, useContext } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
-import Cards from "./Pages/ui/Cards";
+import apirequest from "../utils/lib/apiRequest"
+import Cards from "./Cards";
 import { AuthContext } from "../context/AuthContext";
 
 const Dashboard = () => {
@@ -16,9 +16,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchDepartments = async () => {
       try {
-        const response = await axios.get(
-          `https://eduved-backend-tpos.onrender.com/api/subjects/getNotes?department=${userDepartment}&semester=${userSemester}`
-        );
+        const response = await
+          apirequest.get(`/subjects/getNotes?department=${userDepartment}&semester=${userSemester}`)
+        ;
         setDepartments(response.data);
       } catch (error) {
         console.error("Error fetching departments:", error);

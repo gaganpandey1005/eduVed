@@ -1,12 +1,12 @@
-import Cards from "../ui/Cards";
+import Cards from "../../components/Cards";
 
 // Importing images
-import cseImage from "../../../assets/images/cse.png";
-import eeImage from "../../../assets/images/ee.png";
-import meImage from "../../../assets/images/me.png";
-import ceImage from "../../../assets/images/ce.png";
-import eceImage from "../../../assets/images/ece.png";
-import itImage from "../../../assets/images/it.png";
+import cseImage from "../../assets/images/cse.png";
+import eeImage from "../../assets/images/ee.png";
+import meImage from "../../assets/images/me.png";
+import ceImage from "../../assets/images/ce.png";
+import eceImage from "../../assets/images/ece.png";
+import itImage from "../../assets/images/it.png";
 
 const Department = () => {
   const departments = [

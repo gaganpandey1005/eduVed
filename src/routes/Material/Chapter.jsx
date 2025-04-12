@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Cards from "../ui/Cards";
-import axios from "axios";
+import Cards from "../../components/Cards";
+import apirequest from "../../utils/lib/apiRequest";
 
 const Chapter = () => {
   const { department, semester, subject } = useParams();
@@ -11,8 +11,10 @@ const Chapter = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `https://eduved-backend-tpos.onrender.com/api/chapter/getNotes?department=${department}&semester=${semester}&subjectName=${subject}`
+        console.log(apirequest());
+        
+        const response = await apirequest.get(
+          `/chapter/getNotes?department=${department}&semester=${semester}&subjectName=${subject}`
         );
         console.log("data",response.data);
 

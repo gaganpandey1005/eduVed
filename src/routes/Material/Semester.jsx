@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import Cards from "../ui/Cards"; // Import Cards component
-import semImage from "../../../assets/images/sem.png"; // Import image
+import Cards from "../../components/Cards"; // Import Cards component
+import semImage from "../../assets/images/sem.png"; // Import image
 
 const Semester = () => {
   const { department } = useParams(); // Get department from URL
