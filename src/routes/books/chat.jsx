@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import apirequest from "../../utils/lib/apiRequest";
 
 const ChatBox = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const myId = user._id;
 
   const socketRef = useRef(null);

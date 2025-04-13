@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import apirequest from "../../utils/lib/apiRequest";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,13 +10,12 @@ const MyBooks = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const user = JSON.parse(localStorage.getItem("user"));
+      const user = JSON.parse(sessionStorage.getItem("user"));
       const id = user?._id;
       try {
-        const response = await apirequest.get(
-          `/shivani/${id}`
-        );
-        setBooks(response.data.book || []);
+        const response = await apirequest.get(`/shivani/user/${id}`);
+        if(response.data.userBook.length===0) return toast.error("No book found");
+        setBooks(response.data.userBook );
       } catch (error) {
         toast.error("Error fetching user books.");
         console.error("Error fetching user books:", error);
@@ -37,10 +36,7 @@ const MyBooks = () => {
 
   const handleUpdate = async () => {
     try {
-      await apirequest.put(
-        `/shivani/update/${selectedBook._id}`,
-        editForm
-      );
+      await apirequest.put(`/shivani/update/${selectedBook._id}`, editForm);
       setBooks((prevBooks) =>
         prevBooks.map((book) =>
           book._id === selectedBook._id ? { ...book, ...editForm } : book
@@ -56,9 +52,7 @@ const MyBooks = () => {
 
   const handleDelete = async (bookId) => {
     try {
-      await apirequest.delete(
-        `/shivani/delete/${bookId}`
-      );
+      await apirequest.delete(`/shivani/delete/${bookId}`);
       setBooks(books.filter((book) => book._id !== bookId));
       toast.success("Book deleted successfully.");
     } catch (error) {
@@ -72,7 +66,7 @@ const MyBooks = () => {
       <h1 className="items-center text-4xl font-bold text-center mb-8 animate-bounce">
         My Books
       </h1>
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {books.map((book) => (
           <div
             key={book._id}
@@ -91,16 +85,16 @@ const MyBooks = () => {
             <p className="text-gray-400">Year: {book.year}</p>
             <p className="text-gray-400">Location: {book.location}</p>
             <p className="text-gray-400">Quantity: {book.quantity}</p>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between mt-4 flex-wrap gap-4">
               <button
                 onClick={() => handleEditClick(book)}
-                className="bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg transition-all"
+                className="bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg transition-all flex-1 sm:flex-none"
               >
                 Edit Book Detail
               </button>
               <button
                 onClick={() => handleDelete(book._id)}
-                className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-all"
+                className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-all flex-1 sm:flex-none"
               >
                 Delete Book
               </button>
@@ -112,7 +106,7 @@ const MyBooks = () => {
       {/* Update Modal */}
       {selectedBook && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-gray-800 text-white p-8 rounded-lg">
+          <div className="bg-gray-800 text-white p-8 rounded-lg w-full sm:w-96">
             <h2 className="text-2xl font-bold mb-4">Update Book Details</h2>
             <div className="space-y-4">
               <input
@@ -156,16 +150,16 @@ const MyBooks = () => {
                 className="w-full p-2 bg-gray-700 rounded"
               />
             </div>
-            <div className="flex justify-between mt-6">
+            <div className="flex justify-between mt-6 flex-wrap gap-4">
               <button
                 onClick={handleUpdate}
-                className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg"
+                className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg w-full sm:w-auto"
               >
                 Save
               </button>
               <button
                 onClick={() => setSelectedBook(null)}
-                className="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg"
+                className="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg w-full sm:w-auto"
               >
                 Cancel
               </button>

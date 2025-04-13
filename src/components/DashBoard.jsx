@@ -25,6 +25,8 @@ const Dashboard = () => {
           `/subjects/getNotes?department=${userDepartment}&semester=${userSemester}`
         );
         setDepartments(response.data);
+        console.log(response.data);
+        
       } catch (error) {
         console.error("Error fetching departments:", error);
       } finally {

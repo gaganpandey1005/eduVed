@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../context/AuthContext";
-// import { BookLoaderComponent } from "../../components/BookLoaderComponent"; // Update the path if needed
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -14,10 +13,11 @@ const SignIn = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const [isLoading, setIsLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false); // 🔹 Track checkbox state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // Start loader
+    setIsLoading(true);
 
     const formData = {
       email: emailRef.current.value,
@@ -25,17 +25,26 @@ const SignIn = () => {
     };
 
     try {
-      const response = await apirequest.post(
-        "/user/login",
-        formData,
-        { headers: { "Content-Type": "application/json" } }
-      );
+      const response = await apirequest.post("/user/login", formData, {
+        headers: { "Content-Type": "application/json" },
+      });
 
       if (response.status === 200) {
         const { user, token } = response.data;
 
         updateUser(user);
-        localStorage.setItem("token", token);
+
+        // 🔐 Store token and user based on rememberMe
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("user", JSON.stringify(user));
+
+        if (rememberMe) {
+          localStorage.setItem("token", token);
+          localStorage.setItem("user", JSON.stringify(user));
+        } else {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+        }
 
         toast.success(response.data.message, { position: "top-center" });
 
@@ -51,7 +60,7 @@ const SignIn = () => {
         position: "top-center",
       });
     } finally {
-      setIsLoading(false); // Stop loader
+      setIsLoading(false);
     }
   };
 
@@ -64,10 +73,9 @@ const SignIn = () => {
     >
       <ToastContainer />
 
-      {/* Full-screen loader with darker background */}
       {isLoading && (
         <div className="fixed inset-0 bg-black/90 flex justify-center items-center z-50">
-          {/* <BookLoaderComponent /> */}
+          {/* Loader can be added here */}
         </div>
       )}
 
@@ -97,6 +105,19 @@ const SignIn = () => {
               placeholder="********"
               required
             />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="rememberMe"
+              checked={rememberMe}
+              onChange={() => setRememberMe(!rememberMe)}
+              className="accent-blue-600"
+            />
+            <label htmlFor="rememberMe" className="text-gray-300 text-sm">
+              Remember Me
+            </label>
           </div>
 
           {!isLoading && (

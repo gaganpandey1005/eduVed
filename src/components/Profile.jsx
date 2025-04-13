@@ -26,8 +26,8 @@ const Profile = () => {
 
   const handleLogout = () => {
     updateUser(null);
-    localStorage.removeItem("token"); // Ensure token is 
-    localStorage.removeItem("user")
+    sessionStorage.removeItem("token"); // Ensure token is 
+    sessionStorage.removeItem("user")
     navigate("/"); // Redirect to home page
   };
 
