@@ -133,7 +133,23 @@ const getSingleShivaniBook = async (req, res) => {
     });
   }
 };
-
+//get book for single user
+const userShivaniBook=async(req,res)=>{
+const {id}=req.params;
+try{
+  const userBook=await Shivani.find({ soldBy: id });
+  
+  
+  if(userBook)return res.status(200).json({message: 'Book fetched successfully', userBook});
+  else{
+    return res.status(404).json({message:"Book not found"});
+  }
+  
+  
+}catch(err){
+  return res.status(500).json({ message: "Internal server error" });
+}
+}
 
 
 // Update Shivani Book
@@ -188,4 +204,5 @@ export {
   updateShivaniBook,
   getSingleShivaniBook,
   getAllShivaniBooks,
+  userShivaniBook
 };

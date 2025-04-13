@@ -6,6 +6,7 @@ import {
   updateShivaniBook,
   getSingleShivaniBook,
   getAllShivaniBooks,
+  userShivaniBook,
 } from "../controllers/bookControllers/shivani.controller.js";
 
 const router = express.Router();
@@ -18,6 +19,8 @@ router.get("/all", getAllShivaniBooks);
 
 // Route to get a single Shivani book by ID
 router.get("/:id", getSingleShivaniBook);
+// ROute to get user shivani book by user ID
+router.get("/user/:id", userShivaniBook);
 
 // Route to update a Shivani book by ID
 router.put("/update/:id", updateShivaniBook);
