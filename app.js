@@ -8,6 +8,7 @@ import subjectRoutes from "./routes/subject.routes.js";
 import chapterRoutes from "./routes/chapter.routes.js";
 import shivaniRoutes from "./routes/shivani.routes.js";
 import chatRoutes from "./routes/chatr.routes.js"
+import razorpayRoutes from "./routes/razorpay.routes.js";
 import { app } from "./utils/socket.js";
 app.use(express.json());
 app.use(cookieParser());
@@ -34,6 +35,7 @@ app.use("/api/chapter", chapterRoutes);
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/shivani", shivaniRoutes);
 app.use("/api/chat",chatRoutes);
+app.use("/api/razorpay",razorpayRoutes);
 
 app.all("*", (req, res) => {
   res.status(404).send("Page not found");

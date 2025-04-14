@@ -1,6 +1,7 @@
 import User from "../../model/user.model.js";
 import Shivani from "../../model/bookSchema/shivaniSchema.js";
 import cloudinary from "../../config/cloudinary.js";
+import razorpayInstance from "../../config/razorpay.config.js";
 
 //user id find
 const addShivani = async (req, res) => {
@@ -196,7 +197,36 @@ const deleteShivaniBook = async (req, res) => {
     });
   }
 };
+const bookInfoPayment=async (req,res)=>{
+  
 
+
+  try{
+    
+    
+    
+    const amountInPaise=5*100;
+
+    const options={
+      amount:amountInPaise,
+      currency:"INR",
+      receipt:`receipt_order_${Date.now()}`,
+    }
+
+    const order=await razorpayInstance.orders.create(options);
+    res.json({
+      orderId: order.id,
+      amount: order.amount,
+      currency: order.currency,
+    });
+  } catch (error) {
+    console.error("Error while generating payment info:", error);
+    return res.status(500).json({
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+}
 // Exporting CRUD Functions
 export {
   addShivani,
@@ -204,5 +234,6 @@ export {
   updateShivaniBook,
   getSingleShivaniBook,
   getAllShivaniBooks,
-  userShivaniBook
+  userShivaniBook,
+  bookInfoPayment
 };

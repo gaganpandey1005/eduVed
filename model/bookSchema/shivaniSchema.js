@@ -36,6 +36,7 @@ const shivaniSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+
   buyDate: {
     type: Date,
     default: Date.now,
