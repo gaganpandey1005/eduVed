@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const apirequest = axios.create({
-  // baseURL: "https://eduved-backend-tpos.onrender.com/api",
-  baseURL:"http://localhost:8000/api",
+  baseURL: "https://eduved-backend-tpos.onrender.com/api",
+  // baseURL:"http://localhost:8000/api",
   withCredentials: true,
 });
 export default apirequest;
