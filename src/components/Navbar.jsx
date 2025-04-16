@@ -20,7 +20,7 @@ const NavBar = () => {
 
   const menuItems = [
     { name: "Home", path: "/" },
-    ...(isLoggedIn ? [{ name: "Dashboard", path: "/dashboard" }] : []),
+    ...(isLoggedIn ? [{ name: "My Subjects", path: "/dashboard" }] : []),
     { name: "Study Material", path: "/study-material" },
     { name: "Books", path: "/books" },
     { name: "About", path: "/about" },
