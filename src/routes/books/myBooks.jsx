@@ -16,6 +16,8 @@ const MyBooks = () => {
       const id = user?._id;
       try {
         const response = await apirequest.get(`/shivani/user/${id}`);
+        console.log("book",response.data);
+        
         if (response.data.userBook.length === 0) {
           toast.info("You haven't added any books yet");
         }
@@ -59,7 +61,15 @@ const MyBooks = () => {
   const handleDelete = async (bookId) => {
     if (window.confirm("Are you sure you want to delete this book?")) {
       try {
-        await apirequest.delete(`/shivani/delete/${bookId}`);
+       const {data}= await apirequest.delete(`/shivani/delete/${bookId}`);
+       console.log("data", data);
+       
+       const userData = JSON.parse(sessionStorage.getItem("user"));
+       console.log(userData);
+       
+       userData.soldBooks=data.user.soldBooks;
+       sessionStorage.setItem("user", JSON.stringify(userData));
+       
         setBooks(books.filter((book) => book._id !== bookId));
         toast.success("Book deleted successfully");
       } catch (error) {
@@ -138,9 +148,7 @@ const MyBooks = () => {
                     </div>
                     
                     <div className="flex items-center text-gray-300">
-                      <span className="mr-2">🔢</span>
-                      <span className="font-medium">Quantity:</span>
-                      <span className="ml-2 text-gray-400">{book.quantity}</span>
+                      
                     </div>
                   </div>
                   
@@ -231,16 +239,7 @@ const MyBooks = () => {
                 />
               </div>
               
-              <div>
-                <label className="block text-gray-300 text-sm font-medium mb-1">Quantity</label>
-                <input
-                  type="number"
-                  name="quantity"
-                  value={editForm.quantity || ""}
-                  onChange={handleChange}
-                  className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                />
-              </div>
+              
             </div>
             
             <div className="flex gap-4 mt-6">

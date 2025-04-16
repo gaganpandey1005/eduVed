@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import MyBooks from "../routes/books/myBooks";
 import Chat from "../routes/books/chat"; // Importing the Chat component
+import axios from "axios";
+import apirequest from "../utils/lib/apiRequest";
 
 const Profile = () => {
   const [user, setUser] = useState({
@@ -21,21 +23,30 @@ const Profile = () => {
   
   const navigate = useNavigate();
   const { updateUser, currentUser } = useContext(AuthContext);
-
+  console.log("currentUser", currentUser);
+  
   // Fetch user data from AuthContext
   useEffect(() => {
+    const fetchUserData=async ()=>{
+      const {data}=await apirequest.get(`/user/monthlySell/${currentUser._id}`)
+      console.log(data);
+      
+    }
     if (currentUser) {
+      const month = new Date(currentUser.createdAt).toLocaleString('default',{month: 'long'});
       setUser({
         name: currentUser.fullName,
         semester: currentUser.semester,
         department: currentUser.department,
-        email: currentUser.email || "user@example.com",
-        joinDate: currentUser.joinDate || "January 2025",
-        booksListed: currentUser.booksListed || 8,
-        booksSold: currentUser.booksSold || 5,
-        booksPurchased: currentUser.booksPurchased || 3,
+        email: currentUser.email,
+        joinDate:
+          month ,
+        booksListed: currentUser.soldBooks.length || 0 ,
+        booksSold: currentUser.bookSolded.length || 0,
+        booksPurchased: currentUser.buyBooks.length || 0
       });
     }
+    fetchUserData();
   }, [currentUser]);
 
   const handleLogout = () => {

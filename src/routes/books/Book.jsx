@@ -113,8 +113,14 @@ const BuySellBooks = () => {
         `/shivani/add?userId=${id}`,
         formData
       );
+      console.log(response.data);
+      let userData=JSON.parse(sessionStorage.getItem("user"));
+      userData.soldBooks=response.data.user.soldBooks;
+      console.log(response.data.user.soldBooks);
+      
+      sessionStorage.setItem("user", JSON.stringify(userData));
 
-      if (response.status === 200) {
+      if (response.status === 200 || response.status===201) {
         toast.success(response.data.message);
         setBookData({
           semester: "",
@@ -391,7 +397,7 @@ const BuySellBooks = () => {
                         value={bookData.semester}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="e.g. Fall 2024"
+                        placeholder="e.g. 6"
                       />
                     </div>
                     <div>

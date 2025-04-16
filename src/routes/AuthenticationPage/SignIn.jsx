@@ -28,7 +28,9 @@ const SignIn = () => {
       const response = await apirequest.post("/user/login", formData, {
         headers: { "Content-Type": "application/json" },
       });
-
+      
+      console.log("response",response.data);
+      
       if (response.status === 200) {
         const { user, token } = response.data;
 
