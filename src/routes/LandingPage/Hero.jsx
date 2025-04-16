@@ -1,6 +1,254 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
 const Hero = () => {
+  const mountRef = useRef(null);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    if (!mountRef.current) return;
+
+    // Set up scene
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth / 2, window.innerHeight);
+    renderer.setClearColor(0x000000, 0);
+    mountRef.current.appendChild(renderer.domElement);
+
+    // Add lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0x4169e1, 1);
+    directionalLight.position.set(5, 5, 5);
+    scene.add(directionalLight);
+
+    const pointLight = new THREE.PointLight(0x4169e1, 1);
+    pointLight.position.set(-5, 5, 5);
+    scene.add(pointLight);
+
+    // Add spotlights for dramatic lighting on the text
+    const spotLight1 = new THREE.SpotLight(0x4169e1, 1);
+    spotLight1.position.set(0, 10, 10);
+    spotLight1.angle = Math.PI / 6;
+    spotLight1.penumbra = 0.5;
+    scene.add(spotLight1);
+
+    const spotLight2 = new THREE.SpotLight(0x9370db, 1);
+    spotLight2.position.set(10, 5, 0);
+    spotLight2.angle = Math.PI / 6;
+    spotLight2.penumbra = 0.5;
+    scene.add(spotLight2);
+
+    // Create temporary text mesh while font is loading
+    const createTemporaryText = () => {
+      const tempTextGroup = new THREE.Group();
+      
+      // Create placeholder text using basic geometries
+      const letters = ['e', 'd', 'u', 'X', 'e', 'd'];
+      const spacing = 1.2;
+      
+      letters.forEach((letter, index) => {
+        let geometry;
+        
+        if (letter === 'X') {
+          // Create an X using two boxes
+          const box1 = new THREE.BoxGeometry(0.3, 2, 0.5);
+          const box2 = new THREE.BoxGeometry(0.3, 2, 0.5);
+          
+          const mesh1 = new THREE.Mesh(box1, new THREE.MeshPhongMaterial({ color: 0x4169e1 }));
+          mesh1.rotation.z = Math.PI / 4;
+          
+          const mesh2 = new THREE.Mesh(box2, new THREE.MeshPhongMaterial({ color: 0x4169e1 }));
+          mesh2.rotation.z = -Math.PI / 4;
+          
+          const letterGroup = new THREE.Group();
+          letterGroup.add(mesh1);
+          letterGroup.add(mesh2);
+          letterGroup.position.x = (index - 2.5) * spacing;
+          
+          tempTextGroup.add(letterGroup);
+          return;
+        }
+        
+        if (letter === 'e') {
+          geometry = new THREE.BoxGeometry(1, 1.5, 0.5);
+        } else if (letter === 'd') {
+          geometry = new THREE.BoxGeometry(1, 2, 0.5);
+        } else if (letter === 'u') {
+          geometry = new THREE.BoxGeometry(1, 1.8, 0.5);
+        }
+        
+        const mesh = new THREE.Mesh(
+          geometry,
+          new THREE.MeshPhongMaterial({ color: 0x4169e1 })
+        );
+        
+        mesh.position.x = (index - 2.5) * spacing;
+        tempTextGroup.add(mesh);
+      });
+      
+      return tempTextGroup;
+    };
+    
+    // Add a temporary text group until the font loads
+    const tempText = createTemporaryText();
+    scene.add(tempText);
+
+    // Load font and create 3D text
+    const loader = new FontLoader();
+    
+    loader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', function (font) {
+      // Remove temporary text
+      scene.remove(tempText);
+      
+      // Create eduXed text
+      const textGroup = new THREE.Group();
+      
+      // Parameters for text geometry
+      const textParams = {
+        font: font,
+        size: 3,
+        height: 0.7,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 0.2,
+        bevelSize: 0.1,
+        bevelSegments: 5
+      };
+      
+      // Create main text geometry
+      const textGeometry = new TextGeometry('eduXed', textParams);
+      textGeometry.computeBoundingBox();
+      
+      // Center the text
+      const textWidth = textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x;
+      textGeometry.translate(-textWidth / 2, 0, 0);
+      
+      // Create gradient material for the text
+      const textMaterial = [
+        new THREE.MeshPhongMaterial({ 
+          color: 0x4169e1, 
+          specular: 0xffffff,
+          shininess: 100
+        }), // front
+        new THREE.MeshPhongMaterial({ 
+          color: 0x5e5eff, 
+          specular: 0xffffff,
+          shininess: 50
+        }) // side
+      ];
+      
+      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+      textGroup.add(textMesh);
+      
+      // Create a small graduation cap icon over the "X"
+      const capGroup = new THREE.Group();
+      
+      // Base of cap (small square)
+      const capBaseGeometry = new THREE.BoxGeometry(1, 0.1, 1);
+      const capBaseMaterial = new THREE.MeshPhongMaterial({ 
+        color: 0x4169e1,
+        shininess: 100
+      });
+      const capBase = new THREE.Mesh(capBaseGeometry, capBaseMaterial);
+      capBase.position.set(0, 0.5, 0);
+      capGroup.add(capBase);
+      
+      // Top of cap (pyramid)
+      const capTopGeometry = new THREE.ConeGeometry(0.7, 0.4, 4);
+      capTopGeometry.rotateY(Math.PI / 4);
+      const capTopMaterial = new THREE.MeshPhongMaterial({ 
+        color: 0x4169e1,
+        shininess: 100
+      });
+      const capTop = new THREE.Mesh(capTopGeometry, capTopMaterial);
+      capTop.position.set(0, 0.75, 0);
+      capGroup.add(capTop);
+      
+      // Tassel
+      const tasselGeometry = new THREE.CylinderGeometry(0.02, 0.02, 0.5, 8);
+      const tasselMaterial = new THREE.MeshPhongMaterial({ 
+        color: 0x4169e1, 
+        shininess: 100
+      });
+      const tassel = new THREE.Mesh(tasselGeometry, tasselMaterial);
+      tassel.position.set(0.4, 0.5, 0);
+      tassel.rotation.z = Math.PI / 2.5;
+      capGroup.add(tassel);
+      
+      // Position the cap at the approximate position of the "X"
+      capGroup.position.set(0.5, 2.5, 0);
+      capGroup.scale.set(0.5, 0.5, 0.5);
+      textGroup.add(capGroup);
+      
+      scene.add(textGroup);
+      textRef.current = textGroup;
+    },
+    // Progress callback
+    undefined,
+    // Error callback
+    function (error) {
+      console.error('Font loading error:', error);
+      // Keep the temporary text visible if font fails to load
+      textRef.current = tempText;
+    });
+
+    // Position camera
+    camera.position.z = 10;
+
+    // Animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      if (textRef.current) {
+        // Gentle floating animation
+        textRef.current.rotation.y = Math.sin(Date.now() * 0.0005) * 0.2;
+        textRef.current.position.y = Math.sin(Date.now() * 0.001) * 0.3;
+      }
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+
+    // Handle resize
+    const handleResize = () => {
+      const width = window.innerWidth / 2;
+      const height = window.innerHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Handle initial resize
+    handleResize();
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (mountRef.current && mountRef.current.contains(renderer.domElement)) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
+      if (textRef.current) {
+        scene.remove(textRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section className="relative min-h-screen flex flex-col lg:flex-row items-center bg-black text-white overflow-hidden">
       {/* Left side: Content */}
@@ -13,7 +261,6 @@ const Hero = () => {
         >
           <span className="text-blue-300 font-medium">Revolutionary Learning Platform</span>
         </motion.div>
-        
         <motion.h1
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -45,7 +292,6 @@ const Hero = () => {
             Imagination
           </span>
         </motion.h1>
-        
         <motion.p
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -54,7 +300,6 @@ const Hero = () => {
         >
           Experience the future of education with our AI-driven platform that adapts to your unique learning style. Unlock your potential with interactive tools designed to maximize knowledge retention.
         </motion.p>
-        
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -64,6 +309,7 @@ const Hero = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
+            onClick={() => window.location.href = "/signup"}  
             className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 rounded-xl font-semibold shadow-lg flex items-center gap-2"
           >
             Start Your Journey
@@ -71,399 +317,29 @@ const Hero = () => {
               <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
             </svg>
           </motion.button>
-          
-          
         </motion.div>
       </div>
-      
-      {/* Right side: Interactive Learning Visual */}
-      <div className="w-full lg:w-1/2 relative h-96 lg:h-full p-8 lg:p-0">
-        {/* Animated backdrop */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-indigo-900/40 rounded-3xl lg:rounded-l-3xl lg:rounded-r-none mx-8 lg:mx-0 overflow-hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2 }}
-        >
-          {/* Neural network nodes and connections */}
-          <div className="absolute inset-0">
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-4 h-4 rounded-full bg-blue-400"
-                style={{
-                  left: `${15 + Math.random() * 70}%`,
-                  top: `${10 + Math.random() * 80}%`,
-                }}
-                initial={{ opacity: 0.3 }}
-                animate={{ 
-                  opacity: [0.3, 0.8, 0.3],
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{ 
-                  duration: 2 + Math.random() * 3,
-                  repeat: Infinity,
-                  delay: Math.random() * 2
-                }}
-              />
-            ))}
-          
-            {/* Connection lines */}
-            <svg className="absolute inset-0 w-full h-full">
-              <motion.path 
-                d="M80,50 Q140,30 200,80 T320,120" 
-                stroke="rgba(96, 165, 250, 0.3)" 
-                strokeWidth="1.5" 
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.6 }}
-                transition={{ duration: 3, repeat: Infinity, repeatType: "loop" }}
-              />
-              <motion.path 
-                d="M100,120 Q180,160 240,100 T300,70" 
-                stroke="rgba(129, 140, 248, 0.3)" 
-                strokeWidth="1.5" 
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.6 }}
-                transition={{ duration: 4, repeat: Infinity, repeatType: "loop", delay: 1 }}
-              />
-              <motion.path 
-                d="M60,180 Q120,120 220,150 T300,200" 
-                stroke="rgba(165, 180, 252, 0.3)" 
-                strokeWidth="1.5" 
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.6 }}
-                transition={{ duration: 3.5, repeat: Infinity, repeatType: "loop", delay: 0.5 }}
-              />
-            </svg>
-          </div>
-        </motion.div>
+
+      {/* Right side: 3D Logo */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, delay: 0.5 }}
+        className="w-full lg:w-1/2 h-full relative"
+      >
+        {/* 3D Canvas */}
+        <div ref={mountRef} className="w-full h-full absolute inset-0" />
         
-        {/* Main floating 3D notebook */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-64 md:w-80"
-        >
-          {/* 3D Notebook with perspective */}
-          <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow-2xl overflow-hidden transform perspective-1000 rotate-y-6 rotate-x-3">
-            {/* Top holographic bar */}
-            <motion.div 
-              className="absolute top-0 left-0 w-full h-8 bg-gradient-to-r from-blue-500/80 to-indigo-500/80 backdrop-blur-sm"
-              animate={{ 
-                background: ["linear-gradient(to right, rgba(59, 130, 246, 0.8), rgba(99, 102, 241, 0.8))", 
-                            "linear-gradient(to right, rgba(236, 72, 153, 0.8), rgba(99, 102, 241, 0.8))",
-                            "linear-gradient(to right, rgba(59, 130, 246, 0.8), rgba(99, 102, 241, 0.8))"]
-              }}
-              transition={{ duration: 5, repeat: Infinity }}
-            >
-              <div className="flex justify-between items-center h-full px-4">
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 rounded-full bg-red-500 opacity-80"></div>
-                  <div className="w-2 h-2 rounded-full bg-yellow-500 opacity-80"></div>
-                  <div className="w-2 h-2 rounded-full bg-green-500 opacity-80"></div>
-                </div>
-                <div className="w-20 h-2 bg-white/20 rounded-full"></div>
-              </div>
-            </motion.div>
-            
-            {/* Notebook content with holographic UI elements */}
-            <div className="mt-8 p-5">
-              {/* Interactive learning module */}
-              <div className="mb-5">
-                <div className="flex items-center mb-2">
-                  <div className="w-8 h-2 bg-blue-400/70 rounded mr-2"></div>
-                  <div className="w-16 h-2 bg-gray-300 rounded"></div>
-                </div>
-                
-                {/* Interactive brain visualization */}
-                <div className="relative w-full h-32 bg-gray-800/10 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
-                  <motion.div
-                    className="w-20 h-20 relative"
-                    animate={{ rotateY: 360 }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                  >
-                    {/* Brain visualization */}
-                    <div className="absolute inset-0 w-full h-full rounded-full bg-gradient-to-br from-purple-400/40 to-blue-500/30 backdrop-blur-sm"></div>
-                    
-                    {/* Synapses */}
-                    <motion.div 
-                      className="absolute left-1/2 top-1 w-px h-3 bg-blue-400"
-                      animate={{ height: [3, 5, 3], opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    />
-                    <motion.div 
-                      className="absolute left-1/4 top-1/2 w-px h-4 bg-purple-400"
-                      animate={{ height: [4, 6, 4], opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                    />
-                    <motion.div 
-                      className="absolute right-1/4 bottom-1/4 w-px h-3 bg-indigo-400"
-                      animate={{ height: [3, 5, 3], opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 1.8, repeat: Infinity, delay: 1 }}
-                    />
-                    
-                    {/* Neural pathways */}
-                    <svg className="absolute inset-0">
-                      <motion.circle 
-                        cx="50%" cy="50%" r="40%" 
-                        stroke="rgba(139, 92, 246, 0.5)" 
-                        strokeWidth="1" 
-                        fill="none"
-                        strokeDasharray="5,3"
-                      />
-                    </svg>
-                  </motion.div>
-                </div>
-                
-                {/* AI Learning Analytics */}
-                <div className="w-full h-4 bg-gray-200 rounded-full overflow-hidden mb-3">
-                  <motion.div 
-                    className="h-full bg-gradient-to-r from-blue-500 to-indigo-500"
-                    initial={{ width: "20%" }}
-                    animate={{ width: "80%" }}
-                    transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
-                  />
-                </div>
-                
-                <div className="flex justify-between mb-5">
-                  <div className="w-1/3 space-y-1">
-                    <div className="w-full h-1 bg-gray-300 rounded"></div>
-                    <div className="w-2/3 h-1 bg-gray-300 rounded"></div>
-                  </div>
-                  <div className="flex space-x-1">
-                    <motion.div 
-                      className="w-2 h-2 rounded-full bg-green-500"
-                      animate={{ opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                    <motion.div 
-                      className="w-2 h-2 rounded-full bg-blue-500"
-                      animate={{ opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
-                    />
-                    <motion.div 
-                      className="w-2 h-2 rounded-full bg-purple-500"
-                      animate={{ opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
-                    />
-                  </div>
-                </div>
-              </div>
-              
-              {/* Learning modules visualization */}
-              <div className="grid grid-cols-3 gap-2 mb-4">
-                <motion.div 
-                  className="col-span-1 h-8 rounded bg-blue-100 flex items-center justify-center"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="w-4 h-4 rounded-sm bg-blue-400"></div>
-                </motion.div>
-                <motion.div 
-                  className="col-span-2 h-8 rounded bg-purple-100 flex items-center justify-center"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="w-10 h-1 bg-purple-400 rounded-full"></div>
-                </motion.div>
-                <motion.div 
-                  className="col-span-2 h-8 rounded bg-indigo-100 flex items-center justify-center"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="w-10 h-1 bg-indigo-400 rounded-full"></div>
-                </motion.div>
-                <motion.div 
-                  className="col-span-1 h-8 rounded bg-pink-100 flex items-center justify-center"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="w-4 h-4 rounded-sm bg-pink-400"></div>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        {/* Light effects */}
+        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-24 h-24 bg-purple-500/20 rounded-full blur-3xl" />
         
-        {/* Floating Knowledge Elements */}
-        {/* DNA Double Helix */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 0.7, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="absolute top-1/4 left-1/4 transform -translate-x-full -translate-y-1/2 z-20"
-        >
-          <div className="relative w-12 h-28">
-            <motion.div 
-              className="absolute w-full h-full"
-              animate={{ rotateX: 360 }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            >
-              {[...Array(7)].map((_, i) => (
-                <div key={`helix-${i}`} className="relative" style={{ top: `${i * 4}px` }}>
-                  <div 
-                    className="absolute h-1 w-10 bg-blue-400 rounded-full opacity-80"
-                    style={{ 
-                      left: '0',
-                      transform: `rotate(${i % 2 ? 20 : -20}deg)`
-                    }}
-                  />
-                  <div 
-                    className="absolute h-1 w-10 bg-purple-400 rounded-full opacity-80"
-                    style={{ 
-                      left: '2px',
-                      transform: `rotate(${i % 2 ? -20 : 20}deg)`
-                    }}
-                  />
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.div>
-        
-        {/* 3D Atom Structure */}
-        <motion.div
-          initial={{ opacity: 0, rotate: -30, x: 50 }}
-          animate={{ opacity: 0.8, rotate: -30, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="absolute bottom-1/3 right-1/4 transform translate-x-1/2 translate-y-1/2 z-20"
-        >
-          <motion.div 
-            className="relative h-16 w-16"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          >
-            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-cyan-400"></div>
-            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-14 h-14 border border-cyan-300 rounded-full opacity-70"></div>
-            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-14 h-14 border border-cyan-400 rounded-full opacity-50" style={{ transform: 'translateX(-50%) translateY(-50%) rotateX(60deg)' }}></div>
-            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-14 h-14 border border-cyan-500 rounded-full opacity-30" style={{ transform: 'translateX(-50%) translateY(-50%) rotateY(60deg)' }}></div>
-            <motion.div 
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 w-2 h-2 rounded-full bg-cyan-400"
-              animate={{ 
-                x: [0, 16, 0],
-                y: [0, 8, 0],
-              }}
-              transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-            />
-          </motion.div>
-        </motion.div>
-        
-        {/* Math Formula Matrix */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 0.8, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="absolute bottom-1/4 left-1/3 transform -translate-x-1/2 translate-y-1/2 z-0"
-        >
-          <div className="text-blue-300 font-mono text-sm">
-            <div>[ x² + y² = r² ]</div>
-            <div>∫ f(x) dx</div>
-            <div>λ = h/p</div>
-          </div>
-        </motion.div>
-        
-        {/* Quantum Computing Qubits */}
-        <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 0.8, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="absolute top-1/3 right-1/4 transform translate-x-1/2 -translate-y-1/2 z-0"
-        >
-          <motion.div
-            className="relative w-16 h-16 flex items-center justify-center"
-            animate={{ rotateZ: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          >
-            <div className="absolute w-full h-full border-2 border-dashed border-green-400/50 rounded-full" />
-            <div className="absolute w-4 h-4 rounded-full bg-gradient-to-br from-green-400 to-cyan-400 shadow-lg shadow-cyan-500/30" />
-            <motion.div 
-              className="absolute w-2 h-2 rounded-full bg-green-300"
-              animate={{ 
-                x: [0, 8, 0, -8, 0],
-                y: [8, 0, -8, 0, 8],
-              }}
-              transition={{ duration: 5, repeat: Infinity }}
-            />
-          </motion.div>
-        </motion.div>
-        
-        {/* 3D Holographic Book */}
-        <motion.div
-          initial={{ opacity: 0, rotate: 15, y: 50 }}
-          animate={{ opacity: 1, rotate: 15, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="absolute bottom-1/4 right-1/3 transform translate-x-1/2 translate-y-1/2 z-0"
-        >
-          <div className="relative w-24 h-32">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-purple-800 rounded-r-md shadow-lg transform perspective-1000 rotateY-15">
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-purple-900"></div>
-              <div className="absolute top-4 right-3 w-16 h-2 bg-white/20 rounded"></div>
-              <div className="absolute top-8 right-5 w-12 h-2 bg-white/20 rounded"></div>
-              <div className="absolute top-12 right-4 w-14 h-2 bg-white/20 rounded"></div>
-              <div className="absolute top-20 right-3 left-3 h-8 bg-white/10 rounded flex items-center justify-center">
-                <motion.div 
-                  className="w-full h-1 bg-indigo-300/50 rounded"
-                  animate={{ 
-                    width: ["60%", "90%", "60%"]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-              </div>
-            </div>
-            
-            {/* Holographic glow */}
-            <div className="absolute -inset-2 bg-purple-500/10 rounded-full filter blur-md"></div>
-          </div>
-        </motion.div>
-        
-        {/* Interactive particle system */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(12)].map((_, i) => (
-            <motion.div
-              key={`particle-${i}`}
-              className="absolute w-1 h-1 rounded-full bg-blue-300"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                x: [0, Math.random() * 50 - 25],
-                y: [0, Math.random() * 50 - 25],
-                opacity: [0, 0.8, 0],
-                scale: [0, 1, 0],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 3,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
-        
-        {/* Background glow effect */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl"></div>
-        
-        {/* Interactive wave effect at bottom */}
-        <svg 
-          className="absolute bottom-0 left-0 w-full" 
-          viewBox="0 0 1440 120" 
-          preserveAspectRatio="none"
-        >
-          <motion.path 
-            d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z" 
-            fill="rgba(59, 130, 246, 0.2)"
-            animate={{
-              d: [
-                "M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z",
-                "M0,40 C240,100 480,20 720,80 C960,100 1200,20 1440,40 L1440,120 L0,120 Z",
-                "M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z"
-              ]
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </svg>
-      </div>
+        {/* Animated particles/glowing effect */}
+        <div className="absolute inset-0 bg-gradient-radial from-blue-900/20 to-transparent" />
+      </motion.div>
+
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-black to-black" />
     </section>
   );
 };

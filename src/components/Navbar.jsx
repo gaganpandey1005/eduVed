@@ -28,40 +28,37 @@ const NavBar = () => {
 
   return (
     <>
-      {/* Navbar Container */}
-      <div className="flex z-50 items-center justify-between bg-black text-white p-5 relative">
-        {/* Logo */}
-        <h1
-          className="text-lg font-bold cursor-pointer hover:text-blue-600 transition"
-          onClick={() => handleNavigation("/")}
-        >
-          EduVed
-        </h1>
-
+      {/* Fixed Navbar Container with reduced height */}
+      <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-black text-white py-2 px-5 shadow-md h-18">
+        {/* Logo - medium size */}
+        <div className=" rounded-full p-0 flex items-start justify-center" onClick={() => navigate("/")}>
+          <img src="src/assets/images/logo.png" className="h-16 w-auto" alt="Logo" />
+        </div>
+        
         {/* Hamburger Menu Button (Mobile) */}
         <button onClick={toggleMenu} className="text-white text-2xl md:hidden">
           {menuOpen ? <FiX /> : <FiMenu />}
         </button>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-x-6">
+        {/* Desktop Navigation Links - centered and properly spaced */}
+        <div className="hidden md:flex items-center justify-center flex-grow">
           {menuItems.map((item) => (
             <h1
               key={item.name}
-              className={`cursor-pointer px-2 relative transition ${
+              className={`cursor-pointer px-3 relative transition hover:text-blue-400 ${
                 location.pathname === item.path ? "text-blue-600" : ""
               }`}
               onClick={() => handleNavigation(item.path)}
             >
               {item.name}
               {location.pathname === item.path && (
-                <div className="absolute left-0 bottom-0 w-full h-[2px] bg-blue-600"></div>
+                <div className="absolute left-0 bottom-0 w-full h-0.5 bg-blue-600"></div>
               )}
             </h1>
           ))}
         </div>
 
-        {/* Profile / Auth Links (Desktop) */}
+        {/* Profile / Auth Links (Desktop) - keeping original size */}
         {isLoggedIn ? (
           <div className="hidden md:flex items-center gap-x-4">
             <div
@@ -73,7 +70,7 @@ const NavBar = () => {
             </div>
             <button
               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
-              onClick={() => navigate("/chat")}
+              onClick={() => navigate("/message")}
             >
               Message
             </button>
@@ -96,6 +93,9 @@ const NavBar = () => {
         )}
       </div>
 
+      {/* Empty space to offset fixed navbar */}
+      <div className="h-16"></div>
+
       {/* Mobile Navigation Menu */}
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-gray-900 text-white transform transition-transform ${
@@ -110,8 +110,13 @@ const NavBar = () => {
           <FiX />
         </button>
 
+        {/* Mobile Menu Logo */}
+        <div className="flex justify-center mt-8 mb-4">
+          <img src="src/assets/images/logo.png" className="h-10" alt="Logo" />
+        </div>
+
         {/* Mobile Menu Links */}
-        <div className="flex flex-col items-start p-6 gap-y-6 mt-12">
+        <div className="flex flex-col items-start p-6 gap-y-6 mt-4">
           {menuItems.map((item) => (
             <h1
               key={item.name}
