@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import { type } from "os";
 
 const userSchema = new mongoose.Schema(
   {
@@ -17,11 +18,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
       unique: true,
     },
-    userName:{
-      type:String,
-      required:true,
-      unique:true
-    },
+
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -33,9 +30,27 @@ const userSchema = new mongoose.Schema(
       enum: ["1", "2", "3", "4", "5", "6", "7", "8"], // Predefined semester values
       required: true,
     },
+    //listed books
+    soldBooks: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Shivani",
+      },
+    ],
+    buyBooks: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Shivani",
+      },
+    ],
+    //books which get sold
+    bookSolded: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Shivani",
+    }],
     department: {
       type: String,
-      enum: ["CS", "IT", "ECE", "AIML", "DS", "ME", "CE","CS/IT"], // Predefined department values
+      enum: ["CS", "IT", "ECE", "AIML", "DS", "ME", "CE", "CS/IT"], // Predefined department values
       required: true,
     },
     verified: {
@@ -44,6 +59,10 @@ const userSchema = new mongoose.Schema(
     },
     verificationToken: String,
     verificationTokenExpiration: Date,
+    registrationDate: {
+      type: Date,
+      enum: Date.now(),
+    },
   },
   { timestamps: true }
 );

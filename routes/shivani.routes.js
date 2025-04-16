@@ -7,6 +7,8 @@ import {
   getSingleShivaniBook,
   getAllShivaniBooks,
   userShivaniBook,
+  shivaniBought,
+  confirmPayment,
 } from "../controllers/bookControllers/shivani.controller.js";
 
 const router = express.Router();
@@ -27,5 +29,11 @@ router.put("/update/:id", updateShivaniBook);
 
 // Route to delete a Shivani book by ID
 router.delete("/delete/:id", deleteShivaniBook);
+
+//Route to bought Shivani
+router.post("/bought",shivaniBought);
+
+router.post("/confirm-payment", confirmPayment);
+
 
 export default router;

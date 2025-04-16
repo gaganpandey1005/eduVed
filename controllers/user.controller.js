@@ -3,8 +3,8 @@ import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { json } from "stream/consumers";
-// import io from "socket.io"
+import Shivani from "../model/bookSchema/shivaniSchema.js";
+
 
 // ✅ Register User
 const register = async (req, res) => {
@@ -23,13 +23,14 @@ const register = async (req, res) => {
         .status(400)
         .json({ success: false, message: "User already exists" });
     }
-
+    
     const user = await User.create({
       fullName,
       email,
       password,
       semester,
       department,
+      registrationDate,
       
     });
 
@@ -55,6 +56,7 @@ const register = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "User registered successfully. Please verify your email.",
+      
     });
   } catch (error) {
     console.error("Error during registration:", error.message);
@@ -149,13 +151,7 @@ const { password: _, ...userInfo } = user;
       success: true,
       message: "User logged in successfully",
       token,
-      user: {
-        _id: user._id,
-        fullName: user.fullName,
-        email: user.email,
-        department: user.department,
-        semester: user.semester,
-      },
+      user
 
     });
   } catch (error) {
@@ -163,6 +159,40 @@ const { password: _, ...userInfo } = user;
     res.status(500).json({ success: false, message: "Something went wrong" });
   }
 };
+
+const monthlySell = async (req, res) => {
+  const { loggedInUserId } = req.params;
+
+  try {
+    // Get the first and last date of the current month
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    const endOfMonth = new Date(
+      now.getFullYear(),
+      now.getMonth() + 1,
+      0,
+      23,
+      59,
+      59,
+      999
+    );
+
+    // Fetch books sold by the user in the current month
+    const books = await Shivani.find({
+      soldBy: loggedInUserId,
+      buyDate: {
+        $gte: startOfMonth,
+        $lte: endOfMonth,
+      },
+      isSold:true,
+    });
+
+    return res.status(200).json({ books });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 
 // ✅ Logout User (Handled on Client Side)
 const logout = (req, res) => {
@@ -172,4 +202,4 @@ const logout = (req, res) => {
 
 
 
-export { register, verifyEmail, login,logout };
+export { register, verifyEmail, login,monthlySell,logout };
