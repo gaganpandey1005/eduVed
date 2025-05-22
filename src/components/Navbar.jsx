@@ -3,6 +3,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { useNavigate, useLocation } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../context/AuthContext";
+import logo from "../assets/images/logo.png"
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,7 +21,7 @@ const NavBar = () => {
 
   const menuItems = [
     { name: "Home", path: "/" },
-    ...(isLoggedIn ? [{ name: "Dashboard", path: "/dashboard" }] : []),
+    ...(isLoggedIn ? [{ name: "My Subjects", path: "/dashboard" }] : []),
     { name: "Study Material", path: "/study-material" },
     { name: "Books", path: "/books" },
     { name: "About", path: "/about" },
@@ -32,7 +33,7 @@ const NavBar = () => {
       <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-black text-white py-2 px-5 shadow-md h-18">
         {/* Logo - medium size */}
         <div className=" rounded-full p-0 flex items-start justify-center" onClick={() => navigate("/")}>
-          <img src="src/assets/images/logo.png" className="h-16 w-auto" alt="Logo" />
+          <img src={logo} className="h-16 w-auto" alt="Logo" />
         </div>
         
         {/* Hamburger Menu Button (Mobile) */}
